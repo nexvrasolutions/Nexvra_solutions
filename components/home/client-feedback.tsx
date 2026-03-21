@@ -1,0 +1,102 @@
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Badge } from "../ui/badge";
+
+const testimonials = [
+    {
+        id: 1,
+        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
+        name: "Delin Singh",
+        company: "Vasathi Kumar Technologies",
+        image: "/images/eye.png",
+    },
+    {
+        id: 2,
+        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
+        name: "Delin Singh",
+        company: "Vasathi Kumar Technologies",
+        image: "/images/eye.png",
+    },
+    {
+        id: 3,
+        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
+        name: "Delin Singh",
+        company: "Vasathi Kumar Technologies",
+        image: "/images/eye.png",
+    },
+];
+
+export default function ClientFeedback() {
+    return (
+        <section className="relative bg-white min-h-[70vh] overflow-hidden px-[5.5%] py-[5%]">
+
+            {/* Grid lines */}
+            <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line absolute left-[51.5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line absolute right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                {/* LEFT SIDE */}
+                <div>
+                    <div>
+                        <Badge text="Client Feedback" className="text-tertiary" />
+                        <h1 className="font-primary text-teritiary text-[64px] font-bold leading-20">
+                            What Our Clients Say
+                        </h1>
+                    </div>
+
+                    {/* Illustration */}
+                    <div className="relative">
+                        <Image
+                            src="/images/client.png"
+                            alt="feedback"
+                            width={350}
+                            height={320}
+                            className="object-contain"
+                        />
+                    </div>
+                </div>
+
+                {/* RIGHT SIDE */}
+                <div className="space-y-6">
+                    {testimonials.map((item, index) => (
+                        <motion.div
+                            key={item.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.15 }}
+                            viewport={{ once: true }}
+                            className="group transition-all pb-6 duration-300 bg-white border-b border-[#F3F3F3]"
+                        >
+                            <p className="text-[#0A0A0ACC] font-secondary leading-[28px] text-xl">
+                                {item.text}
+                            </p>
+
+                            <div className="flex items-center gap-3 mt-5">
+                                <div className="w-10 h-10 rounded-md overflow-hidden">
+                                    <Image
+                                        src={item.image}
+                                        alt={item.name}
+                                        width={40}
+                                        height={40}
+                                        className="object-cover"
+                                    />
+                                </div>
+
+                                <div className="font-secondary">
+                                    <h4 className="font-medium text-[#404040] text-2xl leading-8">
+                                        {item.name}
+                                    </h4>
+                                    <p className="text-[#0A0A0ACC]/80 text-lg">
+                                        {item.company}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
