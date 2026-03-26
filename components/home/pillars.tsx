@@ -49,38 +49,42 @@ export default function Pillars() {
 
     return (
         <section ref={sectionRef} className="relative bg-gray-50">
-            <div className="sticky top-0 h-screen flex flex-col justify-center px-[5%] py-[5%] gap-4">
+            <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-0 xl:py-[5%] gap-4">
                 {/* badge */}
                 <Badge text="Our Core Pillars" className="text-tertiary" />
                 <div className="flex gap-10">
                     {/* Image */}
-                    <div className="flex-[30%]">
+                    <div className="flex-[50%] md:flex-[30%]">
                         <Image
                             src="/images/pillarimage.png"
                             alt="nexvra-solutions-pillars"
                             width={600}
                             height={600}
-                            className="w-full h-150 object-contain rounded-sm"
+                            className="w-full h-full md:h-150 object-contain rounded-sm"
                         />
                     </div>
                     {/* Animated Text */}
-                    <div className="flex-[70%] relative">
-                        <div className="absolute -left-21 top-10 font-primary font-bold">
-                            <h1 className="text-[170px] leading-[182px]">
+                    <div className="flex-[50%] md:flex-[70%] relative z-30">
+                        <div className="absolute -left-40 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
+
+                            <h1 className="leading-tight xl:leading-[182px] text-[clamp(50px,9vw,170px)]">
                                 {splitText("Creativity,")}
                             </h1>
-                            <h1 className="text-[150px] leading-[182px]">
+
+                            <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)]">
                                 {splitText("Technology,")}
                             </h1>
-                            <h1 className="text-[170px] leading-[182px]">
+
+                            <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)]">
                                 {splitText("Solutions.")}
                             </h1>
+
                         </div>
                     </div>
                 </div>
                 {/* Arrow */}
-                <div className="absolute top-5 right-0">
-                    <GreenArrow />
+                <div className="absolute invisible md:visible top-5 md:right-0">
+                    <GreenArrow className="h-30 lg:h-60 2xl:h-80" />
                 </div>
             </div>
         </section>

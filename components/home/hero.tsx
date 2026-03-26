@@ -16,7 +16,6 @@ export default function Hero() {
     useEffect(() => {
         const ctx = gsap.context(() => {
 
-            // 🔥 ENTRY ANIMATION (clean + premium)
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
             tl.from(".hero-badge", {
@@ -70,17 +69,22 @@ export default function Hero() {
         <HeroLayout>
             <div
                 ref={heroRef}
-                className="relative z-10 w-full px-[5.5%] flex items-center"
+                className="relative z-10 w-full px-4 sm:px-10 xl:px-[5.5%] flex items-center"
             >
-                <div className="grid grid-cols-3 gap-20 w-full  min-h-[90vh] pt-45">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-10 xl:gap-20 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
+
                     {/* LEFT CONTENT */}
-                    <div className="flex flex-col col-span-2 pb-50">
+                    <div className="flex flex-col lg:col-span-2 lg:pb-50">
                         <Badge
                             text={"Digital Training & Solutions"}
                             className="hero-badge"
                         />
 
-                        <h1 className="hero-title text-[#FFFFFF] text-[70px] leading-[1.1] font-bold font-primary">
+                        <h1 className="hero-title text-white font-bold font-primary 
+                            text-[21px] sm:text-[26px] md:text-[45px] xl:text-[55px] 2xl:text-[70px] 
+                            leading-tight md:leading-[1.2]"
+                        >
+
                             {splitText("Build Skills.")}
                             <br />
                             {splitText("Build Digital Solutions.")}
@@ -89,18 +93,21 @@ export default function Hero() {
 
                     {/* RIGHT CONTENT */}
                     <div className="flex flex-col justify-center">
-                        <p className="hero-text text-secondary text-[20px] font-medium font-secondary leading-relaxed mb-10">
-                            Nexvra Solutions empowers individuals and businesses through
-                            comprehensive digital training programs and innovative
-                            technology solutions.
+                        <p className="hero-text text-secondary font-medium font-secondary 
+                            text-[16px] text-lg xl:text-xl
+                            leading-relaxed mb-6 lg:mb-10"
+                        >
+
+                            Learn industry-ready digital skills and build real-world projects with Nexvra Solutions.
+                            We help students start careers and help businesses create powerful digital experiences.
                         </p>
 
-                        <div className="flex gap-6 hero-btn">
+                        <div className="flex flex-col w-full md:w-[50%] lg:w-full md:flex-row lg:flex-col xl:flex-row gap-4 sm:gap-6 hero-btn">
                             <Button label="Explore Courses" />
 
                             <Link
                                 href="/solutions"
-                                className="border border-secondary text-secondary px-6 py-3 rounded-md hover:border-white transition"
+                                className="border border-secondary text-secondary px-6 py-3 rounded-md hover:border-white transition text-center"
                             >
                                 Our Solutions
                             </Link>
@@ -110,13 +117,63 @@ export default function Hero() {
             </div>
 
             {/* MEDIA */}
-            <div className="flex px-[5.5%] relative z-10 pt-20">
+            <div className="flex px-4 sm:px-6 lg:px-[5.5%] relative z-10 pt-10 lg:pt-20">
                 <img
                     src="/images/vido.gif"
                     alt="gif-video"
-                    className="hero-media h-[550px] w-full object-cover rounded-xl"
+                    className="hero-media w-full object-cover rounded-xl 
+        h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
                 />
             </div>
         </HeroLayout>
+        // <HeroLayout>
+        //     <div
+        //         ref={heroRef}
+        //         className="relative z-10 w-full px-[5.5%] flex items-center"
+        //     >
+        //         <div className="grid grid-cols-3 gap-20 w-full  min-h-[90vh] pt-45">
+        //             {/* LEFT CONTENT */}
+        //             <div className="flex flex-col col-span-2 pb-50">
+        //                 <Badge
+        //                     text={"Digital Training & Solutions"}
+        //                     className="hero-badge"
+        //                 />
+
+        //                 <h1 className="hero-title text-[#FFFFFF] text-[70px] leading-[1.1] font-bold font-primary">
+        //                     {splitText("Build Skills.")}
+        //                     <br />
+        //                     {splitText("Build Digital Solutions.")}
+        //                 </h1>
+        //             </div>
+
+        //             {/* RIGHT CONTENT */}
+        //             <div className="flex flex-col justify-center">
+        //                 <p className="hero-text text-secondary text-[20px] font-medium font-secondary leading-relaxed mb-10">
+        //                     Learn industry-ready digital skills and build real-world projects with Nexvra Solutions. We help students start careers and help businesses create powerful digital experiences.
+        //                 </p>
+
+        //                 <div className="flex gap-6 hero-btn">
+        //                     <Button label="Explore Courses" />
+
+        //                     <Link
+        //                         href="/solutions"
+        //                         className="border border-secondary text-secondary px-6 py-3 rounded-md hover:border-white transition"
+        //                     >
+        //                         Our Solutions
+        //                     </Link>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     </div>
+
+        //     {/* MEDIA */}
+        //     <div className="flex px-[5.5%] relative z-10 pt-20">
+        //         <img
+        //             src="/images/vido.gif"
+        //             alt="gif-video"
+        //             className="hero-media h-[550px] w-full object-cover rounded-xl"
+        //         />
+        //     </div>
+        // </HeroLayout>
     );
 }

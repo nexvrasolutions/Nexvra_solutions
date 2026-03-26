@@ -16,8 +16,8 @@ export default function Home() {
       <Pillars />
       <FeaturedCourses />
       <WhatWeDo />
-      <CaseStudy />
-      <ClientFeedback />
+      {/* <CaseStudy /> */}
+       <ClientFeedback />
     </>
   );
 }

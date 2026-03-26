@@ -22,7 +22,7 @@ export function Button({
   return (
       <button
         className={cn(
-          "relative overflow-hidden font-secondary leading-6 text-lg flex items-center",
+          "relative overflow-hidden font-secondary leading-6 text-lg flex justify-center items-center",
           "h-12.5 px-4 rounded-sm bg-[#A4FF00]",
           "text-black font-medium cursor-pointer",
           "transition-all duration-200 group",
@@ -32,7 +32,7 @@ export function Button({
       >
         {/* Content */}
         <div className="relative flex items-center justify-center">
-          <span className="text-black text-[10px] md:text-[14px]">
+          <span className="text-black text-[14px]">
             {label}
           </span>
         </div>

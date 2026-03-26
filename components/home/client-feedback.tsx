@@ -30,18 +30,18 @@ const testimonials = [
 
 export default function ClientFeedback() {
     return (
-        <section className="relative bg-white min-h-[70vh] overflow-hidden px-[5.5%] py-[5%]">
+        <section className="relative bg-white min-h-[70vh] overflow-hidden px-7 md:px-10 xl:px-[5.5%] py-10 md:py-[5%]">
 
             {/* Grid lines */}
             <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
             <div className="grid-line absolute left-[51.5%] top-0 h-full w-px bg-[#F3F3F3]" />
             <div className="grid-line absolute right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16 items-start">
                 {/* LEFT SIDE */}
                 <div>
                     <div>
                         <Badge text="Client Feedback" className="text-tertiary" />
-                        <h1 className="font-primary text-teritiary text-[64px] font-bold leading-20">
+                        <h1 className="font-primary text-teritiary text-[30px] md:text-[40px] lg:text-[50px] xl:text-[64px] z-10 font-bold leading-20">
                             What Our Clients Say
                         </h1>
                     </div>
@@ -53,13 +53,13 @@ export default function ClientFeedback() {
                             alt="feedback"
                             width={350}
                             height={320}
-                            className="object-contain"
+                            className="object-contain size-50 md:size-50"
                         />
                     </div>
                 </div>
 
                 {/* RIGHT SIDE */}
-                <div className="space-y-6">
+                <div className="space-y-3 md:space-y-6">
                     {testimonials.map((item, index) => (
                         <motion.div
                             key={item.id}
@@ -67,28 +67,28 @@ export default function ClientFeedback() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.15 }}
                             viewport={{ once: true }}
-                            className="group transition-all pb-6 duration-300 bg-white border-b border-[#F3F3F3]"
+                            className="group transition-all pb-3 md:pb-6 duration-300 bg-white border-b border-[#F3F3F3]"
                         >
-                            <p className="text-[#0A0A0ACC] font-secondary leading-[28px] text-xl">
+                            <p className="text-[#0A0A0ACC] font-secondary leading-tight xl:leading-[28px] text-[16px] md:text-lg lg:text-xl">
                                 {item.text}
                             </p>
 
-                            <div className="flex items-center gap-3 mt-5">
+                            <div className="flex items-center gap-3 mt-2 md:mt-5">
                                 <div className="w-10 h-10 rounded-md overflow-hidden">
                                     <Image
                                         src={item.image}
                                         alt={item.name}
                                         width={40}
                                         height={40}
-                                        className="object-cover"
+                                        className="object-cover "
                                     />
                                 </div>
 
                                 <div className="font-secondary">
-                                    <h4 className="font-medium text-[#404040] text-2xl leading-8">
+                                    <h4 className="font-medium text-[#404040] text-xl md:text-2xl leading-8">
                                         {item.name}
                                     </h4>
-                                    <p className="text-[#0A0A0ACC]/80 text-lg">
+                                    <p className="text-[#0A0A0ACC]/80 text-[17px] md:text-lg">
                                         {item.company}
                                     </p>
                                 </div>

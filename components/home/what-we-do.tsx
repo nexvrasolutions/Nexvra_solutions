@@ -78,16 +78,17 @@ export default function WhatWeDo() {
   };
 
   return (
-    <section className="py-[5%] flex flex-col items-center px-[5%] gap-5">
+    <section className=" flex flex-col items-center px-5 py-10 md:py-[5%] md:px-10 xl:px-[5.5%] gap-5">
       {/* Heading */}
       {/* <p className="text-sm font-primary text-teritiary font-medium">
         (What We Do)
       </p> */}
-      <Badge text="Digital Solutions" className="text-tertiary" />
-
-      <h2 className="text-[60px] font-bold font-primary text-teritiary leading-25 w-full text-center">
-        What We Do
-      </h2>
+      <div className="flex flex-col items-center justify-center">
+        <Badge text="Digital Solutions" className="text-tertiary" />
+        <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-25 w-full text-center">
+          What We Do
+        </h2>
+      </div>
 
       <div className="w-full flex flex-col relative">
         {services.map((service) => (
@@ -96,7 +97,7 @@ export default function WhatWeDo() {
             onMouseEnter={(e) => handleMouseEnter(e, service.id)}
             onMouseLeave={handleMouseLeave}
             className={cn(
-              "flex items-center border-b border-[#F3F3F3] justify-between rounded-lg p-6 relative transition-all duration-500 ease-in-out",
+              "flex items-center border-b border-[#F3F3F3] justify-between rounded-lg p-0 py-3 md:py-0 md:p-6 relative transition-all duration-500 ease-in-out",
               hoveredItem === service.id ? "bg-[#F3F3F3]" : ""
             )}
           >
@@ -106,29 +107,29 @@ export default function WhatWeDo() {
                 "w-[90%] flex flex-col gap-4 items-start transition-all duration-500 ease-in-out",
                 hoveredItem === service.id
                   ? "text-teritiary"
-                  : "text-secondary"
+                  : "text-[#BFBFBF]"
               )}
             >
-              <p className="text-[20px] font-primary font-[500] leading-[24px]">
+              <p className="text-lg md:text-[20px] font-primary font-[500] leading-[24px]">
                 {service.id}
               </p>
 
-              <h3 className="text-[40px] font-primary font-[600] leading-full">
+              <h3 className="text-[21px] md:text-[30px] xl:text-[40px] font-primary font-[600] leading-full">
                 {service.title}
               </h3>
             </div>
 
             {/* Hover Image */}
             {hoveredItem === service.id && (
-              <div className="absolute right-[200px] bottom-8 w-[450px] h-[220px] z-10">
+              <div className="absolute right-[200px] bottom-8 w-[250px] lg:w-[450px] h-[170px] lg:h-[220px] z-10">
                 {/* Green background */}
-                <div className="absolute top-5 inset-0 bg-primary translate-x-[20px] -z-10 rounded-sm"></div>
+                <div className="absolute top-5 inset-0 bg-[#A4FF00] translate-x-[20px] -z-10 rounded-sm"></div>
 
                 {/* Image */}
                 <img
                   src="/images/pillarimage.png"
                   alt="pillar-image"
-                  className="hover-image w-full h-[200px] object-cover rounded-sm"
+                  className="hover-image w-full h-[150px] lg:h-[200px] object-cover rounded-sm"
                 />
               </div>
             )}
@@ -138,9 +139,9 @@ export default function WhatWeDo() {
               <Arrow
                 className={cn(
                   "transition-all duration-500 ease-in-out",
-                  hoveredItem === service.id ? "bg-primary" : "bg-white"
+                  hoveredItem === service.id ? "bg-[#A4FF00]" : "bg-white"
                 )}
-                imgClassName={"size-[50px]"}
+                imgClassName={"size-8 md:size-10 xl:size-[50px]"}
               />
             </div>
           </div>

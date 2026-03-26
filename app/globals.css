@@ -60,6 +60,10 @@ body {
   white-space: pre;
 }
 
+.sm-panel-item {
+  color: #fff;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-sans);
