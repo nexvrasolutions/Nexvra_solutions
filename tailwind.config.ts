@@ -11,6 +11,9 @@ const config: Config = {
         primary: ["var(--font-onsite)"],
         secondary: ["var(--font-monument)"],
       },
+      screens: {
+        xs: "375px",
+      },
       colors: {
         primary: "#a4ff00",
         secondary: "#bfbfbf",

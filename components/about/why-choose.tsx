@@ -63,12 +63,12 @@ export default function WhyChooseNexvra() {
     }, []);
 
     return (
-        <section className="bg-[#F3F3F3] px-[5.5%] pt-[5%]">
+        <section className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[5%] ">
 
             {/* Heading */}
-            <div className="text-center flex flex-col items-center justify-center">
+            <div className="text-center flex flex-col items-center justify-center mb-10 lg:mb-0">
                 <Badge text="About nexvra" className="text-teritiary" />
-                <h1 className="font-primary text-teritiary text-[64px] font-bold leading-20">
+                <h1 className="font-primary text-teritiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-20">
                     <span className="text-[#BFBFBF]">Why Choose</span>
                     <br />
                     <span>Nexvra?</span>
@@ -78,13 +78,13 @@ export default function WhyChooseNexvra() {
             <div className="relative" style={{ height: `${sections.length * 100}vh` }}>
                 <div
                     ref={stickyRef}
-                    className="sticky top-0 h-screen flex items-center"
+                    className="sticky top-0 lg:h-screen flex items-center"
                 >
-                    <div className="grid md:grid-cols-2 w-full gap-10 items-center border border-[#E6E6E6] p-5 relative">
-                        <div className="h-full w-full flex items-center justify-center">
+                    <div className="grid lg:grid-cols-2 w-full h-full lg:h-auto lg:gap-10 items-center border border-[#E6E6E6] pb-15 lg:pb-0 p-5 relative">
+                        <div className="w-full flex items-center justify-center py-5 lg:py-10 lg:py-0">
                             <HexQuad active={active} setActive={setActive} />
                         </div>
-                        <div className="absolute bg-[#E6E6E6] translate-x-1/2 left-1/2 w-px h-full" />
+                        <div className="absolute invisible lg:visible bg-[#E6E6E6] translate-x-1/2 left-1/2 w-px h-full" />
                         <AnimatePresence mode="wait">
                             <div className="flex items-center justify-center">
                                 <motion.div
@@ -93,17 +93,17 @@ export default function WhyChooseNexvra() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -40 }}
                                     transition={{ duration: 0.5 }}
-                                    className="flex flex-col gap-5 items-start"
+                                    className="flex flex-col gap-5 items-center lg:items-start"
                                 >
                                     <motion.img
                                         src={sections[active].img}
                                         alt="icon"
-                                        className="size-60 object-cover mx-auto md:mx-0"
+                                        className="size-30 lg:size-60 object-cover mx-auto md:mx-0"
                                     />
-                                    <h3 className="text-4xl text-tertiary font-secondary font-bold">
+                                    <h3 className=" text-2xl lg:text-3xl xl:text-4xl text-tertiary font-secondary font-bold">
                                         {sections[active].title}
                                     </h3>
-                                    <p className="font-secondary text-xl leading-7 text-[#BFBFBF] max-w-md">
+                                    <p className="font-secondary text-lg md:text-xl leading-7 text-[#BFBFBF] max-w-md">
                                         {sections[active].desc}
                                     </p>
                                 </motion.div>

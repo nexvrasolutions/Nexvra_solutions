@@ -117,12 +117,11 @@ export default function Hero() {
             </div>
 
             {/* MEDIA */}
-            <div className="flex px-4 sm:px-6 lg:px-[5.5%] relative z-10 pt-10 lg:pt-20">
+            <div className="flex px-5 md:px-10 xl:px-[5.5%] relative z-10 pt-10 lg:pt-20">
                 <img
                     src="/images/vido.gif"
                     alt="gif-video"
-                    className="hero-media w-full object-cover rounded-xl 
-        h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+                    className="hero-media w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
                 />
             </div>
         </HeroLayout>

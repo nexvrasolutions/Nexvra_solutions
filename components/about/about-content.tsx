@@ -23,18 +23,18 @@ const AboutContent = () => {
 
     return (
         <section
-            className="relative bg-black text-white px-[5.5%] py-[5%] overflow-hidden min-h-[50vh]"
+            className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] overflow-hidden min-h-[50vh]"
         >
             {/* Grid lines */}
-            <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-grid" />
-            <div className="grid-line absolute left-[50%] top-0 h-full w-px bg-grid" />
-            <div className="grid-line absolute right-[5%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute left-[4%] md:left-[5%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute hidden lg:flex left-[50%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute right-[4%] md:right-[5%] top-0 h-full w-px bg-grid" />
 
-            <div className="relative z-10 w-full container mx-auto grid grid-cols-2 gap-8 items-center">
+            <div className="relative z-10 w-full container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 {/* LEFT IMAGE */}
                 <div className="relative flex flex-col justify-start items-start h-full">
                     <Badge text="About Nexvra" />
-                    <h2 className="about-heading font-primary text-white font-bold text-[54px] leading-[1.1] w-[90%]">
+                    <h2 className="about-heading font-primary text-white font-bold text-[40px] md:text-[54px] leading-[1.1] w-[90%]">
                         Turning Bold Ideas Into
                         Intelligent Solutions
                     </h2>

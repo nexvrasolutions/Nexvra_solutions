@@ -39,7 +39,12 @@ interface HexQuadProps {
 
 export default function HexQuad({ active, setActive }: HexQuadProps) {
   return (
-    <svg width={600} height={600} viewBox="-10 -10 380 420">
+    <svg 
+    // width={600} height={600} 
+    viewBox="-10 -10 380 420"
+    className="w-full sm:w-[300px] md:w-[350px] lg:w-[450px] xl:w-[500px] 
+    h-auto"
+    >
       {items.map((item) => {
         const isActive = active === item.id;
         const fg = isActive ? "#1a1a1a" : "#BFBFBF";

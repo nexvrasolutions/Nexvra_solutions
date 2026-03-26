@@ -18,11 +18,11 @@ export default function MissionVisionSection() {
         },
     ]
     return (
-        <section className="w-full bg-[#f5f5f5] text-black px-[5.5%] py-[5%] ">
+        <section className="w-full bg-[#f5f5f5] text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] ">
 
             {/* TOP HEADING */}
             <div className="max-w-7xl">
-                <h1 className="text-3xl font-primary md:text-[40px] font-bold leading-[54px] tracking-tight">
+                <h1 className="text-3xl font-primary text-[25px] md:text-[30px] lg:text-[35px] xl:text-[40px] font-bold leading-[32px] md:leading-[40px] lg:leading-[50px] xl:leading-[54px] tracking-tight">
 
                     <span className="text-[#BFBFBF] font-bold">
                         Founded with a vision to lead{" "}
@@ -51,16 +51,16 @@ export default function MissionVisionSection() {
             </div>
 
             {/* CONTENT */}
-            <div className="mt-20 grid md:grid-cols-4 gap-5 items-start">
+            <div className="mt-10 lg:mt-20 grid grid-cols-1 md:grid-cols-4 gap-5 items-start">
 
                 {/* LEFT - IMAGE */}
-                <div className="flex justify-center md:justify-start">
+                <div className="flex items-start justify-start">
                     <Image
                         src="/images/green-eye.png"
                         alt="eye"
                         width={350}
                         height={350}
-                        className="object-cover"
+                        className="object-cover size-50 md:size-auto"
                     />
                 </div>
 
@@ -70,10 +70,10 @@ export default function MissionVisionSection() {
                     {
                         content.map((item,index)=>(
                             <div key={index}>
-                                <h2 className="font-primary text-4xl md:text-3xl font-bold text-[#404040]">
+                                <h2 className="font-primary text-2xl md:text-3xl font-bold text-[#404040]">
                                     {item.title}
                                 </h2>
-                                <p className="font-medium text-xl leading-8 mt-3 text-[#404040CC]/80">
+                                <p className="font-medium text-lg md:text-xl leading-8 mt-3 text-[#404040CC]/80">
                                    {item.content}
                                 </p>
                                 {
