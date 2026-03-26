@@ -80,7 +80,7 @@ export default function Navbar() {
         priority
       />
 
-      {/* <StaggeredMenu
+      <StaggeredMenu
         position="right"
         items={menuItems}
         socialItems={socialItems}
@@ -94,7 +94,7 @@ export default function Navbar() {
         isFixed={true}
         isHideLogo={true}
         className="hide-menu-logo"
-      /> */}
+      />
     </nav>
   );
 }
