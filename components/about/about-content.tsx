@@ -34,7 +34,7 @@ const AboutContent = () => {
                 {/* LEFT IMAGE */}
                 <div className="relative flex flex-col justify-start items-start h-full">
                     <Badge text="About Nexvra" />
-                    <h2 className="about-heading font-primary text-white font-bold text-[40px] md:text-[54px] leading-[1.1] w-[90%]">
+                    <h2 className="about-heading font-primary text-white font-bold text-[26px] md:text-[45px] leading-[1.1] w-full lg:w-[90%]">
                         Turning Bold Ideas Into
                         Intelligent Solutions
                     </h2>

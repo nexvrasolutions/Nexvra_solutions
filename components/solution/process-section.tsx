@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RotatingText from "../ui/rotating-text";
@@ -98,7 +98,6 @@ export default function ProcessSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // --- Heading fade in ---
       gsap.fromTo(
         headingRef.current,
         { opacity: 0, y: 40 },
@@ -118,18 +117,14 @@ export default function ProcessSection() {
       const panelEl = stickyPanelRef.current;
       if (!trackEl || !panelEl) return;
 
-      // Panel = full viewport height — eliminates any bottom clip/overlay
       const panelHeight = window.innerHeight;
       panelEl.style.height = `${panelHeight}px`;
 
-      // How far inner track scrolls to show all steps
       const overflow = Math.max(0, trackEl.scrollHeight - panelHeight);
 
-      // Step 0 active immediately
       gsap.set(greenLineRef.current, { scaleY: 1 / steps.length });
       applyStepState(0, true);
 
-      // scrub: 1 → smooth 1-second lag, feels silky not jumpy
       ScrollTrigger.create({
         trigger: scrollSpacerRef.current,
         start: "top top",
@@ -140,15 +135,12 @@ export default function ProcessSection() {
         onUpdate: (self) => {
           const p = self.progress;
 
-          // Slide track up — gsap.set inside scrub is perfectly smooth
           gsap.set(innerTrackRef.current, { y: -p * overflow });
 
-          // Green line: starts at 1/n (step 0 already lit), grows to 1.0
           gsap.set(greenLineRef.current, {
             scaleY: (1 / steps.length) + p * (1 - 1 / steps.length),
           });
 
-          // Light up steps progressively
           const activeIndex = Math.floor(p * steps.length);
           steps.forEach((_, i) => applyStepState(i, i <= activeIndex));
         },
@@ -158,31 +150,41 @@ export default function ProcessSection() {
     return () => ctx.revert();
   }, []);
 
-  // Each "page" of scroll = 1 step. Total = steps.length "pages" worth of scroll height.
-  // We use 100vh per step so 8 steps = 800vh spacer.
-  const spacerHeight = `${steps.length * 100}vh`;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    checkScreen(); // initial check
+
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+  const spacerHeight = `${steps.length * (isMobile ? 60 : 100)}vh`;
 
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#f5f5f5] text-black px-[5.5%] pt-[6%]"
+      className="w-full bg-[#f5f5f5] text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[6%]"
     >
-      {/* Heading — scrolls away normally */}
       <div
         ref={headingRef}
-        className="pb-20 relative border border-[#E6E6E6] py-20 px-2"
+        className="pb-20 relative border border-[#E6E6E6] py-5 md:py-20 px-2"
       >
         <div className="grid-line absolute left-[65%] top-0 h-full w-px bg-[#E6E6E6]" />
         <Badge text="Our Process" className="text-tertiary mb-2" />
         <div className="max-w-5xl">
-          <h1 className="text-3xl font-primary md:text-[40px] font-bold leading-13 tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-primary md:text-[40px] font-bold leading-13 tracking-tight">
             <span className="text-[#BFBFBF] font-bold">
               Our flexible process blends{" "}
             </span>
             <span className="inline-block align-middle">
               <RotatingText
                 texts={["Creativity", "Technology", "Strategy"]}
-                mainClassName="inline-flex bg-[#A4FF00] text-black px-3 py-1 rounded-md ml-2"
+                mainClassName="inline-flex bg-[#A4FF00] text-black px-3 py-0 md:py-1 rounded-md ml-2"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -200,21 +202,16 @@ export default function ProcessSection() {
         </div>
       </div>
 
-      {/* Scroll spacer — 100vh × 8 steps so each scroll "page" = 1 step */}
       <div ref={scrollSpacerRef} style={{ height: spacerHeight }}>
-        {/* Pinned panel */}
         <div
           ref={stickyPanelRef}
           className="relative max-w-2xl mx-auto"
-          // height set dynamically in useEffect
         >
-          {/* NO bottom fade — removed to fix the overlay issue */}
 
-          {/* Inner track — slides upward via GSAP */}
           <div ref={innerTrackRef} className="relative">
             {/* Gray base line */}
             <div
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
+              className="absolute left-5 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
                 background: "linear-gradient(180deg, #FFFFFF 0%, #F3F3F3 100%)",
               }}
@@ -223,48 +220,42 @@ export default function ProcessSection() {
             {/* Green fill line — starts at scaleY=0, grows per step */}
             <div
               ref={greenLineRef}
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
+              className="absolute left-5.5 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
                 background: "linear-gradient(180deg, #F3F3F3 10%, #A4FF00 100%)",
               }}
             />
 
-            <div className="flex flex-col gap-20">
+            <div className="flex flex-col gap-10 md:gap-20">
               {steps.map((step, i) => (
                 <div
                   key={i}
-                  className={`step-row relative flex items-center ${
-                    step.align === "right" ? "flex-row" : "flex-row-reverse"
-                  }`}
+                  className={`step-row relative flex items-center ${step.align === "right" ? "flex-row-reverse md:flex-row" : "flex-row-reverse"
+                    }`}
                 >
-                  {/* Icon half */}
                   <div
                     ref={(el) => {
                       iconsRef.current[i] = el;
                     }}
-                    className={`step-icon w-1/2 flex ${
-                      step.align === "right"
-                        ? "justify-end pr-12"
-                        : "justify-start pl-12"
-                    }`}
+                    className={`hidden step-icon w-1/2 md:flex ${step.align === "right"
+                      ? "justify-end pr-12"
+                      : "justify-start pl-12"
+                      }`}
                   >
                     <img
                       src="/images/green-eye.png"
                       alt={step.title}
-                      className="object-contain transition-all duration-500 size-[200px]"
+                      className="object-contain transition-all duration-500 lg:size-[200px]"
                       style={{ filter: "grayscale(1)", opacity: 0.3 }}
                     />
                   </div>
 
-                  {/* Text half */}
                   <div
-                    className={`step-text flex flex-col gap-5 w-1/2 ${
-                      i === 0 ? "pt-5 " : ""
-                    }${
-                      step.align === "right"
+                    className={`step-text flex flex-col gap-5 md:w-1/2 ${i === 0 ? "pt-5 " : ""
+                      }${step.align === "right"
                         ? "pl-12 text-left"
-                        : "pr-12 text-right items-end"
-                    }`}
+                        : "pl-12 md:pr-12 text-left md:text-right items-start md:items-end"
+                      }`}
                   >
                     <div
                       ref={(el) => {
@@ -285,7 +276,7 @@ export default function ProcessSection() {
                         ref={(el) => {
                           titlesRef.current[i] = el;
                         }}
-                        className="text-2xl font-secondary leading-7 font-bold transition-colors duration-500"
+                        className="text-xl md:text-2xl font-secondary leading-tight md:leading-7 font-bold transition-colors duration-500"
                         style={{ color: "#9ca3af" }}
                       >
                         {step.title}
@@ -294,7 +285,7 @@ export default function ProcessSection() {
                         ref={(el) => {
                           descsRef.current[i] = el;
                         }}
-                        className="text-lg font-medium leading-relaxed transition-colors duration-500"
+                        className="text-[16px] md:text-lg font-medium leading-relaxed transition-colors duration-500"
                         style={{ color: "#d1d5db" }}
                       >
                         {step.description}
