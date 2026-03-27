@@ -79,7 +79,7 @@ export default function Navbar() {
         className="object-contain sm:w-[180px] lg:w-[200px]"
         priority
       />
-{/* 
+
       <StaggeredMenu
         position="right"
         items={menuItems}
@@ -94,7 +94,7 @@ export default function Navbar() {
         isFixed={true}
         isHideLogo={true}
         className="hide-menu-logo"
-      /> */}
+      />
     </nav>
   );
 }
