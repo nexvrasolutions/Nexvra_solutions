@@ -7,10 +7,10 @@ import { Arrow } from "../ui/arrow";
 import { Badge } from "../ui/badge";
 
 const services = [
-  { id: "01", title: "Digital Transformation" },
-  { id: "02", title: "Software Development" },
-  { id: "03", title: "UI/UX Design" },
-  { id: "04", title: "Innovation Labs" },
+  { id: "01", title: "Branding & Graphic Design" },
+  { id: "02", title: "Digital Marketing" },
+  { id: "03", title: "Website Development" },
+  { id: "04", title: "Custom Software Development" },
 ];
 
 export default function WhatWeDo() {
@@ -84,9 +84,9 @@ export default function WhatWeDo() {
         (What We Do)
       </p> */}
       <div className="flex flex-col items-center justify-center">
-        <Badge text="Digital Solutions" className="text-tertiary" />
+        <Badge text="Our Services" className="text-tertiary" />
         <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-25 w-full text-center">
-          What We Do
+          Digital Solutions for Businesses
         </h2>
       </div>
 

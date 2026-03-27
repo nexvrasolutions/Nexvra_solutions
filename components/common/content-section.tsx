@@ -95,6 +95,7 @@ interface ContentSectionProps {
   title: string;
   description: string;
   image: string;
+  gifImage?:string;
   accentColor?: string;
 }
 
@@ -102,6 +103,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
   title,
   description,
   image,
+  gifImage="/images/vido.gif",
   accentColor = "lime",
 }) => {
   const splitText = (text: string) =>
@@ -174,7 +176,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
       {/* MEDIA */}
       <div className="flex px-5 md:px-10 xl:px-[5.5%] relative z-10 mb-10 lg:mb-0 pt-10 xl:pt-20">
         <img
-          src="/images/vido.gif"
+          src={gifImage}
           alt="gif-video"
           className="hero-media w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
         />

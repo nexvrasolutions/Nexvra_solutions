@@ -10,8 +10,9 @@ const page = () => {
         <>
             <ContentSection
                 title="About us"
-                description="Founded with a vision to lead the next wave of digital innovation, -- Nexvra Solutions-- is a forward-thinking company that blends creativity, technology, and strategy to ** build impactful digital experiences **."
+                description="Nexvra Solutions is a future-focused digital company that blends ** creativity, technology, and strategy ** to build impactful digital experiences."
                 image="/images/about-bg.jpg"
+                gifImage="/images/about/banner.webp"
             />
             <AboutContent />
             <MissionVisionSection />

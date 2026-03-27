@@ -4,14 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 
-export const ShowCase = () => {
-  const images = [
-    "/images/visual-showcase.png",
-    "/images/visual-showcase.png",
-    "/images/visual-showcase.png",
-    "/images/visual-showcase.png",
-    "/images/visual-showcase.png",
-  ];
+export const ShowCase = ({ project }: { project: any }) => {
+
+  const images = project?.showcase?.images || [];
 
   const loopImages = [...images, ...images];
 
@@ -30,8 +25,10 @@ export const ShowCase = () => {
 
       const containerWidth = containerRef.current.offsetWidth;
 
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1200) {
         setItemWidth(containerWidth / 4); // 4 items
+      } else if (window.innerWidth >= 1024) {
+        setItemWidth(containerWidth / 3); // tablet
       } else if (window.innerWidth >= 768) {
         setItemWidth(containerWidth / 2); // tablet
       } else {
@@ -74,15 +71,15 @@ export const ShowCase = () => {
   }, [currentIndex, images.length]);
 
   return (
-    <section className="py-10 px-[5.5%] bg-[#f5f5f5] flex flex-col gap-10 items-center justify-center overflow-hidden">
+    <section className="py-10 px-5 md:px-10 xl:px-[5.5%] bg-[#f5f5f5] flex flex-col gap-6 md:gap-10 items-center justify-center overflow-hidden">
       
       {/* Header */}
       <div className="space-y-3 flex flex-col items-center">
-        <Badge text="About Nexvra" className="text-tertiary" />
+        <Badge text="Visual ShowCase" className="text-tertiary" />
 
         <h1 className="text-3xl md:text-[50px] font-bold leading-[54px] tracking-tight">
-          <span className="text-[#BFBFBF]">Visual </span>
-          <span className="text-black">ShowCase</span>
+          <span className="text-[#BFBFBF]">Real Work. </span>
+          <span className="text-black">Real Impact.</span>
         </h1>
       </div>
 
@@ -108,7 +105,7 @@ export const ShowCase = () => {
               style={{ width: itemWidth }}
               onClick={() => setSelectedImage(img)}
             >
-              <div className="rounded-xl overflow-hidden shadow-md group ">
+              <div className="rounded-xl overflow-hidden group ">
                 <Image
                   src={img}
                   alt="showcase"

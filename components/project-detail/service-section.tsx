@@ -1,40 +1,35 @@
 import React from "react";
 
-const services = [
-  {
-    title: "UI/UX Design & Branding",
-    description:
-      "Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose. Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose.",
-  },
-  {
-    title: "UI/UX Design & Branding",
-    description:
-      "Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose. Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose.",
-  },
-  {
-    title: "UI/UX Design & Branding",
-    description:
-      "Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose. Creating seamless digital experiences that connect with people. From brand identity to user interfaces, we ensure every design speaks clarity, creativity, and purpose.",
-  },
-];
+const ServicesSection = ({ project }: { project: any }) => {
+  const data = [
+    {
+      title: "Overview",
+      description: project.details.overview,
+    },
+    {
+      title: "What We Did",
+      description: project.details.work,
+    },
+    {
+      title: "Result",
+      description: project.details.result,
+    },
+  ];
 
-const ServicesSection = () => {
   return (
-    <section className="w-full bg-[#f5f5f5] px-[5%] py-8">
+    <section className="w-full bg-[#f5f5f5] px-5 md:px-10 xl:px-[5%] pb-8 md:py-8">
       <div className="w-full">
-        {services.map((item, index) => (
+        {data.map((item, index) => (
           <div
             key={index}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10 border-b border-gray-300"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5 md:py-10 border-b border-gray-300"
           >
-            {/* Left - Title */}
             <div>
               <h2 className="text-xl md:text-3xl font-primary font-semibold text-tertiary">
                 {item.title}
               </h2>
             </div>
 
-            {/* Right - Description */}
             <div>
               <p className="text-gray-600 text-xl font-medium leading-relaxed">
                 {item.description}
@@ -43,7 +38,6 @@ const ServicesSection = () => {
           </div>
         ))}
       </div>
-     
     </section>
   );
 };

@@ -7,23 +7,23 @@ import { Badge } from "../ui/badge";
 const testimonials = [
     {
         id: 1,
-        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
-        name: "Delin Singh",
-        company: "Vasathi Kumar Technologies",
+        text: "Nexvra Solutions did an excellent job with our website. The design is clean, modern, and easy to use. Our customers now find it easier to connect with us online.",
+        name: "Arun S",
+        company: "Magic Aisles",
         image: "/images/eye.png",
     },
     {
         id: 2,
-        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
-        name: "Delin Singh",
-        company: "Vasathi Kumar Technologies",
+        text: "I joined Nexvra for UI/UX design, and the training was very practical. I learned how to design real apps and gained confidence in my skills.",
+        name: "Abino",
+        company: "Student",
         image: "/images/eye.png",
     },
     {
         id: 3,
-        text: "Nexvra Solutions is a forward-thinking technology company dedicated to creating impactful innovations. With a unique blend of creativity and cutting-edge technology, we help businesses adapt, grow, and lead in the digital era.",
-        name: "Delin Singh",
-        company: "Vasathi Kumar Technologies",
+        text: "Their digital marketing support helped us reach more customers. We saw better engagement and growth in a short time.",
+        name: "Vignesh K",
+        company: "JE Mobiles",
         image: "/images/eye.png",
     },
 ];
@@ -34,13 +34,13 @@ export default function ClientFeedback() {
 
             {/* Grid lines */}
             <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
-            <div className="grid-line absolute left-[51.5%] top-0 h-full w-px bg-[#F3F3F3]" />
-            <div className="grid-line absolute right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line absolute hidden lg:block left-[51.5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line absolute hidden lg:block right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16 items-start">
                 {/* LEFT SIDE */}
                 <div>
                     <div>
-                        <Badge text="Client Feedback" className="text-tertiary" />
+                        <Badge text="Testimonials" className="text-tertiary" />
                         <h1 className="font-primary text-teritiary text-[30px] md:text-[40px] lg:text-[50px] xl:text-[64px] z-10 font-bold leading-20">
                             What Our Clients Say
                         </h1>

@@ -11,23 +11,23 @@ const pushDir = [
 
 const items = [
   {
-    id: 0, num: "01", lines: ["Innovative", "Approach"],
+    id: 0, num: "01", lines: ["Practical", "Approach"],
     numX: 170, numY: 40, numAnchor: "end", textX: 90, textY: [168, 185],
     d: "M 177 0 L 177 197 L 7 197 L 7 120 Q 7 100 27 88 L 177 0 Z",
   },
   {
-    id: 1, num: "02", lines: ["Trusted", "Expertise"],
+    id: 1, num: "02", lines: ["Industry-Focused", "Skills"],
     numX: 190, numY: 40, numAnchor: "start", textX: 190, textY: [170, 187],
     d: "M 183 0 L 331 87 Q 353 100 353 125 L 353 197 L 183 197 L 183 0 Z",
   },
   {
-    id: 2, num: "03", lines: ["Future-Ready", "Solutions"],
+    id: 2, num: "03", lines: ["Creative + Technical", "Thinking"],
     numX: 190, numY: 370, numAnchor: "start", textX: 190, textY: [223, 240],
     d: "M 183 203 L 353 203 L 353 275 Q 353 300 331 312 L 183 400 L 183 203 Z",
   },
   {
-    id: 3, num: "04", lines: ["Impact-", "Driven"],
-    numX: 170, numY: 370, numAnchor: "end", textX: 110, textY: [223, 240],
+    id: 3, num: "04", lines: ["Result-Driven", "Execution"],
+    numX: 170, numY: 370, numAnchor: "end", textX: 60, textY: [223, 240],
     d: "M 177 203 L 177 400 L 29 312 Q 7 300 7 275 L 7 203 L 177 203 Z",
   },
 ];

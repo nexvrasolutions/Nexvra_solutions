@@ -7,7 +7,7 @@ const page = () => {
         <>
             <ContentSection
                 title="Projects"
-                description="Each project reflects our passion for blending ** creativity, technology, and strategy **. Here’s how we’ve helped businesses transform and grow."
+                description="Each project reflects our passion for blending creativity, technology, and strategy. Here’s how we help businesses build, grow, and succeed in the digital world."
                 image="/images/about-bg.jpg"
             />
             <ProjectSection />

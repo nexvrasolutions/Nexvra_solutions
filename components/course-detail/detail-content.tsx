@@ -13,11 +13,11 @@ const services = [
     "Wireframes & Prototypes",
 ];
 
-const DetailContent = () => {
+const DetailContent = ({ course }: { course: any }) => {
     return (
-        <section className="w-full bg-[#f5f5f5] px-[5%] py-8">
+        <section className="w-full bg-[#f5f5f5] px-5 md:px-10 xl:px-[5.5%] py-8">
             <div
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 py-10"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-4 md:py-10"
             >
                 <div>
                     <h2 className="text-xl md:text-3xl font-primary font-semibold text-tertiary">
@@ -27,11 +27,11 @@ const DetailContent = () => {
 
                 <div>
                     <p className="text-gray-600 text-xl font-medium leading-relaxed">
-                        his comprehensive course takes you from design fundamentals to advanced AI-powered design techniques. You'll learn industry-standard tools, best practices, and how to create designs that users love.
+                    {course.overview}
                     </p>
                 </div>
             </div>
-            <div className='flex items-center flex-col justify-center pt-15'>
+            <div className='flex items-center flex-col justify-center pt-8 md:pt-15'>
                 <div className="space-y-3 flex flex-col items-center">
                     <Badge text="About Nexvra" className="text-tertiary" />
 
@@ -40,33 +40,30 @@ const DetailContent = () => {
                     </h1>
                 </div>
                 <div className="relative w-full">
-                    <div
-                        className="top-0 left-0 w-full grid grid-cols-[58%_42%] pt-10 min-h-130"
-                    >
+                    <div className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-10 gap-2 md:gap-6 lg:gap-0 min-h-auto md:min-h-[500px]">
 
-                        <div className="relative overflow-hidden flex items-center justify-center">
+                        {/* Image */}
+                        <div className="relative overflow-hidden flex items-center justify-center order-1">
                             <img
                                 src="/images/what-learn.png"
                                 alt="UI/UX Design & Branding"
-                                className="object-contain object-center h-[500px] w-full"
+                                className="object-contain object-center h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] w-full"
                             />
                         </div>
 
-                        {/* Right: Services list */}
-                        <div  className="flex flex-col justify-start px-12 py-10 gap-2">
-                            {
-                                services.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex items-center gap-4 group cursor-pointer"
-                                    >
-                                        <Arrow className={"bg-[#f5f5f5]"} />
-                                        <span className="text-xl font-medium text-tertiary tracking-tight">
-                                            {item}
-                                        </span>
-                                    </div>
-                                ))
-                            }
+                        {/* Services */}
+                        <div className="flex flex-col justify-center md:justify-start px-2 sm:px-6 md:px-8 lg:px-12 py-4 md:py-10 gap-3 md:gap-4 order-2">
+                            {course.learn.map((item: string, index: number) => (
+                                <div
+                                    key={index}
+                                    className="flex items-center gap-3 md:gap-4 group cursor-pointer"
+                                >
+                                    <Arrow className="bg-[#f5f5f5] size-8 md:size-10" />
+                                    <span className="text-base sm:text-lg md:text-xl font-medium text-tertiary tracking-tight">
+                                        {item}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -10,10 +10,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   isIcon?: boolean;
   className?: string;
+  onClick?:any
 }
 
 export function Button({
   className,
+  onClick,
   label = "Explore Components",
   icon = <ArrowUpRight className="w-3.5 h-3.5 text-white" />,
   isIcon = true,
@@ -21,6 +23,7 @@ export function Button({
 }: ButtonProps) {
   return (
       <button
+        onClick={onClick}
         className={cn(
           "relative overflow-hidden font-secondary leading-6 text-lg flex justify-center items-center",
           "h-12.5 px-4 rounded-sm bg-[#A4FF00]",

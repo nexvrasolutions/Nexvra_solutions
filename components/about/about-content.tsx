@@ -1,24 +1,17 @@
 import React from 'react'
 import { Badge } from '../ui/badge'
-import { Highlight } from '../ui/hero-highlight'
 import { Highlighter } from '../ui/highlighter'
 
 const AboutContent = () => {
 
     const content = [
-        `**At Nexvra Solutions**, we are driven by a simple belief — the future belongs to those who innovate. Founded with the vision to lead The Next Wave of True Innovation, we combine creativity, technology, and strategy to help businesses grow, adapt, and stay ahead in an ever-changing digital world.`,
-      
-        `We don’t just build software or deliver projects — we craft __transformative experiences__. Every solution we design is powered by imagination, engineered with cutting-edge technology, and aligned with our clients’ goals to ensure meaningful impact.`,
-      
-        `From concept to execution, we walk side by side with businesses, turning challenges into ~~opportunities~~ and ideas into reality.`,
-      
-        `Our expertise spans across ++digital transformation++, UI/UX design, software development, and innovation consulting, but our true strength lies in our approach.`,
-      
-        `We see every collaboration as a partnership, working closely with our clients to understand their vision and bring it to life with ((precision and creativity)).`,
-      
-        `At Nexvra, we are more than a solutions provider — we are --innovators--, creators, and partners in progress. We thrive on pushing boundaries and building future-ready solutions.`,
-      
-        `When you work with us, you don’t just get a service provider — you gain a team committed to helping you **innovate with confidence** and achieve measurable results.`
+        `At Nexvra Solutions, we don’t just build digital products — we build solutions that create real impact.`,
+        `We are a modern digital company focused on two core areas: skill development and digital solutions. Our mission is to help individuals gain practical, industry-relevant skills while helping businesses build powerful and effective digital presence.`,
+        `We believe that learning should go beyond theory. That’s why our approach is built on real-world experience, hands-on training, and problem-solving. Every project we work on and every skill we teach is designed to deliver meaningful results.`,
+        `From UI/UX design and website development to mobile applications and digital marketing, we combine creativity, technology, and strategy to create solutions that are not only visually appealing but also highly functional.`,
+        `We work closely with our clients to understand their goals and transform their ideas into scalable digital products. At the same time, we guide students step-by-step to build confidence and become industry-ready.`,
+        `At Nexvra, we are more than a solutions provider — we are -- innovators --, creators, and partners in progress. We thrive on pushing boundaries and building future-ready solutions.`,
+        `At Nexvra, everything we do is driven by one simple goal — to create value, inspire growth, and build a strong digital future.`
       ];
 
     return (

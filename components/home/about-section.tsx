@@ -6,10 +6,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
+
+    const router = useRouter();
     const sectionRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -137,22 +140,20 @@ export default function AboutSection() {
                 <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">
                     {/* Heading */}
                     <h2 className="about-heading font-primary text-white font-bold text-[21px] sm:text-[26px] md:text-[34px] xl:text-[48px] 2xl:text-[54px] leading-tight md:leading-[1.1]">
-                        {splitText("Turning Bold Ideas Into")}
+                        {splitText("Turning Ideas Into ")}
                         <br />
-                        {splitText("Intelligent Solutions")}
+                        {splitText("Digital Reality")}
                     </h2>
 
                     {/* Description */}
                     <p className="about-text text-white/80 font-medium text-sm md:text-lg xl:text-xl leading-relaxed">
-                        Nexvra Solutions is a forward-thinking technology company dedicated
-                        to creating impactful innovations. With a unique blend of creativity
-                        and cutting-edge technology, we help businesses adapt, grow, and
-                        lead in the digital era.
+                        Nexvra Solutions is a modern digital training and technology company focused on building real skills and real solutions.
+                        We help individuals learn practical digital skills and support businesses in building impactful digital products.
                     </p>
 
                     {/* Button */}
                     <div className="about-button w-full">
-                        <Button title="Explore Courses" />
+                        <Button label="More About Us" onClick={()=>router.push("/about-us")} />
                     </div>
                 </div>
             </div>

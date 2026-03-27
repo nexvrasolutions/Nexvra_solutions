@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,6 +137,7 @@ const Footer = () => {
       });
 
 
+
       // BUTTON MAGNETIC EFFECT
       const button = document.querySelector(".footer-btn");
 
@@ -165,6 +167,8 @@ const Footer = () => {
 
     return () => ctx.revert();
   }, []);
+
+  const router = useRouter();
 
   const splitText = (text: string) =>
     text.split("").map((char, i) => (
@@ -216,7 +220,7 @@ const Footer = () => {
               {/* Gradient Overlay */}
               <div className="pointer-events-none absolute bottom-0 left-0 w-full 
                 h-[35%] sm:h-[40%] md:h-[45%] 
-                bg-[linear-gradient(180deg,rgba(10,10,10,0)_0%,#0A0A0A_100%)]" 
+                bg-[linear-gradient(180deg,rgba(10,10,10,0)_0%,#0A0A0A_100%)]"
               />
 
             </div>
@@ -232,14 +236,12 @@ const Footer = () => {
               </div>
 
               <p className="footer-text font-secondary text-white/80 text-xl leading-[30px] lg:w-[90%]">
-                At Nexvra Solutions, we don’t just build technology — we craft
-                experiences, strategies, and solutions that redefine what’s
-                possible.
+                We help individuals learn modern digital skills and help businesses build powerful digital solutions.
               </p>
             </div>
 
             <div className="footer-btn">
-              <Button label="Let's Talk" />
+              <Button label="Let's Talk" onClick={() => router.push("/contact")} />
             </div>
           </div>
         </div>
@@ -269,10 +271,10 @@ const Footer = () => {
                 <h4 className="text-white text-xl xl:text-[24px]">Contact</h4>
                 <div className="flex flex-col gap-1">
                   <p className="text-white/80 text-lg xl:text-[20px]">
-                    +91 923 321 1222
+                    +91 93857 08357
                   </p>
                   <p className="text-white/80 text-lg xl:text-[20px]">
-                    nexvrasolutions@gmail.com
+                    contactnexvra@gmail.com
                   </p>
                 </div>
               </div>
@@ -285,18 +287,20 @@ const Footer = () => {
           </div>
 
           {/* Right columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 gap-8 xl:gap-10 w-full lg:w-[50%] xl:w-[45%] mt-10 xl:mt-15 footer-links">
-            <FooterColumn
-              title="Menu"
-              items={[
-                "Home",
-                "About Us",
-                "Services",
-                "Testimonials",
-                "Case Studies",
-              ]}
-            />
-            <div className="cols-span-1 lg:col-span-2 xl:cols-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 w-full lg:w-[50%] xl:w-[45%] mt-0 md:mt-10 xl:mt-15 footer-links">
+            <div className="cols-span-1">
+              <FooterColumn
+                title="Menu"
+                items={[
+                  "Home",
+                  "About Us",
+                  "Services",
+                  "Testimonials",
+                  "Case Studies",
+                ]}
+              />
+            </div>
+            {/* <div className="cols-span-1 lg:col-span-2 xl:cols-span-1"> */}
               <FooterColumn
                 title="Services"
                 items={[
@@ -307,12 +311,12 @@ const Footer = () => {
                   "Cloud Solutions",
                 ]}
               />
-            </div>
+            {/* </div> */}
           </div>
         </div>
 
         {/* Big Text */}
-        <div className="overflow-hidden">
+        {/* <div className="overflow-hidden">
           <h1
             className="footer-big-text w-full text-[clamp(40px,9vw,132px)] font-primary font-bold leading-[100%] mt-10 xl:mt-20 text-secondary bg-clip-text"
             style={{
@@ -323,11 +327,11 @@ const Footer = () => {
           >
             {splitBigText("Next Wave Next")}
           </h1>
-        </div>
+        </div> */}
 
         {/* Bottom */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start lg:items-center justify-between mt-8 text-white/80">
-          <p> copyright © 2025 Nexvra Solutions. All rights reserved.</p>
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
+          <p>© 2026 Nexvra Solutions. All rights reserved.</p>
 
           <div className="flex gap-5 md:gap-20">
             <a className="hover:text-white transition cursor-pointer">Privacy Policy</a>

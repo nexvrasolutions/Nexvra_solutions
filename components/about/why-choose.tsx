@@ -12,27 +12,27 @@ gsap.registerPlugin(ScrollTrigger);
 const sections = [
     {
         id: 0,
-        title: "Innovative Approach",
-        img: "/images/green-eye.png",
-        desc: "To deliver transformative digital solutions that combine creativity, technology, and strategy — empowering businesses to innovate with confidence and achieve meaningful results.",
+        title: "Practical Approach",
+        img: "/images/about/1.webp",
+        desc: "We focus on real-world learning and execution. Everything we teach and build is based on practical experience, not just theory.",
     },
     {
         id: 1,
-        title: "Trusted Expertise",
-        img: "/images/green-eye.png",
-        desc: "We bring years of industry expertise and proven strategies to deliver reliable and scalable solutions.",
+        title: "Industry-Focused Skills",
+        img: "/images/about/2.webp",
+        desc: "Our training and solutions are designed based on current industry needs, helping you stay relevant and competitive.",
     },
     {
         id: 2,
-        title: "Future-Ready Solutions",
-        img: "/images/green-eye.png",
-        desc: "Our solutions are designed to scale and adapt with emerging technologies and business needs.",
+        title: "Creative + Technical Thinking",
+        img: "/images/about/3.webp",
+        desc: "We combine creativity with technology to create solutions that are both visually appealing and highly functional.",
     },
     {
         id: 3,
-        title: "Impact-Driven",
-        img: "/images/green-eye.png",
-        desc: "We focus on measurable outcomes that drive real business impact and growth.",
+        title: "Result-Driven Execution",
+        img: "/images/about/4.webp",
+        desc: "We focus on delivering real outcomes — whether it’s building your career or growing your business.",
     },
 ];
 
@@ -67,11 +67,11 @@ export default function WhyChooseNexvra() {
 
             {/* Heading */}
             <div className="text-center flex flex-col items-center justify-center mb-10 lg:mb-0">
-                <Badge text="About nexvra" className="text-teritiary" />
+                <Badge text="Why Nexvra" className="text-teritiary" />
                 <h1 className="font-primary text-teritiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-20">
-                    <span className="text-[#BFBFBF]">Why Choose</span>
-                    <br />
-                    <span>Nexvra?</span>
+                    <span className="text-[#BFBFBF]">What Makes Us Different</span>
+                    {/* <br />
+                    <span>Nexvra?</span> */}
                 </h1>
             </div>
 
@@ -98,7 +98,7 @@ export default function WhyChooseNexvra() {
                                     <motion.img
                                         src={sections[active].img}
                                         alt="icon"
-                                        className="size-30 lg:size-60 object-cover mx-auto md:mx-0"
+                                        className="size-30 lg:size-40 object-cover mx-auto md:mx-0"
                                     />
                                     <h3 className=" text-2xl lg:text-3xl xl:text-4xl text-tertiary font-secondary font-bold">
                                         {sections[active].title}

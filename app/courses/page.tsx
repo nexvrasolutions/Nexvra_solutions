@@ -5,21 +5,100 @@ import { Card } from "@/components/ui/card";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const courses = [
+    {
+        title: "AI-Powered Product Design",
+        slug: "ai-powered-product-design",
+        category: "UI/UX Design",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/product_design.webp",
+        description:
+            "Learn complete product design including UX research, UI design, and AI tools to create modern apps and websites.",
+    },
+    {
+        title: "UX Design",
+        slug: "ux-design",
+        category: "UI/UX Design",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/ux_design.webp",
+        description:
+        "Understand user behavior, research, and wireframing to create better user experiences.",
+    },
+    {
+        title: "UI Design",
+        slug: "ui-design",
+        category: "UI/UX Design",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/ui_design.webp",
+        description:
+        "Learn to design visually appealing interfaces using modern tools and design principles.",
+    },
+    {
+        title: "Digital Marketing Mastery",
+        slug: "digital-marketing-mastery",
+        category: "Digital Marketing",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/degital_marketing.webp",
+        description:
+        "Master social media marketing, ads, and content strategies to grow businesses online.",
+    },
+    {
+        title: "Branding & Graphic Design",
+        slug: "branding-graphic-design",
+        category: "UI/UX Design",
+        duration: "2–3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/branding.webp",
+        description:
+        "Learn logo design, brand identity, and social media creatives to build strong brands.",
+    },
+    {
+        title: "Front-End Development",
+        slug: "front-end-development",
+        category: "Development",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/front_end.webp",
+        description:
+        "Learn HTML, CSS, and basic JavaScript to build modern and responsive websites.",
+    },
+    {
+        title: "Back-End Development",
+        slug: "back-end-development",
+        category: "Development",
+        duration: "3–4 Months",
+        difficulty: "Intermediate",
+        img: "/images/courses/back-end.webp",
+        description:
+        "Learn server-side development, databases, and APIs to build powerful web applications.",
+    },
+    {
+        title: "Mobile App Development",
+        slug: "mobile-app-development",
+        category: "Development",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/app.webp",
+        description:
+            "Build mobile applications with smooth performance and real-world functionality.",
+    },
+];
+
 const CoursePage = () => {
     const [activeCategory, setActiveCategory] = useState("All");
 
-    const categories = ["All", "Designing", "Development", "Marketing"];
-
-    const courses = [
-        { title: "AI UX/UI Design", category: "Designing" },
-        { title: "Figma Mastery", category: "Designing" },
-
-        { title: "React Development", category: "Development" },
-        { title: "Next.js Fullstack", category: "Development" },
-
-        { title: "SEO Mastery", category: "Marketing" },
-        { title: "Social Media Marketing", category: "Marketing" },
+    const categories = [
+        "All",
+        "UI/UX Design",
+        "Digital Marketing",
+        "Development",
     ];
+
+
 
     const filteredCourses =
         activeCategory === "All"
@@ -61,7 +140,7 @@ const CoursePage = () => {
                 {/* 🔥 COURSES GRID */}
                 <motion.div
                     layout
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.35 }}
                 >
                     <motion.div
                         layout
@@ -77,12 +156,12 @@ const CoursePage = () => {
                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                     exit={{ opacity: 0, y: 20, scale: 0.85 }}
                                     transition={{
-                                        duration: 0.4,
+                                        duration: 0.35,
                                         ease: [0.25, 1, 0.5, 1],
                                     }}
                                     whileHover={{ y: -6 }}
                                 >
-                                    <Card course={course} />
+                                    <Card course={course} className="2xl:w-full" />
                                 </motion.div>
                             ))}
                         </AnimatePresence>

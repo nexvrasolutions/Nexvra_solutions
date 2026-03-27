@@ -8,13 +8,11 @@ export default function MissionVisionSection() {
     const content = [
         {
             title : "Mission",
-            content : `To deliver transformative digital solutions that combine creativity,
-            technology, and strategy — empowering businesses to innovate with
-            confidence and achieve meaningful results.`
+            content : `To deliver transformative digital solutions that combine creativity, technology, and strategy — empowering individuals and businesses to grow with confidence and achieve meaningful results.`
         },
         {
             title : "Vision",
-            content : `To deliver transformative digital solutions that combine creativity, technology, and strategy — empowering businesses to innovate with confidence and achieve meaningful results.`
+            content : `To become a trusted digital platform that empowers people and businesses through innovation, practical skills, and modern technology.`
         },
     ]
     return (

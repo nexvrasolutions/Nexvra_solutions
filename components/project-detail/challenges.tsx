@@ -1,54 +1,39 @@
 "use client";
-import { Card } from '../ui/card';
+import { Card } from "../ui/card";
 
-const courses = [
-    {
-        title: "AI-Powered UXUI Design",
-        desc : "SmartRetail needed a scalable digital platform to improve product discovery and drive higher conversion rates, while providing a modern, user-friendly experience.",
-    },
-    {
-        title: "Web Development",
-        desc : "SmartRetail needed a scalable digital platform to improve product discovery and drive higher conversion rates, while providing a modern, user-friendly experience.",
-    },
-    {
-        title: "Mobile App Development",
-        desc : "SmartRetail needed a scalable digital platform to improve product discovery and drive higher conversion rates, while providing a modern, user-friendly experience.",
-    },
-    {
-        title: "Digital Marketing Design",
-        desc : "SmartRetail needed a scalable digital platform to improve product discovery and drive higher conversion rates, while providing a modern, user-friendly experience.",
-    },
-];
+const Challenges = ({ project }: { project: any }) => {
+  return (
+    <section className="w-full bg-[#f5f5f5] text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] ">
+      <div className="space-y-5 xl:space-y-10">
 
-const Challenges = () => {
-    return (
-        <section className="w-full bg-[#f5f5f5] text-black px-[5.5%] py-[5%] ">
-            <div className="space-y-10">
-                <h1 className="max-w-6xl text-3xl font-primary md:text-[38px] font-bold leading-[54px] tracking-tight">
-                    <span className="text-[#BFBFBF] font-bold">
-                        SmartRetail is an AI-powered e-commerce{" "}
-                    </span>
+        {/* Highlight Text */}
+        <h1 className="w-full xl:max-w-6xl font-primary text-[28px] md:text-[30px] lg:text-[35px] xl:text-[40px] font-bold leading-tight tracking-tight">
+          <span className="text-[#BFBFBF]">
+            {project.highlight.split(" ").slice(0, 6).join(" ")}{" "}
+          </span>
+          <span className="text-black">
+            {project.highlight.split(" ").slice(6).join(" ")}
+          </span>
+        </h1>
 
-                    <span className="font-bold text-black">
-                        platform that helps customers discover products faster through personalized recommendations and a seamless shopping experience.
-                    </span>
-                </h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-10">
-                    {courses.map((course, index) => (
-                        <Card key={index} course={course} isCourse={false} />
-                    ))}
-                </div>
-            </div>
-            {/* MEDIA */}
-            <div className="flex relative z-10 pt-20">
-                <img
-                    src="/images/vido.gif"
-                    alt="gif-video"
-                    className="hero-media h-137 w-full object-cover rounded-xl"
-                />
-            </div>
-        </section>
-    )
-}
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-5 xl:pt-10">
+          {project.cards.map((item: any, index: number) => (
+            <Card key={index} course={item} isCourse={false} />
+          ))}
+        </div>
+      </div>
 
-export default Challenges
+      {/* MEDIA */}
+      <div className="pt-10 xl:pt-20">
+        <img
+          src={ project.challengeImg ||"/images/vido.gif"}
+          alt="gif-video"
+          className="w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+        />
+      </div>
+    </section>
+  );
+};
+
+export default Challenges;

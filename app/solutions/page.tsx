@@ -8,7 +8,7 @@ const page = () => {
         <>
             <ContentSection
                 title="Solutions"
-                description="-- At Nexvra Solutions --, we provide future-ready digital services that combine ** creativity, technology, and strategy ** to help businesses grow, adapt, and thrive in a fast-changing world."
+                description="We deliver modern digital solutions that combine creativity, technology, and strategy to help businesses grow, scale, and succeed in the digital world. From design to development, we turn ideas into impactful digital experiences."
                 image="/images/about-bg.jpg"
             />
             <SolutionContent />

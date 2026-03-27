@@ -11,51 +11,33 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     number: "01",
-    title: "Discover & Research",
-    description: "We begin by understanding your vision, challenges, and opportunities.",
+    title: "Discover",
+    description: "We understand your business, goals, and requirements to define the right approach.",
     align: "right" as const,
   },
   {
     number: "02",
-    title: "Strategy & Planning",
-    description: "We craft a tailored roadmap that aligns with your business goals.",
+    title: "Strategy",
+    description: "We plan the structure, features, and user experience to ensure clarity and direction.",
     align: "left" as const,
   },
   {
     number: "03",
-    title: "Design & Develop",
-    description: "Our team builds pixel-perfect, performant solutions with precision.",
+    title: "Design",
+    description: "We create clean and intuitive designs focused on user experience and usability.",
     align: "right" as const,
   },
   {
     number: "04",
-    title: "Launch & Optimise",
-    description: "We deploy, monitor, and continuously improve for lasting impact.",
+    title: "Development",
+    description: "We build fast, scalable, and high-performance solutions using modern technologies.",
     align: "left" as const,
   },
   {
     number: "05",
-    title: "Test & Review",
-    description: "Rigorous QA ensures every detail meets the highest standards.",
+    title: "Launch & Support",
+    description: "We launch your product and provide support to ensure smooth performance and growth.",
     align: "right" as const,
-  },
-  {
-    number: "06",
-    title: "Iterate & Improve",
-    description: "We listen to feedback and refine until the product is perfect.",
-    align: "left" as const,
-  },
-  {
-    number: "07",
-    title: "Scale & Grow",
-    description: "Infrastructure and strategy to support your growing ambitions.",
-    align: "right" as const,
-  },
-  {
-    number: "08",
-    title: "Support & Maintain",
-    description: "Ongoing care so your product stays fast, secure, and relevant.",
-    align: "left" as const,
   },
 ];
 
@@ -179,7 +161,7 @@ export default function ProcessSection() {
         <div className="max-w-5xl">
           <h1 className="text-2xl md:text-3xl font-primary md:text-[40px] font-bold leading-13 tracking-tight">
             <span className="text-[#BFBFBF] font-bold">
-              Our flexible process blends{" "}
+              Our process blends{" "}
             </span>
             <span className="inline-block align-middle">
               <RotatingText

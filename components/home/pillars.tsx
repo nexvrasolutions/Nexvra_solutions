@@ -56,7 +56,7 @@ export default function Pillars() {
                     {/* Image */}
                     <div className="flex-[50%] md:flex-[30%]">
                         <Image
-                            src="/images/pillarimage.png"
+                            src="/images/home/pillarimage.webp"
                             alt="nexvra-solutions-pillars"
                             width={600}
                             height={600}
