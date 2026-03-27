@@ -33,15 +33,16 @@ export default function ClientFeedback() {
         <section className="relative bg-white min-h-[70vh] overflow-hidden px-7 md:px-10 xl:px-[5.5%] py-10 md:py-[5%]">
 
             {/* Grid lines */}
-            <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line absolute left-[3%] lg:left-[5%]  top-0 h-full w-px bg-[#F3F3F3]" />
             <div className="grid-line absolute hidden lg:block left-[51.5%] top-0 h-full w-px bg-[#F3F3F3]" />
-            <div className="grid-line absolute hidden lg:block right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            <div className="grid-line right-[3%] lg:right-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-16 items-start">
                 {/* LEFT SIDE */}
                 <div>
                     <div>
                         <Badge text="Testimonials" className="text-tertiary" />
-                        <h1 className="font-primary text-teritiary text-[30px] md:text-[40px] lg:text-[50px] xl:text-[64px] z-10 font-bold leading-20">
+                        <h1 className="font-primary text-teritiary text-[30px] md:text-[40px] lg:text-[50px] xl:text-[64px] z-10 font-bold leading-tight lg:leading-20">
                             What Our Clients Say
                         </h1>
                     </div>

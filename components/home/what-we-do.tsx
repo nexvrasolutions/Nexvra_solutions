@@ -85,7 +85,7 @@ export default function WhatWeDo() {
       </p> */}
       <div className="flex flex-col items-center justify-center">
         <Badge text="Our Services" className="text-tertiary" />
-        <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-25 w-full text-center">
+        <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-tight lg:leading-25 w-full text-center">
           Digital Solutions for Businesses
         </h2>
       </div>
@@ -97,7 +97,7 @@ export default function WhatWeDo() {
             onMouseEnter={(e) => handleMouseEnter(e, service.id)}
             onMouseLeave={handleMouseLeave}
             className={cn(
-              "flex items-center border-b border-[#F3F3F3] justify-between rounded-lg p-0 py-3 md:py-0 md:p-6 relative transition-all duration-500 ease-in-out",
+              "flex items-center border-b border-[#F3F3F3] justify-between rounded-sm md:rounded-lg p-0 py-3 md:py-0 md:p-6 relative transition-all duration-500 ease-in-out",
               hoveredItem === service.id ? "bg-[#F3F3F3]" : ""
             )}
           >
@@ -121,7 +121,7 @@ export default function WhatWeDo() {
 
             {/* Hover Image */}
             {hoveredItem === service.id && (
-              <div className="absolute right-[200px] bottom-8 w-[250px] lg:w-[450px] h-[170px] lg:h-[220px] z-10">
+              <div className="absolute right-20 md:right-[200px] bottom-8 w-[250px] lg:w-[450px] h-[170px] lg:h-[220px] z-10">
                 {/* Green background */}
                 <div className="absolute top-5 inset-0 bg-[#A4FF00] translate-x-[20px] -z-10 rounded-sm"></div>
 
@@ -138,10 +138,10 @@ export default function WhatWeDo() {
             <div className="arrow-wrapper">
               <Arrow
                 className={cn(
-                  "transition-all duration-500 ease-in-out",
+                  "transition-all duration-500 ease-in-out p-1 md:p-2 h-5",
                   hoveredItem === service.id ? "bg-[#A4FF00]" : "bg-white"
                 )}
-                imgClassName={"size-8 md:size-10 xl:size-[50px]"}
+                imgClassName={"size-6 md:size-10 xl:size-[50px]"}
               />
             </div>
           </div>

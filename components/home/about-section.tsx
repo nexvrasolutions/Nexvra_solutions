@@ -111,9 +111,9 @@ export default function AboutSection() {
             className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] md:pt-14 lg:pt-28 pb-5 overflow-hidden"
         >
             {/* Grid lines */}
-            <div className="grid-line absolute left-[5%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute left-[3%] lg:left-[5%] top-0 h-full w-px bg-grid" />
             <div className="grid-line absolute left-[50%] top-0 h-full w-px bg-grid" />
-            <div className="grid-line absolute right-[5%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute right-[3%] lg:right-[5%] top-0 h-full w-px bg-grid" />
 
             <div className="relative z-10 w-full container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-8 items-center">
                 {/* LEFT IMAGE */}
@@ -140,8 +140,8 @@ export default function AboutSection() {
                 <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">
                     {/* Heading */}
                     <h2 className="about-heading font-primary text-white font-bold text-[21px] sm:text-[26px] md:text-[34px] xl:text-[48px] 2xl:text-[54px] leading-tight md:leading-[1.1]">
-                        {splitText("Turning Ideas Into ")}
-                        <br />
+                        {splitText("Turning Ideas Into")}{" "}
+                        <br className="hidden lg:flex" />
                         {splitText("Digital Reality")}
                     </h2>
 

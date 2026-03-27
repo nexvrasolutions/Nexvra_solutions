@@ -65,7 +65,7 @@ export default function Pillars() {
                     </div>
                     {/* Animated Text */}
                     <div className="flex-[50%] md:flex-[70%] relative z-30">
-                        <div className="absolute -left-40 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
+                        <div className="absolute -left-45 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
 
                             <h1 className="leading-tight xl:leading-[182px] text-[clamp(50px,9vw,170px)]">
                                 {splitText("Creativity,")}
