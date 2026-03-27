@@ -10,7 +10,7 @@ import { useParams } from "next/navigation";
 const Page = () => {
   
   const params = useParams();
-  const slug = params.slug ?? "";
+  const slug = params.slug as string;
   const course = courses[slug];
 
   if (!course) return <div>Course not found</div>;
