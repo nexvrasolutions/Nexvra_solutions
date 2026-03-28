@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,18 +84,18 @@ const Footer = () => {
       });
 
       // MENU LINKS
-      gsap.from(".footer-links a", {
-        y: 40,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".footer-links",
-          start: "top 90%",
-          once: true,
-        },
-      });
+      // gsap.from(".footer-links a", {
+      //   y: 40,
+      //   opacity: 0,
+      //   stagger: 0.12,
+      //   duration: 0.8,
+      //   ease: "power3.out",
+      //   scrollTrigger: {
+      //     trigger: ".footer-links",
+      //     start: "top 90%",
+      //     once: true,
+      //   },
+      // });
 
       gsap.from(".footer-letter", {
         y: 120,
@@ -199,30 +200,27 @@ const Footer = () => {
     >
       {/* Grid lines */}
       <div className="bg-grid h-full w-px left-[3%] xl:left-[5%] absolute" />
-      <div className="bg-grid h-full w-px hidden lg:block lg:left-[50.5%] xl:left-[54%] top-0 absolute" />
+      <div className="bg-grid h-full w-px hidden lg:block lg:left-[50.5%] xl:left-[46%] top-0 absolute" />
       <div className="bg-grid h-full w-px right-[3%] xl:right-[5%] absolute" />
 
-      <div className="flex flex-col gap-5 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-4 xl:gap-10 relative">
-          <div className="relative footer-hex w-full max-w-[220px] sm:max-w-[300px] md:max-w-[380px] lg:max-w-[450px] xl:max-w-[500px] mx-auto">
+      <div className="flex flex-col gap-5  relative">
+        <div className="flex flex-col lg:flex-row gap-8 pb-15 xl:gap-13 relative">
+          <div className="relative footer-hex mx-auto w-[50%]">
+            <div className="relative footer-hex mx-auto w-[50%] max-h-[300px]">
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/rocket.png"
+                  alt="about-image"
+                  width={500}
+                  height={400}
+                  className="object-contain w-full h-full mx-auto"
+                  priority
+                />
 
-            <div className="relative w-full">
-
-              <Image
-                src="/images/rocket.png"
-                alt="about-image"
-                width={500}
-                height={400}
-                className="object-contain w-full h-auto mx-auto"
-                priority
-              />
-
-              {/* Gradient Overlay */}
-              <div className="pointer-events-none absolute bottom-0 left-0 w-full 
-                h-[35%] sm:h-[40%] md:h-[45%] 
-                bg-[linear-gradient(180deg,rgba(10,10,10,0)_0%,#0A0A0A_100%)]"
-              />
-
+                {/* Gradient Overlay (adaptive & smooth) */}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"
+                />
+              </div>
             </div>
           </div>
 
@@ -231,7 +229,9 @@ const Footer = () => {
             <div className="flex flex-col gap-6 xl:gap-10">
               <div className="overflow-hidden">
                 <h4 className="footer-heading font-semibold font-primary text-[30px] sm:text-[35px] lg:text-[34px] xl:text-[47px] 2xl:text-[54px] leading-[1.1] text-white">
-                  {splitText("Ready to Ride the Next Wave of Innovation")}
+                  {splitText("Ready to Ride the Next")}
+                  <br className="hidden lg:flex" />
+                  {splitText("Wave of Innovation")}
                 </h4>
               </div>
 
@@ -251,12 +251,12 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 w-full">
 
           {/* Left */}
-          <div className="flex flex-col gap-5 md:gap-10 xl:gap-15 w-full lg:w-[50%] xl:w-[55%]">
+          <div className="flex flex-col gap-5 md:gap-10 xl:gap-15 w-full lg:w-[50%] xl:w-[45%]">
 
             <img
               src="/logo.png"
               alt="Nexvra Solutions"
-              className="w-full h-full object-contain"
+              className="w-full xl:w-[80%] h-full object-contain"
             />
 
             <div className="w-full flex flex-col md:flex-row justify-between gap-3">
@@ -287,47 +287,42 @@ const Footer = () => {
           </div>
 
           {/* Right columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-10 w-full lg:w-[50%] xl:w-[45%] mt-0 md:mt-10 xl:mt-15 footer-links">
-            <div className="cols-span-1">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-10 w-full lg:w-[50%] xl:w-[55%] mt-0 md:mt-10 xl:mt-15 footer-links">
+            <div className="">
               <FooterColumn
                 title="Menu"
                 items={[
-                  "Home",
-                  "About Us",
-                  "Services",
-                  "Testimonials",
-                  "Case Studies",
+                  { label: "Home", link: "/" },
+                  { label: "About Us", link: "/about-us" },
+                  { label: "Solutions", link: "/solutions" },
+                  { label: "Projects", link: "/projects" },
                 ]}
               />
             </div>
             {/* <div className="cols-span-1 lg:col-span-2 xl:cols-span-1"> */}
-              <FooterColumn
-                title="Services"
-                items={[
-                  "Consulting & Strategy",
-                  "Software Development",
-                  "UI/UX Design",
-                  "Digital Transformation",
-                  "Cloud Solutions",
-                ]}
-              />
+            <FooterColumn
+              title="Services"
+              items={[
+                { label: "Branding & Design", link: "/projects" },
+                { label: "Digital Marketing", link: "/projects" },
+                { label: "Web Development", link: "/projects" },
+                { label: "App Development", link: "/projects" },
+                { label: "Software Solutions", link: "/projects" },
+              ]}
+            />
             {/* </div> */}
+            <FooterColumn
+              title="Courses"
+              items={[
+                { label: "AI Product Design", link: "/course-detail/ai-powered-product-design" },
+                { label: "UX Design", link: "/course-detail/ux-design" },
+                { label: "UI Design", link: "/course-detail/ui-design" },
+                { label: "Digital Marketing", link: "/course-detail/digital-marketing-mastery" },
+                { label: "Frontend Dev", link: "/course-detail/front-end-development" },
+              ]}
+            />
           </div>
         </div>
-
-        {/* Big Text */}
-        {/* <div className="overflow-hidden">
-          <h1
-            className="footer-big-text w-full text-[clamp(40px,9vw,132px)] font-primary font-bold leading-[100%] mt-10 xl:mt-20 text-secondary bg-clip-text"
-            style={{
-              background: "linear-gradient(180deg, #FFFFFF -68.06%, #0A0A0A 75%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            {splitBigText("Next Wave Next")}
-          </h1>
-        </div> */}
 
         {/* Bottom */}
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
@@ -343,22 +338,21 @@ const Footer = () => {
   );
 };
 
-const FooterColumn = ({ title, items, className }: { title: string, items: string[], className?: string }) => (
+const FooterColumn = ({ title, items, className }: { title: string, items: any, className?: string }) => (
   <div className="flex flex-col gap-5">
-    <h3
-      className={cn(
-        "text-white text-xl xl:text-[24px] font-medium ",
-        className
-      )}
-    >
+    <h3 className={cn("text-white text-xl xl:text-[24px] font-medium", className)}>
       {title}
     </h3>
 
     <div className="flex flex-col gap-3">
-      {items.map((item, idx) => (
-        <a key={idx} className="text-white/80 text-lg xl:text-[20px]">
-          {item}
-        </a>
+      {items.map((item: any, idx: number) => (
+        <Link
+          href={item.link}
+          key={idx}
+          className="text-white/80 text-[16px] xl:text-lg hover:text-white"
+        >
+          {item.label}
+        </Link>
       ))}
     </div>
   </div>

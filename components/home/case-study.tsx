@@ -2,11 +2,50 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "../ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  {
+    id: 1,
+    name: "Magic Aisles",
+    slug: "magic-aisles",
+    type: "Website Development",
+    image: "/images/projects/magicaisles.webp",
+  },
+  {
+    id: 2,
+    name: "Exclusive",
+    slug: "exclusive",
+    type: "E-commerce Website",
+    image: "/images/projects/exclusive.webp",
+  },
+  {
+    id: 3,
+    name: "Riya Mobiles",
+    slug: "riya-mobiles",
+    type: "Website Design",
+    image: "/images/projects/riyamobiles.webp",
+  },
+  {
+    id: 4,
+    name: "My Choir",
+    slug: "my-choir",
+    type: "Mobile App",
+    image: "/images/projects/mychoir.webp",
+  },
+  {
+    id: 5,
+    name: "JE Mobiles",
+    slug: "je-mobiles",
+    type: "Digital Marketing",
+    image: "/images/projects/jemobiles.webp",
+  },
+];
 
 export default function CaseStudy() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -16,48 +55,70 @@ export default function CaseStudy() {
     const ctx = gsap.context(() => {
       const section = sectionRef.current!;
       const container = scrollContainerRef.current!;
-
       const sections = gsap.utils.toArray<HTMLDivElement>(".case-card");
 
-      // Horizontal scroll animation
-      const horizontalTween = gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => "+=" + container.offsetWidth,
-          pin: true,
-          scrub: 2, 
-          anticipatePin: 1,
+      ScrollTrigger.matchMedia({
+        // ✅ DESKTOP (UNCHANGED)
+        "(min-width: 1024px)": () => {
+          const horizontalTween = gsap.to(sections, {
+            xPercent: -100 * (sections.length - 1),
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: () => "+=" + container.offsetWidth,
+              pin: true,
+              scrub: 2,
+              anticipatePin: 1,
+            },
+          });
+
+          const images = gsap.utils.toArray<HTMLImageElement>(".case-img");
+
+          images.forEach((img) => {
+            gsap.to(img, {
+              y: -60,
+              ease: "none",
+              scrollTrigger: {
+                trigger: img,
+                containerAnimation: horizontalTween,
+                scrub: 1,
+              },
+            });
+          });
         },
-      });
 
-      // Image parallax
-      const images = gsap.utils.toArray<HTMLImageElement>(".case-img");
+        // ✅ MOBILE & TABLET (FIXED UX)
+        "(max-width: 1023px)": () => {
+          // clear horizontal transforms
+          gsap.set(sections, { clearProps: "transform" });
 
-      images.forEach((img) => {
-        gsap.to(img, {
-          y: -60,
-          ease: "none",
-          scrollTrigger: {
-            trigger: img,
-            containerAnimation: horizontalTween,
-            scrub: 1,
-          },
-        });
-      });
+          // vertical reveal animation
+          gsap.from(".case-card", {
+            opacity: 0,
+            y: 80,
+            scale: 0.95,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 85%",
+            },
+          });
 
-      // Card fade animation
-      gsap.from(".case-card", {
-        opacity: 0,
-        y: 120,
-        duration: 1.2,
-        stagger: 0.3,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
+          // subtle image parallax
+          const images = gsap.utils.toArray<HTMLImageElement>(".case-img");
+
+          images.forEach((img) => {
+            gsap.to(img, {
+              y: -30,
+              scrollTrigger: {
+                trigger: img,
+                scrub: 1,
+              },
+            });
+          });
         },
       });
     }, sectionRef);
@@ -68,47 +129,56 @@ export default function CaseStudy() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-[5.5%] py-[5%]"
+      className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%]"
     >
       {/* Title */}
-      <div className="sticky top-0 left-0 z-10 py-10 bg-[#F3F3F3]">
+      <div className="sticky top-0 left-0 z-10 py-5 md:py-10 bg-[#F3F3F3]">
         <Badge text="Our Works" className="text-tertiary" />
 
-        <h1 className="font-primary text-teritiary text-[64px] font-bold leading-[80px]">
+        <h1 className="font-primary text-teritiary text-[32px] md:text-[48px] xl:text-[64px] font-bold leading-[40px] md:leading-[60px] xl:leading-[80px]">
           Our Impact
         </h1>
       </div>
 
-      {/* Horizontal container */}
+      {/* Container */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center gap-12 py-10"
+        className="
+          flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-10
+          max-lg:flex-col
+        "
       >
-        {Array.from({ length: 5 }).map((_, index) => (
-          <div
-            key={index}
-            className="case-card flex flex-col gap-8 flex-shrink-0 w-[900px]"
+        {projects.map((project) => (
+          <Link
+            key={project.id}
+            href={`/project-detail/${project.slug}`}
+            className="
+              case-card flex flex-col gap-3 md:gap-8 flex-shrink-0
+              w-full md:w-[70vw] xl:w-[900px]
+            "
           >
-            <div className="w-[900px] h-[500px] overflow-hidden rounded-sm">
+            {/* Image */}
+            <div className="w-full h-[180px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-sm">
               <Image
-                src="/images/case-study.png"
-                alt="case-study"
+                src={project.image}
+                alt={project.name}
                 width={900}
                 height={500}
                 className="case-img w-full h-full object-cover"
               />
             </div>
 
+            {/* Content */}
             <div className="flex flex-col gap-2">
-              <h4 className="text-[#404040] font-primary text-[36px] font-bold">
-                Project Name {index + 1}
+              <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px]">
+                {project.name}
               </h4>
 
-              <p className="text-[#404040]/80 font-primary text-[20px] leading-[28px]">
-                Case study highlighting measurable growth.
+              <p className="text-[#404040]/80 font-primary text-[14px] md:text-[16px] xl:text-[20px] leading-[22px] md:leading-[24px] xl:leading-[28px]">
+                {project.type}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

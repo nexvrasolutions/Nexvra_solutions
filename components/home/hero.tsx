@@ -81,7 +81,7 @@ export default function Hero() {
                         />
 
                         <h1 className="hero-title text-white font-bold font-primary 
-                            text-[21px] sm:text-[26px] md:text-[45px] xl:text-[55px] 2xl:text-[70px] 
+                            text-[21px] sm:text-[26px] md:text-[45px] xl:text-[55px] 2xl:text-[65px] 
                             leading-tight md:leading-[1.2]"
                         >
 
@@ -121,7 +121,7 @@ export default function Hero() {
                 <img
                     src="/images/vido.gif"
                     alt="gif-video"
-                    className="hero-media w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+                    className="hero-media w-full object-cover h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
                 />
             </div>
         </HeroLayout>

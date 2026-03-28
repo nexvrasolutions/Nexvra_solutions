@@ -178,7 +178,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
         <img
           src={gifImage}
           alt="gif-video"
-          className="hero-media w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+          className="hero-media w-full object-cover h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
         />
       </div>
     </HeroLayout>

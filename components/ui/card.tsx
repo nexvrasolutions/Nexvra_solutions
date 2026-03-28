@@ -25,7 +25,7 @@ export const Card = ({ course, className, isCourse = true }: { course: any, clas
                     <img src={ course.img ||"/images/green-eye.png"} alt={`nexvra-solution-${course.slug || course.title}`} className="size-25 object-contain" />
                 </div>
 
-                <div className={cn(isCourse ? "2xl:w-[70%] space-y-3" : "space-y-3", className)}>
+                <div className={cn(isCourse ? "space-y-3" : "space-y-3", className)}>
                     {/* Title */}
                     <h3 className={cn(isCourse ? "text-xl xl:text-2xl font-semibold leading-tight xl:leading-8 font-secondary " : "font-primary text-xl font-semibold leading-tight xl:leading-10")}>
                         {course.title}

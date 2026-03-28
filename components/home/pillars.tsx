@@ -66,26 +66,22 @@ export default function Pillars() {
                     {/* Animated Text */}
                     <div className="flex-[50%] md:flex-[70%] relative z-30">
                         <div className="absolute -left-45 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
-
                             <h1 className="leading-tight xl:leading-[182px] text-[clamp(50px,9vw,170px)]">
                                 {splitText("Creativity,")}
                             </h1>
-
                             <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)]">
                                 {splitText("Technology,")}
                             </h1>
-
                             <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)]">
                                 {splitText("Solutions.")}
                             </h1>
-
                         </div>
                     </div>
                 </div>
                 {/* Arrow */}
-                <div className="absolute invisible md:visible top-5 md:right-0">
+                {/* <div className="absolute invisible md:visible top-5 md:right-0">
                     <GreenArrow className="h-30 lg:h-60 2xl:h-80" />
-                </div>
+                </div> */}
             </div>
         </section>
     );

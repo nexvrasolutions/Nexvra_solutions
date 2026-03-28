@@ -29,7 +29,7 @@ const Challenges = ({ project }: { project: any }) => {
         <img
           src={ project.challengeImg ||"/images/vido.gif"}
           alt="gif-video"
-          className="w-full object-cover rounded-xl h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
+          className="w-full object-cover h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]"
         />
       </div>
     </section>

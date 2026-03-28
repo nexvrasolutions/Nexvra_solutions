@@ -5,15 +5,17 @@ import gsap from "gsap";
 import { cn } from "../../utils/lib";
 import { Arrow } from "../ui/arrow";
 import { Badge } from "../ui/badge";
+import { useRouter } from "next/navigation";
 
 const services = [
-  { id: "01", title: "Branding & Graphic Design" },
-  { id: "02", title: "Digital Marketing" },
-  { id: "03", title: "Website Development" },
-  { id: "04", title: "Custom Software Development" },
+  { id: "01", title: "Branding & Graphic Design", slug: "branding-graphic-design" },
+  { id: "02", title: "Digital Marketing", slug: "digital-marketing" },
+  { id: "03", title: "Website Development", slug: "website-development" },
+  { id: "04", title: "Custom Software Development", slug: "custom-software-development" },
 ];
 
 export default function WhatWeDo() {
+  const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState("");
 
   const handleMouseEnter = (
@@ -58,6 +60,12 @@ export default function WhatWeDo() {
     }
   };
 
+
+  const handleClick = () => {
+    router.push(`/projects`);
+  };
+
+
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     setHoveredItem("");
 
@@ -85,8 +93,10 @@ export default function WhatWeDo() {
       </p> */}
       <div className="flex flex-col items-center justify-center">
         <Badge text="Our Services" className="text-tertiary" />
-        <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-tight lg:leading-25 w-full text-center">
-          Digital Solutions for Businesses
+        <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-tight lg:leading-[1.1] w-full text-center">
+          Digital Solutions for
+          <br className="hidden lg:flex" />
+          Businesses
         </h2>
       </div>
 
@@ -94,10 +104,11 @@ export default function WhatWeDo() {
         {services.map((service) => (
           <div
             key={service.id}
+            onClick={() => handleClick()}
             onMouseEnter={(e) => handleMouseEnter(e, service.id)}
             onMouseLeave={handleMouseLeave}
             className={cn(
-              "flex items-center border-b border-[#F3F3F3] justify-between rounded-sm md:rounded-lg p-0 py-3 md:py-0 md:p-6 relative transition-all duration-500 ease-in-out",
+              "flex items-center border-b border-[#F3F3F3] justify-between rounded-sm md:rounded-lg p-0 py-3 md:py-0 md:p-6 relative transition-all duration-500 ease-in-out cursor-pointer",
               hoveredItem === service.id ? "bg-[#F3F3F3]" : ""
             )}
           >
@@ -120,25 +131,23 @@ export default function WhatWeDo() {
             </div>
 
             {/* Hover Image */}
-            {hoveredItem === service.id && (
+            {/* {hoveredItem === service.id && (
               <div className="absolute right-20 md:right-[200px] bottom-8 w-[250px] lg:w-[450px] h-[170px] lg:h-[220px] z-10">
-                {/* Green background */}
                 <div className="absolute top-5 inset-0 bg-[#A4FF00] translate-x-[20px] -z-10 rounded-sm"></div>
 
-                {/* Image */}
                 <img
                   src="/images/pillarimage.png"
                   alt="pillar-image"
                   className="hover-image w-full h-[150px] lg:h-[200px] object-cover rounded-sm"
                 />
               </div>
-            )}
+            )} */}
 
             {/* Arrow */}
             <div className="arrow-wrapper">
               <Arrow
                 className={cn(
-                  "transition-all duration-500 ease-in-out p-1 md:p-2 h-5",
+                  "transition-all duration-500 ease-in-out",
                   hoveredItem === service.id ? "bg-[#A4FF00]" : "bg-white"
                 )}
                 imgClassName={"size-6 md:size-10 xl:size-[50px]"}
