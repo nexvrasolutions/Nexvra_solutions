@@ -40,7 +40,7 @@ export default function FeaturedCourses() {
     return (
         <section className="relative bg-[#F3F3F3] min-h-[70vh] overflow-hidden px-5 md:px-10 lg:px-[3%] 2xl:px-[5.5%] py-5 md:py-10 xl:py-[10%]">
             {/* Header */}
-            <div className="flex flex-col md:flex-row  items-start gap-5 md:gap-0 md:items-center justify-between">
+            <div className="flex flex-col md:flex-row  items-start gap-3 md:gap-0 md:items-center justify-between">
                 <div>
                     <Badge text="Our Courses" className="text-tertiary mb-3 lg:mb-5" />
                     <h1 className="font-primary text-teritiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-[80px]">
@@ -50,7 +50,7 @@ export default function FeaturedCourses() {
 
                 <Link
                     href="/courses"
-                    className="border border-tertiary text-tertiary px-6 py-3 rounded-md hover:border-tertiary transition"
+                    className="border border-tertiary text-tertiary px-2 md:px-6 py-1.5 font-semibold md:py-3 rounded-md transition hover:bg-[#A4FF00] hover:border-[#A4FF00] duration-500 ease-in-out"
                 >
                     View All Courses
                 </Link>

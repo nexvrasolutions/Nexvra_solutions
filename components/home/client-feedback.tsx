@@ -70,7 +70,7 @@ export default function ClientFeedback() {
                             viewport={{ once: true }}
                             className="group transition-all pb-3 md:pb-6 duration-300 bg-white border-b border-[#F3F3F3]"
                         >
-                            <p className="text-[#0A0A0ACC] font-secondary leading-tight xl:leading-[28px] text-[16px] md:text-lg lg:text-xl">
+                            <p className="text-[#0A0A0ACC] font-secondary leading-tight xl:leading-[28px] text-lg lg:text-xl">
                                 {item.text}
                             </p>
 

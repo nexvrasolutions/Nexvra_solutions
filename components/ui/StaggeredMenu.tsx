@@ -424,7 +424,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         >
           <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
             {/* <img
-                src={logoUrl || '/logo.png'}
+                src={'/logo.png'}
                 alt="Logo"
                 className="sm-logo-img block h-8 w-auto object-contain"
                 draggable={false}
@@ -437,7 +437,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             ref={toggleBtnRef}
             // className="border border-secondary p-2 px-4 flex items-center gap-3 text-secondary"
 
-            className={`sm-toggle mr-13 relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${open ? 'text-black' : 'text-[#e9e9ef]'
+            className={`sm-toggle mr-0 md:mr-13 relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${open ? 'text-black' : 'text-[#e9e9ef]'
               }`}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}

@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { cn } from "../../utils/lib";
 import { Arrow } from "../ui/arrow";
 import { Badge } from "../ui/badge";
-import { useRouter } from "next/navigation";
 
 const services = [
   { id: "01", title: "Branding & Graphic Design", slug: "branding-graphic-design" },
@@ -15,11 +14,10 @@ const services = [
 ];
 
 export default function WhatWeDo() {
-  const router = useRouter();
   const [hoveredItem, setHoveredItem] = useState("");
 
   const handleMouseEnter = (
-    e: React.MouseEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLAnchorElement>,
     id: string
   ) => {
     setHoveredItem(id);
@@ -28,14 +26,12 @@ export default function WhatWeDo() {
     const img = row.querySelector(".hover-image");
     const arrow = row.querySelector(".arrow-wrapper");
 
-    // Row lift
     gsap.to(row, {
       y: -6,
       duration: 0.3,
       ease: "power2.out",
     });
 
-    // Image reveal
     if (img) {
       gsap.fromTo(
         img,
@@ -50,7 +46,6 @@ export default function WhatWeDo() {
       );
     }
 
-    // Arrow rotate
     if (arrow) {
       gsap.to(arrow, {
         rotate: 45,
@@ -60,13 +55,7 @@ export default function WhatWeDo() {
     }
   };
 
-
-  const handleClick = () => {
-    router.push(`/projects`);
-  };
-
-
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
     setHoveredItem("");
 
     const row = e.currentTarget;
@@ -86,11 +75,8 @@ export default function WhatWeDo() {
   };
 
   return (
-    <section className=" flex flex-col items-center px-5 py-10 md:py-[5%] md:px-10 xl:px-[5.5%] gap-5">
-      {/* Heading */}
-      {/* <p className="text-sm font-primary text-teritiary font-medium">
-        (What We Do)
-      </p> */}
+    <section className="flex flex-col items-center px-5 py-10 md:py-[5%] md:px-10 xl:px-[5.5%] gap-5">
+      
       <div className="flex flex-col items-center justify-center">
         <Badge text="Our Services" className="text-tertiary" />
         <h2 className="text-[30px] md:text-[50px] xl:text-[60px] font-bold font-primary text-teritiary leading-tight lg:leading-[1.1] w-full text-center">
@@ -102,9 +88,9 @@ export default function WhatWeDo() {
 
       <div className="w-full flex flex-col relative">
         {services.map((service) => (
-          <div
+          <a
             key={service.id}
-            onClick={() => handleClick()}
+            href="/projects"
             onMouseEnter={(e) => handleMouseEnter(e, service.id)}
             onMouseLeave={handleMouseLeave}
             className={cn(
@@ -130,21 +116,8 @@ export default function WhatWeDo() {
               </h3>
             </div>
 
-            {/* Hover Image */}
-            {/* {hoveredItem === service.id && (
-              <div className="absolute right-20 md:right-[200px] bottom-8 w-[250px] lg:w-[450px] h-[170px] lg:h-[220px] z-10">
-                <div className="absolute top-5 inset-0 bg-[#A4FF00] translate-x-[20px] -z-10 rounded-sm"></div>
-
-                <img
-                  src="/images/pillarimage.png"
-                  alt="pillar-image"
-                  className="hover-image w-full h-[150px] lg:h-[200px] object-cover rounded-sm"
-                />
-              </div>
-            )} */}
-
             {/* Arrow */}
-            <div className="arrow-wrapper">
+            <div className="arrow-wrapper mr-5 md:mr-0">
               <Arrow
                 className={cn(
                   "transition-all duration-500 ease-in-out",
@@ -153,7 +126,7 @@ export default function WhatWeDo() {
                 imgClassName={"size-6 md:size-10 xl:size-[50px]"}
               />
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>

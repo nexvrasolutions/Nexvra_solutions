@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GreenArrow } from "../ui/green-arrow";
 import { Badge } from "../ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,31 +12,39 @@ export default function Pillars() {
     const sectionRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const letters = gsap.utils.toArray(".pillar-letter");
+        if (!sectionRef.current) return;
 
-        gsap.fromTo(
-            letters,
-            {
-                y: 60,
-                opacity: 0,
-                color: "#BFBFBF",
-            },
-            {
-                y: 0,
-                opacity: 1,
-                color: "#0A0A0A",
-                stagger: 0.05,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top top",
-                    end: "+=1200",
-                    scrub: true,
-                    pin: true,
-                    anticipatePin: 1,
+        const ctx = gsap.context(() => {
+            const letters = gsap.utils.toArray(".pillar-letter");
+
+            gsap.fromTo(
+                letters,
+                {
+                    y: 60,
+                    opacity: 0,
+                    color: "#BFBFBF",
                 },
-            }
-        );
+                {
+                    y: 0,
+                    opacity: 1,
+                    color: "#0A0A0A",
+                    stagger: 0.05,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top top",
+                        end: "+=1200",
+                        scrub: true,
+                        pin: true,
+                        anticipatePin: 1,
+                    },
+                }
+            );
+        }, sectionRef); 
+
+        return () => {
+            ctx.revert();
+        };
     }, []);
 
     const splitText = (text: string) =>

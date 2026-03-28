@@ -112,7 +112,7 @@ export default function AboutSection() {
         >
             {/* Grid lines */}
             <div className="grid-line absolute left-[3%] lg:left-[5%] top-0 h-full w-px bg-grid" />
-            <div className="grid-line absolute left-[50%] top-0 h-full w-px bg-grid" />
+            <div className="grid-line absolute hidden lg:flex left-[50%] top-0 h-full w-px bg-grid" />
             <div className="grid-line absolute right-[3%] lg:right-[5%] top-0 h-full w-px bg-grid" />
 
             <div className="relative z-10 w-full container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 xl:gap-8 items-center">

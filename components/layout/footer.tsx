@@ -204,9 +204,9 @@ const Footer = () => {
       <div className="bg-grid h-full w-px right-[3%] xl:right-[5%] absolute" />
 
       <div className="flex flex-col gap-5  relative">
-        <div className="flex flex-col lg:flex-row gap-8 pb-15 xl:gap-13 relative">
-          <div className="relative footer-hex mx-auto w-[50%]">
-            <div className="relative footer-hex mx-auto w-[50%] max-h-[300px]">
+        <div className="flex flex-col lg:flex-row pb-15 gap-10 lg:gap-0 relative">
+          <div className="relative footer-hex mx-auto w-full  lg:w-[50%] xl:w-[46.5%]">
+            <div className="relative footer-hex mx-auto w-[50%] lg:max-h-[300px]">
               <div className="relative w-full h-full">
                 <Image
                   src="/images/rocket.png"
@@ -225,17 +225,17 @@ const Footer = () => {
           </div>
 
           {/* Text Content */}
-          <div className="flex flex-col gap-5 pt-2 lg:pt-20">
+          <div className="flex flex-col gap-5 pt-2 lg:pt-20 w-full lg:w-[48%] xl:w-[54%]">
             <div className="flex flex-col gap-6 xl:gap-10">
               <div className="overflow-hidden">
-                <h4 className="footer-heading font-semibold font-primary text-[30px] sm:text-[35px] lg:text-[34px] xl:text-[47px] 2xl:text-[54px] leading-[1.1] text-white">
+                <h4 className="footer-heading font-semibold font-primary text-[32px] lg:text-[34px] xl:text-[47px] 2xl:text-[54px] leading-[1.1] text-white">
                   {splitText("Ready to Ride the Next")}
                   <br className="hidden lg:flex" />
                   {splitText("Wave of Innovation")}
                 </h4>
               </div>
 
-              <p className="footer-text font-secondary text-white/80 text-xl leading-[30px] lg:w-[90%]">
+              <p className="footer-text font-secondary  text-white/80 text-xl leading-[30px] lg:w-[90%]">
                 We help individuals learn modern digital skills and help businesses build powerful digital solutions.
               </p>
             </div>
@@ -296,6 +296,7 @@ const Footer = () => {
                   { label: "About Us", link: "/about-us" },
                   { label: "Solutions", link: "/solutions" },
                   { label: "Projects", link: "/projects" },
+                  { label: "Contact", link: "/contact" },
                 ]}
               />
             </div>
@@ -338,25 +339,27 @@ const Footer = () => {
   );
 };
 
-const FooterColumn = ({ title, items, className }: { title: string, items: any, className?: string }) => (
-  <div className="flex flex-col gap-5">
-    <h3 className={cn("text-white text-xl xl:text-[24px] font-medium", className)}>
-      {title}
-    </h3>
+const FooterColumn = ({ title, items }: { title: string; items: any }) => {
+  return (
+    <div className="flex flex-col gap-5">
+      <h3 className="text-white text-xl xl:text-[24px] font-medium">
+        {title}
+      </h3>
 
-    <div className="flex flex-col gap-3">
-      {items.map((item: any, idx: number) => (
-        <Link
-          href={item.link}
-          key={idx}
-          className="text-white/80 text-[16px] xl:text-lg hover:text-white"
-        >
-          {item.label}
-        </Link>
-      ))}
+      <div className="flex flex-col gap-3">
+        {items.map((item: any, idx: number) => (
+          <a
+            key={idx}
+            href={item.link}
+            className="text-white/80 text-[16px] xl:text-lg hover:text-white"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Footer;
 

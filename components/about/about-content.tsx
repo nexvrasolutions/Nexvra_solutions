@@ -10,7 +10,7 @@ const AboutContent = () => {
         `We believe that learning should go beyond theory. That’s why our approach is built on real-world experience, hands-on training, and problem-solving. Every project we work on and every skill we teach is designed to deliver meaningful results.`,
         `From UI/UX design and website development to mobile applications and digital marketing, we combine creativity, technology, and strategy to create solutions that are not only visually appealing but also highly functional.`,
         `We work closely with our clients to understand their goals and transform their ideas into scalable digital products. At the same time, we guide students step-by-step to build confidence and become industry-ready.`,
-        `At Nexvra, we are more than a solutions provider — we are -- innovators --, creators, and partners in progress. We thrive on pushing boundaries and building future-ready solutions.`,
+        `At Nexvra, we are more than a solutions provider — we are innovators, creators, and partners in progress. We thrive on pushing boundaries and building future-ready solutions.`,
         `At Nexvra, everything we do is driven by one simple goal — to create value, inspire growth, and build a strong digital future.`
       ];
 

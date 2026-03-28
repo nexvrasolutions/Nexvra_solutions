@@ -1,11 +1,13 @@
+"use client";
+
 import AboutContent from '@/components/about/about-content'
 import MissionVisionSection from '@/components/about/mission-vision-section'
 import WhyChooseNexvra from '@/components/about/why-choose'
 import ContentSection from '@/components/common/content-section'
 import Pillars from '@/components/home/pillars'
-import React from 'react'
 
 const page = () => {
+
     return (
         <>
             <ContentSection
