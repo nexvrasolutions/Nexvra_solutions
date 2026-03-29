@@ -88,12 +88,9 @@ export default function CaseStudy() {
           });
         },
 
-        // ✅ MOBILE & TABLET (FIXED UX)
         "(max-width: 1023px)": () => {
-          // clear horizontal transforms
           gsap.set(sections, { clearProps: "transform" });
 
-          // vertical reveal animation
           gsap.from(".case-card", {
             opacity: 0,
             y: 80,
@@ -152,23 +149,21 @@ export default function CaseStudy() {
             key={project.id}
             href={`/project-detail/${project.slug}`}
             className="
-              case-card flex flex-col gap-3 md:gap-8 flex-shrink-0
-              w-full md:w-[70vw] xl:w-[900px]
+              case-card flex flex-col gap-0 md:gap-8 flex-shrink-0
+              w-full h-full md:w-[70vw] xl:w-[900px]
             "
           >
             {/* Image */}
-            <div className="w-full h-[180px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-sm">
-              <Image
+            <div className="w-full h-full md:h-[320px] xl:h-[500px] overflow-hidden rounded-xs">
+              <img
                 src={project.image}
                 alt={project.name}
-                width={900}
-                height={500}
                 className="case-img w-full h-full object-cover"
               />
             </div>
 
             {/* Content */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-0 md:gap-2">
               <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px]">
                 {project.name}
               </h4>

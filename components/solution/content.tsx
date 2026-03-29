@@ -166,7 +166,7 @@ export default function SolutionContent() {
       ref={sectionRef}
       className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-[10%]"
     >
-      <div className="relative h-[70vh]">
+      <div className="relative h-screen lg:h-[70vh]">
         {solutions.map((item, index) => (
           <div
             key={index}
@@ -182,7 +182,7 @@ export default function SolutionContent() {
           >
 
             {/* 🔥 SAME HEADER (moved inside) */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-10 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-5 lg:mb-10 my-5 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
               <div className="flex flex-col gap-2 md:gap-4 max-w-2xl xl:max-w-4xl">
                 <h2 className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight">
                   {item.title}
@@ -193,7 +193,7 @@ export default function SolutionContent() {
                 </p>
               </div>
 
-              <div className="flex items-start lg:items-end lg:justify-end">
+              <div className="hidden md:flex items-start lg:items-end lg:justify-end">
                 <Button label={item.cta} />
               </div>
             </div>
@@ -202,7 +202,7 @@ export default function SolutionContent() {
             <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white">
 
               {/* Lines */}
-              <div className="absolute top-0 h-[50%] w-px bg-[#E6E6E6]" />
+              <div className="absolute top-0 h-full lg:h-[50%] w-px bg-[#E6E6E6]" />
               <div className="absolute top-0 w-full h-px bg-[#E6E6E6]" />
               {/* <div className="hidden lg:block absolute left-[58%] top-0 h-full w-px bg-[#E6E6E6]" /> */}
               <div className="absolute right-0 top-0 h-full w-px bg-[#E6E6E6]" />
@@ -227,6 +227,9 @@ export default function SolutionContent() {
                       </span>
                     </div>
                   ))}
+                  <div className="flex md:hidden items-start justify-start ml-3">
+                    <Button label={item.cta} />
+                  </div>
                 </div>
               </div>
 

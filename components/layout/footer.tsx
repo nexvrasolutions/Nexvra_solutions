@@ -172,9 +172,13 @@ const Footer = () => {
   const router = useRouter();
 
   const splitText = (text: string) =>
-    text.split("").map((char, i) => (
-      <span key={i} className="footer-letter inline-block">
-        {char === " " ? "\u00A0" : char}
+    text.split(" ").map((word, wordIndex) => (
+      <span key={wordIndex} className="inline-block mr-2 whitespace-nowrap">
+        {word.split("").map((char, charIndex) => (
+          <span key={charIndex} className="footer-letter inline-block">
+            {char}
+          </span>
+        ))}
       </span>
     ));
 
@@ -204,9 +208,9 @@ const Footer = () => {
       <div className="bg-grid h-full w-px right-[3%] xl:right-[5%] absolute" />
 
       <div className="flex flex-col gap-5  relative">
-        <div className="flex flex-col lg:flex-row pb-15 gap-10 lg:gap-0 relative">
+        <div className="flex flex-col lg:flex-row pb-5 md:pb-15 gap-5 md:gap-10 lg:gap-0 relative">
           <div className="relative footer-hex mx-auto w-full  lg:w-[50%] xl:w-[46.5%]">
-            <div className="relative footer-hex mx-auto w-[50%] lg:max-h-[300px]">
+            <div className="relative footer-hex mx-auto w-full md:w-[50%] lg:max-h-[300px]">
               <div className="relative w-full h-full">
                 <Image
                   src="/images/rocket.png"
@@ -228,7 +232,7 @@ const Footer = () => {
           <div className="flex flex-col gap-5 pt-2 lg:pt-20 w-full lg:w-[48%] xl:w-[54%]">
             <div className="flex flex-col gap-6 xl:gap-10">
               <div className="overflow-hidden">
-                <h4 className="footer-heading font-semibold font-primary text-[32px] lg:text-[34px] xl:text-[47px] 2xl:text-[54px] leading-[1.1] text-white">
+                <h4 className="footer-heading font-semibold font-primary text-[32px] lg:text-[34px] xl:text-[47px] 2xl:text-[54px] leading-[1.1] text-white text-balance break-keep">
                   {splitText("Ready to Ride the Next")}
                   <br className="hidden lg:flex" />
                   {splitText("Wave of Innovation")}
@@ -288,7 +292,7 @@ const Footer = () => {
           </div>
 
           {/* Right columns */}
-          <div className="flex flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
+          <div className="flex flex-col gap-5 lg:flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
             <FooterColumn
               title="Menu"
               items={[
@@ -323,8 +327,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start font-primary lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
-          <p>© 2026 Nexvra Solutions. All rights reserved.</p>
+        <div className="flex flex-col-reverse md:flex-col lg:flex-row gap-4 lg:gap-0 items-start font-primary lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
+          <p className="text-center lg:text-left">© 2026 Nexvra Solutions. All rights reserved.</p>
 
           <div className="flex gap-5 md:gap-20">
             <a className="hover:text-white transition cursor-pointer text-lg cursor-pointer">Privacy Policy</a>

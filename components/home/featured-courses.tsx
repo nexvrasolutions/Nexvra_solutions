@@ -87,7 +87,7 @@ export default function FeaturedCourses() {
       <section className="relative bg-[#F3F3F3] min-h-[70vh] px-5 md:px-10 lg:px-[3%] 2xl:px-[5.5%] py-[10%]">
 
         {/* Header */}
-        <div ref={headerRef} className="flex flex-col md:flex-row items-start gap-3 md:gap-0 md:items-center justify-between mb-15">
+        <div ref={headerRef} className="flex flex-col md:flex-row items-start gap-3 md:gap-0 md:items-center justify-between mb-5 md:mb-10 lg:mb-15">
 
           {/* Badge + Title */}
           <div style={{ overflow: "hidden" }}>

@@ -172,7 +172,7 @@ const CoursePage = () => {
                                         });
                                     }
                                 }}
-                                className={` whitespace-nowrap px-4 py-2 rounded-full lg:rounded-none text-sm md:text-base lg:text-xl transition-all duration-200
+                                className={` whitespace-nowrap px-4 py-2 rounded-xs lg:rounded-none text-sm md:text-base lg:text-xl transition-all duration-200
           ${activeCategory === cat
                                         ? "bg-black text-white lg:bg-transparent lg:text-black lg:font-semibold"
                                         : "bg-gray-200 text-gray-500 lg:bg-transparent hover:text-gray-700"

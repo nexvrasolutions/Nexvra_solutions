@@ -71,18 +71,24 @@ export default function Hero() {
                 ref={heroRef}
                 className="relative z-10 w-full px-4 sm:px-10 xl:px-[5.5%] flex items-center"
             >
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 lg:gap-0 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 lg:gap-5 lg:gap-0 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
 
                     {/* LEFT CONTENT */}
-                    <div className="flex flex-col lg:col-span-3 lg:pb-50 w-[90%]">
+                    <div className="flex flex-col lg:col-span-3 lg:pb-50 w-full lg:w-[90%]">
                         <Badge
                             text={"Digital Training & Solutions"}
                             className="hero-badge"
                         />
 
-                        <h1 className="hero-title text-white font-bold font-primary 
-                            text-[21px] sm:text-[26px] md:text-[39px] xl:text-[55px] 2xl:text-[60px] 
-                            leading-tight md:leading-[1.2]"
+                        <h1
+                            className="
+                                hero-title text-white font-bold font-primary
+                                text-[26px]
+                                md:text-[39px]
+                                xl:text-[55px]
+                                2xl:text-[60px]
+                                leading-tight md:leading-[1.2] mb-5 lg:mb-0
+                            "
                         >
 
                             {splitText("Build Skills.")}

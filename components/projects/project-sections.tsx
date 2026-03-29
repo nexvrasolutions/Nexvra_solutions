@@ -127,7 +127,7 @@ export default function ProjectSection() {
                                 }
                             }}
                             className={`
-                                whitespace-nowrap rounded-full lg:rounded-none
+                                whitespace-nowrap px-3 lg:px-0 py-2 lg:py-0 rounded-xs lg:rounded-none
                                 text-sm md:text-base lg:text-2xl transition-all duration-200
                                 ${activeCategory === cat
                                     ? "bg-black text-white lg:bg-transparent lg:text-black lg:font-bold"

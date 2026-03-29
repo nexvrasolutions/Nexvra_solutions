@@ -43,7 +43,7 @@ export const Card = ({ course, className, contClassName, isCourse = true }: { co
                 initial="hidden"
                 animate="visible"
                 whileHover={{ y: -6, scale: 1.02 }}
-                className={cn("bg-white rounded-md p-5 lg:p-3 xl:p-6 transition flex flex-col w-full h-full  justify-between items-start gap-3 xl:gap-5",  isCourse ? "min-h-[420px]" : "min-h-[300px]", contClassName)}
+                className={cn("bg-white rounded-md p-5 lg:p-3 xl:p-6 transition flex flex-col w-full h-full  justify-between items-start gap-5 xl:gap-5",  isCourse ? "h-full md:min-h-[420px]" : "min-h-[300px]", contClassName)}
             >
 
                 {/* Image */}

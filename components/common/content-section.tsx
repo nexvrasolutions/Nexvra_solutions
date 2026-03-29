@@ -149,13 +149,13 @@ const ContentSection: React.FC<ContentSectionProps> = ({
                   animate={inView ? "visible" : "hidden"}
                   src={gifImage}
                   alt="project-media"
-                  className=" w-full object-cover rounded-xs h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] translate-y-16 md:translate-y-24 xl:translate-y-70 relative z-20
+                  className=" w-full object-cover rounded-xs h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] translate-y-30 md:translate-y-35 xl:translate-y-70 relative z-20
         "
                 />
               </div>
             )}
           </div>
-          <div className="h-[40vh] bg-white z-10"></div>
+          <div className="h-[25vh] xl:h-[40vh] bg-white z-10"></div>
         </>
       ) : (
         /* DEFAULT OLD DESIGN */
