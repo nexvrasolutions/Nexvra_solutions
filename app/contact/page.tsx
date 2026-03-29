@@ -1,10 +1,42 @@
+"use client";
+
 import ContentSection from '@/components/common/content-section'
 import { MapEmbed } from '@/components/common/map-embed';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import React from 'react'
+import React, { useRef } from 'react'
+import { motion, useInView } from "framer-motion";
 
 const page = () => {
+
+    const sectionRef = useRef(null);
+    const inView = useInView(sectionRef, {
+        once: true,
+        margin: "0px 0px -100px 0px",
+    });
+
+    const containerVariants : any = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants : any = {
+        hidden: { y: 40, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+            },
+        },
+    };
+
     return (
         <>
             <ContentSection
@@ -12,131 +44,131 @@ const page = () => {
                 description="Have an idea, project, or question? Let’s connect and build something meaningful together."
                 image="/images/about-bg.jpg"
             />
-            <section className="bg-white px-5 md:px-10 xl:px-[5.5%] py-10 lg:py-[6%]">
+
+            <section
+                ref={sectionRef}
+                className="bg-white px-5 md:px-10 xl:px-[5.5%] py-10 lg:py-[6%]"
+            >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20">
-                    {/* Left */}
-                    <div className="flex flex-col justify-between pb-10 lg:pb-0">
-                        {/* Heading */}
+
+                    {/* LEFT */}
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={inView ? "visible" : "hidden"}
+                        className="flex flex-col justify-between pb-10 lg:pb-0"
+                    >
                         <div>
-                            <h2 className="text-[40px] lg:text-[50px] 2xl:text-[64px] font-primary font-black text-tertiary leading-[1.1] tracking-tight mb-3 lg:mb-5">
+
+                            <motion.h2
+                                variants={itemVariants}
+                                className="text-[40px] lg:text-[50px] 2xl:text-[64px] font-primary font-black text-tertiary leading-[1.1] tracking-tight mb-3 lg:mb-5"
+                            >
                                 Get{" "}
                                 <br className='hidden lg:block' />
                                 In Touch
-                            </h2>
-                            <p className="text-[#404040CC]/80 font-primary text-lg leading-7 mb-8 max-w-md">
+                            </motion.h2>
+
+                            <motion.p
+                                variants={itemVariants}
+                                className="text-[#404040CC]/80 font-primary text-lg leading-7 mb-8 max-w-md"
+                            >
                                 We’re here to help you take the next step. Whether you want to start a project,
                                 learn new skills, or just explore ideas — feel free to reach out.
-                            </p>
+                            </motion.p>
 
                             {/* Contact Info */}
-                            <div className="flex flex-col">
+                            <motion.div variants={containerVariants} className="flex flex-col">
+
                                 {/* Address */}
-                                <div className="flex items-start gap-4 py-5 border-b border-gray-200">
+                                <motion.div variants={itemVariants} className="flex items-start gap-4 py-5 border-b border-gray-100">
                                     <MapPin className="text-tertiary mt-0.5 shrink-0" size={20} />
                                     <span className="text-[#404040CC]/80 font-primary text-lg leading-7">
                                         Marthandam
                                         Kanyakumari District, Tamil Nadu – 629165
                                     </span>
-                                </div>
+                                </motion.div>
 
                                 {/* Phone */}
-                                <div className="flex items-center gap-4 py-5 border-b border-gray-200">
+                                <motion.div variants={itemVariants} className="flex items-center gap-4 py-5 border-b border-gray-100">
                                     <Phone className="text-tertiary shrink-0" size={20} />
                                     <span className="text-[#404040CC]/80 font-primary text-lg leading-7">+91 93857 08357</span>
-                                </div>
+                                </motion.div>
 
                                 {/* Email */}
-                                <div className="flex items-center gap-4 py-5 border-b border-gray-200">
+                                <motion.div variants={itemVariants} className="flex items-center gap-4 py-5 border-b border-gray-100">
                                     <Mail className="text-tertiary shrink-0" size={20} />
                                     <span className="text-[#404040CC]/80 font-primary text-lg leading-7">contactnexvra@gmail.com</span>
-                                </div>
+                                </motion.div>
 
                                 {/* Hours */}
-                                <div className="flex items-start gap-4 py-5 border-b border-gray-200">
+                                <motion.div variants={itemVariants} className="flex items-start gap-4 py-5 border-b border-gray-100">
                                     <Clock className="text-tertiary mt-0.5 shrink-0" size={20} />
-                                    <span className="text-[#404040CC]/80 font-primary text-lg leading-7 leading-relaxed">
+                                    <span className="text-[#404040CC]/80 font-primary text-lg leading-7">
                                         Monday – Saturday
                                         <br />
                                         9:00 AM – 6:00 PM
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </motion.div>
 
-                    {/* Right — Form */}
-                    <div className="flex flex-col gap-8 justify-center font-primary">
-                        {/* Full Name */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-base font-semibold text-tertiary">
-                                Full Name
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Enter your full name"
-                                className="border-b border-gray-300 pb-3 text-[#38383899] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
-                            />
+                            </motion.div>
                         </div>
+                    </motion.div>
 
-                        {/* Phone Number */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-base font-semibold text-tertiary">
-                                Phone Number
-                            </label>
-                            <input
-                                type="tel"
-                                placeholder="Enter your phone number"
-                                className="border-b border-gray-300 pb-3 text-[#40404099] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
-                            />
-                        </div>
+                    {/* RIGHT FORM */}
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={inView ? "visible" : "hidden"}
+                        className="flex flex-col gap-8 justify-center font-primary"
+                    >
 
-                        {/* Email Address */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-base font-semibold text-tertiary">
-                                Email Address
-                            </label>
-                            <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="border-b border-gray-300 pb-3 text-[#39393999] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
-                            />
-                        </div>
+                        {["Full Name", "Phone Number", "Email Address", "Message"].map((label, i) => (
+                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-2">
+                                <label className="text-base font-semibold text-tertiary">
+                                    {label}
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder={`Enter your ${label.toLowerCase()}`}
+                                    className="border-b border-gray-300 pb-3 text-[#40404099] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                />
+                            </motion.div>
+                        ))}
 
-                        {/* Message */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-base font-semibold text-tertiary">
-                                Message
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Tell us about your requirement"
-                                className="border-b border-gray-300 pb-3 text-[#40404099] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
-                            />
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className='flex flex-col gap-3'>
+                        <motion.div variants={itemVariants} className='flex flex-col gap-3'>
                             <div className="mt-2">
                                 <Button label='Send Message' />
                             </div>
                             <p className="text-sm text-gray-500">
                                 We’ll get back to you within 24 hours.
                             </p>
-                        </div>
-                    </div>
+                        </motion.div>
+
+                    </motion.div>
+
                 </div>
-                <div className="mt-16 mb-6">
-                    <h3 className="text-2xl font-primary font-semibold mb-2">
+
+                {/* MAP */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    className="mt-16 mb-6"
+                >
+                    <motion.h3 variants={itemVariants} className="text-2xl font-primary font-semibold mb-2">
                         Visit Our Location
-                    </h3>
-                    <p className="font-primary text-gray-500">
+                    </motion.h3>
+
+                    <motion.p variants={itemVariants} className="font-primary text-gray-500">
                         Find us easily and connect with us in person.
-                    </p>
-                </div>
+                    </motion.p>
+                </motion.div>
+
                 <MapEmbed />
             </section>
         </>
     )
 }
 
-export default page
+export default page;

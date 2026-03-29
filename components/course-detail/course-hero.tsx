@@ -1,16 +1,21 @@
 "use client";
 import HeroLayout from '../layout/hero-layout'
-import Link from "next/link";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useInView } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CourseHero = ({ course }: { course: any }) => {
     const heroRef = useRef<HTMLDivElement>(null);
+
+    const isInView = useInView(heroRef, {
+        once: true,
+        margin: "-100px",
+    });
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -57,6 +62,40 @@ const CourseHero = ({ course }: { course: any }) => {
         return () => ctx.revert();
     }, []);
 
+    const containerVariants: any = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.15,
+            },
+        },
+    };
+
+    const itemVariants: any = {
+        hidden: {
+            y: 100,
+            opacity: 0,
+        },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+            },
+        },
+    };
+
+    const innerContainer : any = {
+        hidden: {},
+        visible: {
+          transition: {
+            staggerChildren: 0.2, 
+            delayChildren: 0.2,   
+          },
+        },
+      };
+
     const splitText = (text: string) =>
         text.split("").map((char, i) => (
             <span key={i} className="inline-block">
@@ -65,35 +104,43 @@ const CourseHero = ({ course }: { course: any }) => {
         ));
     return (
         <HeroLayout>
-            <div
+            <motion.div
                 ref={heroRef}
+                variants={containerVariants}
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
                 className="relative z-10 w-full px-5 md:px-10 xl:px-[5.5%] flex items-center"
             >
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-15 xl:gap-20 w-full lg:min-h-[90vh] pt-30 lg:pt-45">
                     {/* LEFT CONTENT */}
                     <div className="flex flex-col lg:col-span-2 pb-10 lg:pb-50">
-                        <Badge
-                            text={course.level} 
-                            className="hero-badge"
-                        />
+                        <motion.div variants={itemVariants}>
+                            <Badge text={course.level} className="hero-badge" />
+                        </motion.div>
 
-                        <h1 className="hero-title text-[#FFFFFF] text-[30px] md:text-[45px] xl:text-[55px] leading-[1.1] font-bold font-primary">
+                        <motion.h1
+                            variants={itemVariants}
+                            className="hero-title text-[#FFFFFF] text-[30px] md:text-[40px] xl:text-[48px] leading-[1.1] font-bold font-primary"
+                        >
                             {splitText(course.title)}
-                        </h1>
-                        <div className='flex justify-between items-center mt-10 w-full md:w-[70%]'>
-                            <div className='space-y-3'>
+                        </motion.h1>
+                        <motion.div
+                            variants={innerContainer}
+                            className='flex justify-between items-center mt-10 w-full md:w-[70%]'
+                        >
+                            <motion.div variants={itemVariants} className='space-y-3'>
                                 <p className='font-medium text-lg text-gray-500'>Duration</p>
                                 <h5 className='font-bold text-xl text-white'>{course.duration}</h5>
-                            </div>
-                            <div className='space-y-3'>
+                            </motion.div>
+                            <motion.div variants={itemVariants} className='space-y-3'>
                                 <p className='font-medium text-lg text-gray-500'>Batch</p>
                                 <h5 className='font-bold text-xl text-white'>{course.batch}</h5>
-                            </div>
-                            <div className='space-y-3'>
+                            </motion.div>
+                            <motion.div variants={itemVariants} className='space-y-3'>
                                 <p className='font-medium text-lg text-gray-500'>Mode</p>
                                 <h5 className='font-bold text-xl text-white'>{course.mode}</h5>
-                            </div>
-                        </div>
+                            </motion.div>
+                        </motion.div>
                     </div>
 
                     {/* RIGHT CONTENT */}
@@ -107,9 +154,9 @@ const CourseHero = ({ course }: { course: any }) => {
                         </div>
                     </div>
                 </div>
-            </div>
-           
-        </HeroLayout>
+            </motion.div>
+
+        </HeroLayout >
     )
 }
 

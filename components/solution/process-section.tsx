@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import RotatingText from "../ui/rotating-text";
 import { Badge } from "../ui/badge";
+import { motion, useInView } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -145,24 +146,67 @@ export default function ProcessSection() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  const spacerHeight = `${steps.length * (isMobile ? 60 : 100)}vh`;
+  const spacerHeight = `${steps.length * 100}vh`;
+
+  const inView = useInView(headingRef, {
+    once: true,
+    margin: "0px 0px -100px 0px",
+  });
+
+  const containerVariants: any = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: any = {
+    hidden: {
+      y: 60,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 1.1,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#f5f5f5] text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[6%]"
+      className="w-full text-black px-5 md:px-10 xl:px-[5.5%] py-[5%] pt-0"
     >
-      <div
+      <motion.div
         ref={headingRef}
-        className="pb-20 relative border border-[#E6E6E6] py-5 md:py-20 px-2"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="pb-5 md:pb-10 lg:pb-20 relative border border-[#E6E6E6] py-5 md:py-20 px-2 overflow-hidden"
       >
-        <div className="grid-line absolute left-[65%] top-0 h-full w-px bg-[#E6E6E6]" />
-        <Badge text="Our Process" className="text-tertiary mb-2" />
-        <div className="max-w-5xl">
-          <h1 className="text-2xl md:text-3xl font-primary md:text-[40px] font-bold leading-13 tracking-tight">
+        <div className="grid-line absolute hidden lg:flex left-[65%] top-0 h-full w-px bg-[#E6E6E6]" />
+
+        {/* Badge */}
+        <motion.div variants={itemVariants}>
+          <Badge text="Our Process" className="text-tertiary mb-2" />
+        </motion.div>
+
+        {/* Heading */}
+        <div className="max-w-5xl overflow-hidden">
+          <motion.h1
+            variants={itemVariants}
+            className="text-2xl md:text-3xl font-primary md:text-[40px] font-bold leading-13 tracking-tight"
+          >
             <span className="text-[#BFBFBF] font-bold">
               Our process blends{" "}
             </span>
+
             <span className="inline-block align-middle">
               <RotatingText
                 texts={["Creativity", "Technology", "Strategy"]}
@@ -177,12 +221,13 @@ export default function ProcessSection() {
                 rotationInterval={2000}
               />
             </span>
+
             <span className="font-bold text-black">
               {" "}to deliver impactful, future-ready solutions.{" "}
             </span>
-          </h1>
+          </motion.h1>
         </div>
-      </div>
+      </motion.div>
 
       <div ref={scrollSpacerRef} style={{ height: spacerHeight }}>
         <div

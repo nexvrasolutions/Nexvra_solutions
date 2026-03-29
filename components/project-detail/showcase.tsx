@@ -105,13 +105,11 @@ export const ShowCase = ({ project }: { project: any }) => {
               style={{ width: itemWidth }}
               onClick={() => setSelectedImage(img)}
             >
-              <div className="rounded-xl overflow-hidden group ">
-                <Image
+              <div className="rounded-xs overflow-hidden group ">
+                <img
                   src={img}
                   alt="showcase"
-                  width={400}
-                  height={400}
-                  className="w-full h-[350px] object-cover group-hover:scale-105 transition duration-500 ease-in-out"
+                  className="w-full w-[325px] h-[260px] object-cover group-hover:scale-105 transition duration-500 ease-in-out"
                 />
               </div>
             </div>

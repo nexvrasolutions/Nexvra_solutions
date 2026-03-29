@@ -196,7 +196,7 @@ const Footer = () => {
   return (
     <section
       ref={sectionRef}
-      className="px-5 md:px-10 xl:px-[5.5%] min-h-screen bg-black relative overflow-hidden py-10 xl:py-[5%]"
+      className="px-5 md:px-10 xl:px-[5.5%] min-h-screen bg-black relative overflow-hidden pt-[10%]"
     >
       {/* Grid lines */}
       <div className="bg-grid h-full w-px left-[3%] xl:left-[5%] absolute" />
@@ -247,7 +247,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <footer className="bg-black text-white pb-6 pt-10 xl:pt-20 font-primary border-t border-t-grid">
+      <footer className="bg-black text-white pb-6 pt-10 xl:pt-20 font-secondary border-t border-t-grid">
         <div className="flex flex-col lg:flex-row gap-8 xl:gap-10 w-full">
 
           {/* Left */}
@@ -260,47 +260,45 @@ const Footer = () => {
             />
 
             <div className="w-full flex flex-col md:flex-row justify-between gap-3">
-              <div className="w-full lg:w-[40%] xl:w-[50%] flex flex-col gap-7">
-                <h4 className="text-white text-xl xl:text-[24px]">Address</h4>
-                <p className="text-white/80 text-lg xl:text-[20px]">
+              <div className="w-full lg:w-[40%] xl:w-[50%] flex flex-col gap-3">
+                <h4 className="text-white text-xl xl:text-[24px] ">Address</h4>
+                <p className="text-white/80 text-xl">
                   Marthandam <br /> Kanyakumari, India
                 </p>
               </div>
 
-              <div className="w-full lg:w-[60%] xl:w-[50%] flex flex-col gap-7">
-                <h4 className="text-white text-xl xl:text-[24px]">Contact</h4>
+              <div className="w-full lg:w-[60%] xl:w-[50%] flex flex-col gap-3">
+                <h4 className="text-white text-xl xl:text-[24px] font-secondary">Contact</h4>
                 <div className="flex flex-col gap-1">
-                  <p className="text-white/80 text-lg xl:text-[20px]">
+                  <p className="text-white/80 text-xl">
                     +91 93857 08357
                   </p>
-                  <p className="text-white/80 text-lg xl:text-[20px]">
+                  <p className="text-white/80 text-xl">
                     contactnexvra@gmail.com
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="flex  footer-links">
-              <a className="text-white/80 text-[22px] flex-1">Instagram</a>
-              <a className="text-white/80 text-[22px] flex-1">Linkedin</a>
+            <div className="flex font-primary footer-links">
+              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Instagram</a>
+              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Linkedin</a>
+              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Whatsapp</a>
             </div>
           </div>
 
           {/* Right columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-10 w-full lg:w-[50%] xl:w-[55%] mt-0 md:mt-10 xl:mt-15 footer-links">
-            <div className="">
-              <FooterColumn
-                title="Menu"
-                items={[
-                  { label: "Home", link: "/" },
-                  { label: "About Us", link: "/about-us" },
-                  { label: "Solutions", link: "/solutions" },
-                  { label: "Projects", link: "/projects" },
-                  { label: "Contact", link: "/contact" },
-                ]}
-              />
-            </div>
-            {/* <div className="cols-span-1 lg:col-span-2 xl:cols-span-1"> */}
+          <div className="flex flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
+            <FooterColumn
+              title="Menu"
+              items={[
+                { label: "Home", link: "/" },
+                { label: "About Us", link: "/about-us" },
+                { label: "Solutions", link: "/solutions" },
+                { label: "Projects", link: "/projects" },
+                { label: "Contact", link: "/contact" },
+              ]}
+            />
             <FooterColumn
               title="Services"
               items={[
@@ -311,7 +309,6 @@ const Footer = () => {
                 { label: "Software Solutions", link: "/projects" },
               ]}
             />
-            {/* </div> */}
             <FooterColumn
               title="Courses"
               items={[
@@ -326,12 +323,12 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 items-start font-primary lg:items-center justify-between mt-5 md:mt-10 lg:mt-20 text-white/80">
           <p>© 2026 Nexvra Solutions. All rights reserved.</p>
 
           <div className="flex gap-5 md:gap-20">
-            <a className="hover:text-white transition cursor-pointer">Privacy Policy</a>
-            <a className="hover:text-white transition cursor-pointer">Terms and Conditions</a>
+            <a className="hover:text-white transition cursor-pointer text-lg cursor-pointer">Privacy Policy</a>
+            <a className="hover:text-white transition cursor-pointer text-lg cursor-pointer">Terms and Conditions</a>
           </div>
         </div>
       </footer>
@@ -339,9 +336,9 @@ const Footer = () => {
   );
 };
 
-const FooterColumn = ({ title, items }: { title: string; items: any }) => {
+const FooterColumn = ({ title, items, className }: { title: string; items: any, className?: string }) => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className={cn("flex flex-col gap-5 font-secondary", className)}>
       <h3 className="text-white text-xl xl:text-[24px] font-medium">
         {title}
       </h3>
@@ -351,7 +348,7 @@ const FooterColumn = ({ title, items }: { title: string; items: any }) => {
           <a
             key={idx}
             href={item.link}
-            className="text-white/80 text-[16px] xl:text-lg hover:text-white"
+            className="text-white/80 text-xl hover:text-white"
           >
             {item.label}
           </a>

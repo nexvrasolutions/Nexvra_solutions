@@ -132,9 +132,8 @@ export default function CaseStudy() {
       className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%]"
     >
       {/* Title */}
-      <div className="sticky top-0 left-0 z-10 py-5 md:py-10 bg-[#F3F3F3]">
-        <Badge text="Our Works" className="text-tertiary" />
-
+      <div className="sticky top-0 left-0 z-10 py-5 bg-[#F3F3F3]">
+        <Badge text="Our Works" className="text-tertiary mb-3 md:mb-0" />
         <h1 className="font-primary text-teritiary text-[32px] md:text-[48px] xl:text-[64px] font-bold leading-[40px] md:leading-[60px] xl:leading-[80px]">
           Our Impact
         </h1>
@@ -144,7 +143,7 @@ export default function CaseStudy() {
       <div
         ref={scrollContainerRef}
         className="
-          flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-10
+          flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-7
           max-lg:flex-col
         "
       >

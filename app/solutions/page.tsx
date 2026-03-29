@@ -11,6 +11,7 @@ const page = () => {
         <>
             <ContentSection
                 title="Solutions"
+                showGif = {false}
                 description="We deliver modern digital solutions that combine creativity, technology, and strategy to help businesses grow, scale, and succeed in the digital world. From design to development, we turn ideas into impactful digital experiences."
                 image="/images/about-bg.jpg"
             />

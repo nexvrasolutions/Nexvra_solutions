@@ -164,33 +164,9 @@ export default function SolutionContent() {
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-10 lg:py-[5%]"
+      className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-[10%]"
     >
-      {/* Header (Dynamic) */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-8 lg:mb-15">
-        <div className="flex flex-col gap-2 md:gap-4 max-w-2xl xl:max-w-4xl">
-          <h2
-            key={activeItem.title}
-            className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight"
-          >
-            {activeItem.title}
-          </h2>
-
-          <p
-            key={activeItem.description}
-            className="text-[16px] md:text-lg lg:text-xl leading-7 text-[#404040CC]/80 font-medium"
-          >
-            {activeItem.description}
-          </p>
-        </div>
-
-        <div className="flex items-start lg:items-end lg:justify-end">
-          <Button label={activeItem.cta} />
-        </div>
-      </div>
-
-      {/* Stack Cards */}
-      <div className="relative h-[60vh]">
+      <div className="relative h-[70vh]">
         {solutions.map((item, index) => (
           <div
             key={index}
@@ -202,35 +178,60 @@ export default function SolutionContent() {
               willChange: "transform",
               zIndex: index + 1,
             }}
-            className="absolute top-0 left-0 w-full grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white"
+            className="absolute top-0 left-0 w-full bg-white"
           >
-            {/* Lines */}
-            <div className="absolute top-0 h-full w-px bg-[#E6E6E6]" />
-            <div className="hidden lg:block absolute left-[58%] top-0 h-full w-px bg-[#E6E6E6]" />
-            <div className="absolute right-0 top-0 h-full w-px bg-[#E6E6E6]" />
 
-            {/* Image */}
-            <div className="relative overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="object-cover w-full h-[220px] lg:h-[380px]"
-              />
-            </div>
+            {/* 🔥 SAME HEADER (moved inside) */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-10 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
+              <div className="flex flex-col gap-2 md:gap-4 max-w-2xl xl:max-w-4xl">
+                <h2 className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight">
+                  {item.title}
+                </h2>
 
-            {/* Content */}
-            <div className="flex flex-col justify-between px-6 lg:px-10 py-6 lg:py-10 gap-5">
-              <div className="flex flex-col gap-2">
-                {item.includes.map((inc, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Arrow className="bg-white" />
-                    <span className="text-sm lg:text-base">
-                      {inc}
-                    </span>
-                  </div>
-                ))}
+                <p className="text-[16px] md:text-lg lg:text-xl leading-7 text-[#404040CC]/80 font-medium">
+                  {item.description}
+                </p>
+              </div>
+
+              <div className="flex items-start lg:items-end lg:justify-end">
+                <Button label={item.cta} />
               </div>
             </div>
+
+            {/* 🔥 ORIGINAL CARD (UNCHANGED UI) */}
+            <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white">
+
+              {/* Lines */}
+              <div className="absolute top-0 h-[50%] w-px bg-[#E6E6E6]" />
+              <div className="absolute top-0 w-full h-px bg-[#E6E6E6]" />
+              {/* <div className="hidden lg:block absolute left-[58%] top-0 h-full w-px bg-[#E6E6E6]" /> */}
+              <div className="absolute right-0 top-0 h-full w-px bg-[#E6E6E6]" />
+
+              {/* Image */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="object-cover w-full h-[220px] lg:h-[380px]"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col justify-between px-6 lg:px-10 py-6 lg:py-10 gap-5">
+                <div className="flex flex-col gap-2">
+                  {item.includes.map((inc, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <Arrow className="bg-white" />
+                      <span className="text-sm lg:text-base">
+                        {inc}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+
           </div>
         ))}
       </div>

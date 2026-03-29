@@ -23,11 +23,13 @@ export default function Pillars() {
                     y: 60,
                     opacity: 0,
                     color: "#BFBFBF",
+
                 },
                 {
                     y: 0,
                     opacity: 1,
-                    color: "#0A0A0A",
+                    color: (i, el) =>
+                        el.classList.contains("pillar-accent") ? "#A4FF00" : "#0A0A0A",
                     stagger: 0.05,
                     ease: "power3.out",
                     scrollTrigger: {
@@ -40,7 +42,7 @@ export default function Pillars() {
                     },
                 }
             );
-        }, sectionRef); 
+        }, sectionRef);
 
         return () => {
             ctx.revert();
@@ -48,15 +50,23 @@ export default function Pillars() {
     }, []);
 
     const splitText = (text: string) =>
-        text.split("").map((char, i) => (
-            <span key={i} className="pillar-letter inline-block">
-                {char}
-            </span>
-        ));
+        text.split("").map((char, i) => {
+            const isAccent = char === "," || char === ".";
+
+            return (
+                <span
+                    key={i}
+                    className={`pillar-letter inline-block ${isAccent ? "pillar-accent" : ""}`}
+                    style={isAccent ? { color: "#A4FF00" } : {}}
+                >
+                    {char}
+                </span>
+            );
+        });
 
     return (
         <section ref={sectionRef} className="relative bg-gray-50">
-            <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-0 xl:py-[5%] gap-4">
+            <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%] gap-4">
                 {/* badge */}
                 <Badge text="Our Core Pillars" className="text-tertiary" />
                 <div className="flex gap-10">

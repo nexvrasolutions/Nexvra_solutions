@@ -42,7 +42,7 @@ export default function HexQuad({ active, setActive }: HexQuadProps) {
     <svg 
     // width={600} height={600} 
     viewBox="-10 -10 380 420"
-    className="w-full sm:w-[300px] md:w-[350px] lg:w-[450px] xl:w-[500px] 
+    className="w-full md:w-[350px] lg:w-[450px] xl:w-[500px] 
     h-auto"
     >
       {items.map((item) => {

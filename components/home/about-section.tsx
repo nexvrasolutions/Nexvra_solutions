@@ -108,7 +108,7 @@ export default function AboutSection() {
     return (
         <section
             ref={sectionRef}
-            className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] md:pt-14 lg:pt-28 pb-5 overflow-hidden"
+            className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] py-[10%] md:pt-14 lg:pt-28 pb-5 overflow-hidden"
         >
             {/* Grid lines */}
             <div className="grid-line absolute left-[3%] lg:left-[5%] top-0 h-full w-px bg-grid" />

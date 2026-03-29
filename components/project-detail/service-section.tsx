@@ -17,12 +17,12 @@ const ServicesSection = ({ project }: { project: any }) => {
   ];
 
   return (
-    <section className="w-full bg-[#f5f5f5] px-5 md:px-10 xl:px-[5%] pb-8 md:py-8">
+    <section className="w-full  px-5 md:px-10 xl:px-[5%] pb-8 md:py-8">
       <div className="w-full">
         {data.map((item, index) => (
           <div
             key={index}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5 md:py-10 border-b border-gray-300"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-5 md:py-10 border-b border-gray-100"
           >
             <div>
               <h2 className="text-xl md:text-3xl font-primary font-semibold text-tertiary">

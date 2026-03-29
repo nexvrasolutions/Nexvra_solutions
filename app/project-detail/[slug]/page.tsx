@@ -21,6 +21,7 @@ const Page = () => {
                 description={project.description}
                 image="/images/about-bg.jpg"
                 gifImage={project.image}
+                isProjectDetail={true}
             />
             <Challenges project={project} />
             <ServicesSection project={project} />

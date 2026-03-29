@@ -26,7 +26,7 @@ export function Button({
         onClick={onClick}
         className={cn(
           "relative overflow-hidden font-secondary leading-6 text-lg flex justify-center items-center",
-          "h-12.5 px-4 rounded-sm bg-[#A4FF00]",
+          "h-12.5 px-4 rounded-[2px] bg-[#A4FF00]",
           "text-black font-medium cursor-pointer",
           "transition-all duration-200 group",
           className

@@ -1,75 +1,170 @@
-import { section } from 'framer-motion/client'
-import React from 'react'
-import { Badge } from '../ui/badge'
-import { Arrow } from '../ui/arrow'
+"use client";
 
-const services = [
-    "User Research & Personas",
-    "Wireframes & Prototypes",
-    "Web & App Design",
-    "Brand Identity",
-    "Design Systems",
-    "User Research & Personas",
-    "Wireframes & Prototypes",
-];
+import React, { useEffect, useRef } from "react";
+import { Badge } from "../ui/badge";
+import { Arrow } from "../ui/arrow";
+import { motion, useInView } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 const DetailContent = ({ course }: { course: any }) => {
+    const sectionRef = useRef(null);
+
+    const inView = useInView(sectionRef, {
+        once: true,
+        margin: "-100px",
+    });
+
+    const containerVariants: any = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
+            },
+        },
+    };
+
+    const itemVariants: any = {
+        hidden: {
+            y: 100,
+            opacity: 0,
+        },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1],
+            },
+        },
+    };
+
+    const listVariants: any = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.2,
+            },
+        },
+    };
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+
+            gsap.to(".about-image", {
+                y: -80,
+                rotate: 3,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true,
+                },
+            });
+
+            gsap.to(".about-image", {
+                y: "-=20",
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+            });
+
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="w-full bg-[#f5f5f5] px-5 md:px-10 xl:px-[5.5%] py-8">
-            <div
-                className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-4 md:py-10"
+        <section
+            ref={sectionRef}
+            className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-8"
+        >
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
             >
-                <div>
-                    <h2 className="text-xl md:text-3xl font-primary font-semibold text-tertiary">
-                        Course Overview
-                    </h2>
+                {/* TOP GRID */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 py-4 md:py-10">
+                    <motion.div variants={itemVariants}>
+                        <h2 className="text-xl md:text-3xl font-primary font-semibold text-tertiary">
+                            Course Overview
+                        </h2>
+                    </motion.div>
+
+                    <motion.div variants={itemVariants}>
+                        <p className="text-gray-600 text-xl font-medium leading-relaxed">
+                            {course.overview}
+                        </p>
+                    </motion.div>
                 </div>
 
-                <div>
-                    <p className="text-gray-600 text-xl font-medium leading-relaxed">
-                    {course.overview}
-                    </p>
-                </div>
-            </div>
-            <div className='flex items-center flex-col justify-center pt-8 md:pt-15'>
-                <div className="space-y-3 flex flex-col items-center">
-                    <Badge text="About Nexvra" className="text-tertiary" />
+                {/* WHAT YOU'LL LEARN */}
+                <div className="flex items-center flex-col justify-center pt-8 md:pt-15">
+                    <motion.div
+                        variants={itemVariants}
+                        className="space-y-3 flex flex-col items-center"
+                    >
+                        <Badge text="About Nexvra" className="text-tertiary" />
 
-                    <h1 className="text-3xl md:text-[50px] font-bold leading-[54px] tracking-tight">
-                        <span className="text-black">What You'll Learn</span>
-                    </h1>
-                </div>
-                <div className="relative w-full">
-                    <div className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-10 gap-2 md:gap-6 lg:gap-0 min-h-auto md:min-h-[500px]">
+                        <h1 className="text-3xl md:text-[50px] font-bold leading-[54px] tracking-tight">
+                            <span className="text-black">What You'll Learn</span>
+                        </h1>
+                    </motion.div>
 
-                        {/* Image */}
-                        <div className="relative overflow-hidden flex items-center justify-center order-1">
-                            <img
-                                src="/images/what-learn.png"
-                                alt="UI/UX Design & Branding"
-                                className="object-contain object-center h-[250px] sm:h-[320px] md:h-[400px] lg:h-[500px] w-full"
-                            />
-                        </div>
+                    <div className="relative w-full">
+                        <div className="grid grid-cols-1 md:grid-cols-2 pt-0 md:pt-10 gap-2 md:gap-6 lg:gap-0 min-h-auto md:min-h-[500px]">
 
-                        {/* Services */}
-                        <div className="flex flex-col justify-center md:justify-start px-2 sm:px-6 md:px-8 lg:px-12 py-4 md:py-10 gap-3 md:gap-4 order-2">
-                            {course.learn.map((item: string, index: number) => (
-                                <div
-                                    key={index}
-                                    className="flex items-center gap-3 md:gap-4 group cursor-pointer"
-                                >
-                                    <Arrow className="bg-[#f5f5f5] size-8 md:size-10" />
-                                    <span className="text-base sm:text-lg md:text-xl font-medium text-tertiary tracking-tight">
-                                        {item}
-                                    </span>
-                                </div>
-                            ))}
+                            {/* IMAGE */}
+                            <motion.div
+                                variants={itemVariants}
+                                className="relative about-image w-full h-full flex items-center justify-center order-1 min-h-[300px] md:min-h-[500px]"
+                            >
+                                <img
+                                    src="/images/what-learn.png"
+                                    alt="UI/UX Design & Branding"
+                                    className="object-contain object-center w-full h-full max-h-[500px]"
+                                />
+                                {/* Gradient Overlay */}
+                                <div className="pointer-events-none absolute bottom-0 left-0 w-full h-[55%]"
+                                    style={{
+                                        background:
+                                            "linear-gradient(180deg, rgba(255,255,255,0) 33.55%, #FFFFFF 94.69%)",
+                                    }}
+                                />
+                            </motion.div>
+
+                            {/* LEARN LIST */}
+                            <motion.div
+                                variants={listVariants}
+                                className="flex flex-col justify-center md:justify-start px-2 sm:px-6 md:px-8 lg:px-12 py-4 md:py-10 gap-3 md:gap-4 order-2"
+                            >
+                                {course.learn.map((item: string, index: number) => (
+                                    <motion.div
+                                        key={index}
+                                        variants={itemVariants}
+                                        className="flex items-center gap-3 md:gap-4 group cursor-pointer"
+                                    >
+                                        <Arrow className="bg-[#f5f5f5] size-8 md:size-10" />
+                                        <span className="text-base sm:text-lg md:text-xl font-medium text-tertiary tracking-tight">
+                                            {item}
+                                        </span>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
-    )
-}
+    );
+};
 
-export default DetailContent
+export default DetailContent;

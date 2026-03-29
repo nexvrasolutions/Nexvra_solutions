@@ -71,17 +71,17 @@ export default function Hero() {
                 ref={heroRef}
                 className="relative z-10 w-full px-4 sm:px-10 xl:px-[5.5%] flex items-center"
             >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-10 xl:gap-20 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 lg:gap-0 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
 
                     {/* LEFT CONTENT */}
-                    <div className="flex flex-col lg:col-span-2 lg:pb-50">
+                    <div className="flex flex-col lg:col-span-3 lg:pb-50 w-[90%]">
                         <Badge
                             text={"Digital Training & Solutions"}
                             className="hero-badge"
                         />
 
                         <h1 className="hero-title text-white font-bold font-primary 
-                            text-[21px] sm:text-[26px] md:text-[45px] xl:text-[55px] 2xl:text-[65px] 
+                            text-[21px] sm:text-[26px] md:text-[39px] xl:text-[55px] 2xl:text-[60px] 
                             leading-tight md:leading-[1.2]"
                         >
 
@@ -92,7 +92,7 @@ export default function Hero() {
                     </div>
 
                     {/* RIGHT CONTENT */}
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col justify-center col-span-2 lg:ml-5 xl:ml-7">
                         <p className="hero-text text-secondary font-medium font-secondary 
                             text-[16px] text-lg xl:text-xl
                             leading-relaxed mb-6 lg:mb-10"
@@ -102,12 +102,12 @@ export default function Hero() {
                             We help students start careers and help businesses create powerful digital experiences.
                         </p>
 
-                        <div className="flex flex-col w-full md:w-[50%] lg:w-full md:flex-row lg:flex-col xl:flex-row gap-4 sm:gap-6 hero-btn">
+                        <div className="flex flex-col w-full md:flex-row lg:flex-col xl:flex-row gap-4 sm:gap-6 hero-btn">
                             <Button label="Explore Courses" />
 
                             <Link
                                 href="/solutions"
-                                className="border border-secondary text-secondary px-6 py-3 rounded-md hover:border-white transition text-center"
+                                className="border border-secondary text-secondary px-6 py-3 rounded-xs font-medium hover:bg-white transition text-center duration-500 hover:text-black ease-in-out"
                             >
                                 Our Solutions
                             </Link>
