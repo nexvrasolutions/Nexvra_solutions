@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import { Card } from "../ui/card";
 import { motion, useInView } from "framer-motion";
+import { EnrollModal } from "../ui/enroll-modal";
 
 const courses = [
   {
@@ -77,6 +78,8 @@ const cardVariants: any = {
 export default function FeaturedCourses() {
   const headerRef = useRef(null);
   const cardsRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   // No once: true — re-triggers every time user visits the section
   const headerInView = useInView(headerRef, { amount: 0, margin: "0px 0px -100px 0px" });
@@ -132,12 +135,22 @@ export default function FeaturedCourses() {
           {courses.map((course, index) => (
             <div key={index} style={{ overflow: "hidden" }}>
               <motion.div variants={cardVariants}>
-                <Card course={course} />
+                <Card
+                  course={course}
+                  onEnroll={(course) => {
+                    setSelectedCourse(course);
+                    setOpen(true);
+                  }}
+                />
               </motion.div>
             </div>
           ))}
         </motion.div>
-
+        <EnrollModal
+          isOpen={open}
+          onClose={() => setOpen(false)}
+          selectedCourse={selectedCourse}
+        />
       </section>
     </div>
   );

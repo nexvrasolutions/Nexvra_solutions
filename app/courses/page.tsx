@@ -4,93 +4,96 @@ import ContentSection from "@/components/common/content-section";
 import { Card } from "@/components/ui/card";
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
+import { EnrollModal } from "@/components/ui/enroll-modal";
 
 const courses = [
     {
-      title: ["AI-Powered Product", "Design"],
-      slug: "ai-powered-product-design",
-      category: "UI/UX Design",
-      duration: "3 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/product_design.webp",
-      description:
-        "Learn complete product design including UX research, UI design, and AI tools to create modern apps and websites.",
+        title: ["AI-Powered Product", "Design"],
+        slug: "ai-powered-product-design",
+        category: "UI/UX Design",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/product_design.webp",
+        description:
+            "Learn complete product design including UX research, UI design, and AI tools to create modern apps and websites.",
     },
     {
-      title: ["UX", "Design"],
-      slug: "ux-design",
-      category: "UI/UX Design",
-      duration: "2 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/ux_design.webp",
-      description:
-        "Understand user behavior, research, and wireframing to create better user experiences.",
+        title: ["UX", "Design"],
+        slug: "ux-design",
+        category: "UI/UX Design",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/ux_design.webp",
+        description:
+            "Understand user behavior, research, and wireframing to create better user experiences.",
     },
     {
-      title: ["UI", "Design"],
-      slug: "ui-design",
-      category: "UI/UX Design",
-      duration: "2 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/ui_design.webp",
-      description:
-        "Learn to design visually appealing interfaces using modern tools and design principles.",
+        title: ["UI", "Design"],
+        slug: "ui-design",
+        category: "UI/UX Design",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/ui_design.webp",
+        description:
+            "Learn to design visually appealing interfaces using modern tools and design principles.",
     },
     {
-      title: ["Digital Marketing", "Mastery"],
-      slug: "digital-marketing-mastery",
-      category: "Digital Marketing",
-      duration: "2 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/degital_marketing.webp",
-      description:
-        "Master social media marketing, ads, and content strategies to grow businesses online.",
+        title: ["Digital Marketing", "Mastery"],
+        slug: "digital-marketing-mastery",
+        category: "Digital Marketing",
+        duration: "2 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/degital_marketing.webp",
+        description:
+            "Master social media marketing, ads, and content strategies to grow businesses online.",
     },
     {
-      title: ["Branding & Graphic", "Design"],
-      slug: "branding-graphic-design",
-      category: "UI/UX Design",
-      duration: "2–3 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/branding.webp",
-      description:
-        "Learn logo design, brand identity, and social media creatives to build strong brands.",
+        title: ["Branding & Graphic", "Design"],
+        slug: "branding-graphic-design",
+        category: "UI/UX Design",
+        duration: "2–3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/branding.webp",
+        description:
+            "Learn logo design, brand identity, and social media creatives to build strong brands.",
     },
     {
-      title: ["Front-End", "Development"],
-      slug: "front-end-development",
-      category: "Development",
-      duration: "3 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/front_end.webp",
-      description:
-        "Learn HTML, CSS, and basic JavaScript to build modern and responsive websites.",
+        title: ["Front-End", "Development"],
+        slug: "front-end-development",
+        category: "Development",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/front_end.webp",
+        description:
+            "Learn HTML, CSS, and basic JavaScript to build modern and responsive websites.",
     },
     {
-      title: ["Back-End", "Development"],
-      slug: "back-end-development",
-      category: "Development",
-      duration: "3–4 Months",
-      difficulty: "Intermediate",
-      img: "/images/courses/back-end.webp",
-      description:
-        "Learn server-side development, databases, and APIs to build powerful web applications.",
+        title: ["Back-End", "Development"],
+        slug: "back-end-development",
+        category: "Development",
+        duration: "3–4 Months",
+        difficulty: "Intermediate",
+        img: "/images/courses/back-end.webp",
+        description:
+            "Learn server-side development, databases, and APIs to build powerful web applications.",
     },
     {
-      title: ["Mobile App", "Development"],
-      slug: "mobile-app-development",
-      category: "Development",
-      duration: "3 Months",
-      difficulty: "Beginner Friendly",
-      img: "/images/courses/app.webp",
-      description:
-        "Build mobile applications with smooth performance and real-world functionality.",
+        title: ["Mobile App", "Development"],
+        slug: "mobile-app-development",
+        category: "Development",
+        duration: "3 Months",
+        difficulty: "Beginner Friendly",
+        img: "/images/courses/app.webp",
+        description:
+            "Build mobile applications with smooth performance and real-world functionality.",
     },
-  ];
+];
 
 const CoursePage = () => {
 
     const sectionRef = useRef(null);
+    const [open, setOpen] = useState(false);
+    const [selectedCourse, setSelectedCourse] = useState<any>(null);
     const inView = useInView(sectionRef, {
         once: true,
         margin: "0px 0px -100px 0px",
@@ -111,7 +114,7 @@ const CoursePage = () => {
             ? courses
             : courses.filter((course) => course.category === activeCategory);
 
-    const containerVariants : any = {
+    const containerVariants: any = {
         hidden: {},
         visible: {
             transition: {
@@ -121,7 +124,7 @@ const CoursePage = () => {
         },
     };
 
-    const itemVariants : any = {
+    const itemVariants: any = {
         hidden: {
             y: 60,
             opacity: 0,
@@ -193,7 +196,7 @@ const CoursePage = () => {
                 >
                     <motion.div
                         layout
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 items-stretch"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-10 items-stretch"
                     >
                         <AnimatePresence mode="wait">
                             {filteredCourses.map((course, index) => (
@@ -212,12 +215,24 @@ const CoursePage = () => {
                                     whileHover={{ y: -6 }}
                                     className="h-full flex"
                                 >
-                                    <Card course={course} className="2xl:w-full" />
+                                    <Card
+                                        course={course}
+                                        className="2xl:w-full"
+                                        onEnroll={(course) => {
+                                            setSelectedCourse(course);
+                                            setOpen(true);
+                                        }}
+                                    />
                                 </motion.div>
                             ))}
                         </AnimatePresence>
                     </motion.div>
                 </motion.div>
+                <EnrollModal
+                    isOpen={open}
+                    onClose={() => setOpen(false)}
+                    selectedCourse={selectedCourse}
+                />
             </section>
         </>
     );
