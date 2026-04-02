@@ -285,14 +285,14 @@ const Footer = () => {
             </div>
 
             <div className="flex font-primary footer-links">
-              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Instagram</a>
-              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Linkedin</a>
-              <a className="text-white/80 hover:text-white  text-xl flex-1 cursor-pointer">Whatsapp</a>
+              <a href="https://www.instagram.com/nexvra.solutions" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Instagram</a>
+              <a href="https://www.linkedin.com/company/nexvra-solutions/" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:ext-xl flex-1 cursor-pointer">Linkedin</a>
+              <a className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Whatsapp</a>
             </div>
           </div>
 
           {/* Right columns */}
-          <div className="flex flex-col gap-5 lg:flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
+          <div className="flex flex-col lg:flex-row lg:flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
             <FooterColumn
               title="Menu"
               items={[
@@ -331,8 +331,8 @@ const Footer = () => {
           <p className="text-center lg:text-left">© 2026 Nexvra Solutions. All rights reserved.</p>
 
           <div className="flex gap-5 md:gap-20">
-            <a className="hover:text-white transition cursor-pointer text-lg cursor-pointer">Privacy Policy</a>
-            <a className="hover:text-white transition cursor-pointer text-lg cursor-pointer">Terms and Conditions</a>
+            <a className="hover:text-white transition cursor-pointer text-[16px] md:text-lg cursor-pointer">Privacy Policy</a>
+            <a className="hover:text-white transition cursor-pointer text-[16px] md:text-lg cursor-pointer">Terms and Conditions</a>
           </div>
         </div>
       </footer>

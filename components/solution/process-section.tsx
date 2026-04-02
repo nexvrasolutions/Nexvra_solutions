@@ -238,7 +238,7 @@ export default function ProcessSection() {
           <div ref={innerTrackRef} className="relative">
             {/* Gray base line */}
             <div
-              className="absolute left-5 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
+              className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
                 background: "linear-gradient(180deg, #FFFFFF 0%, #F3F3F3 100%)",
               }}
@@ -247,7 +247,7 @@ export default function ProcessSection() {
             {/* Green fill line — starts at scaleY=0, grows per step */}
             <div
               ref={greenLineRef}
-              className="absolute left-5.5 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
+              className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
                 background: "linear-gradient(180deg, #F3F3F3 10%, #A4FF00 100%)",
               }}
@@ -280,8 +280,8 @@ export default function ProcessSection() {
                   <div
                     className={`step-text flex flex-col gap-5 md:w-1/2 ${i === 0 ? "pt-5 " : ""
                       }${step.align === "right"
-                        ? "pl-12 text-left"
-                        : "pl-12 md:pr-12 text-left md:text-right items-start md:items-end"
+                        ? "pl-6 text-left"
+                        : "pl-6 md:pr-12 text-left md:text-right items-start md:items-end"
                       }`}
                   >
                     <div

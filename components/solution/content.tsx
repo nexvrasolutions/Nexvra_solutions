@@ -181,9 +181,9 @@ export default function SolutionContent() {
             className="absolute top-0 left-0 w-full bg-white"
           >
 
-            {/* 🔥 SAME HEADER (moved inside) */}
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-5 lg:mb-10 my-5 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
-              <div className="flex flex-col gap-2 md:gap-4 max-w-2xl xl:max-w-4xl">
+            {/* SAME HEADER (moved inside) */}
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-3 md:mb-5 lg:mb-10 my-3 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
+              <div className="flex flex-col gap-1 md:gap-4 max-w-2xl xl:max-w-4xl">
                 <h2 className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight">
                   {item.title}
                 </h2>
@@ -198,7 +198,7 @@ export default function SolutionContent() {
               </div>
             </div>
 
-            {/* 🔥 ORIGINAL CARD (UNCHANGED UI) */}
+            {/* ORIGINAL CARD (UNCHANGED UI) */}
             <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white">
 
               {/* Lines */}
@@ -217,11 +217,11 @@ export default function SolutionContent() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col justify-between px-6 lg:px-10 py-6 lg:py-10 gap-5">
+              <div className="flex flex-col justify-between px-6 lg:px-10 py-2 lg:py-10 gap-5">
                 <div className="flex flex-col gap-2">
                   {item.includes.map((inc, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <Arrow className="bg-white" />
+                      <Arrow className="bg-white size-9" />
                       <span className="text-sm lg:text-base">
                         {inc}
                       </span>

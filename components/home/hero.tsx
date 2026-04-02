@@ -109,14 +109,15 @@ export default function Hero() {
                         </p>
 
                         <div className="flex flex-col w-full md:flex-row lg:flex-col xl:flex-row gap-4 sm:gap-6 hero-btn">
-                            <Button label="Explore Courses" />
-
-                            <Link
+                            <a href="/courses" className="w-full md:w-auto">
+                                <Button label="Explore Courses" className="w-full" />
+                            </a>
+                            <a
                                 href="/solutions"
                                 className="border border-secondary text-secondary px-6 py-3 rounded-xs font-medium hover:bg-white transition text-center duration-500 hover:text-black ease-in-out"
                             >
                                 Our Solutions
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>

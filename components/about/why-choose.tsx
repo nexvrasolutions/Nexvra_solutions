@@ -123,10 +123,10 @@ export default function WhyChooseNexvra() {
 
           {/* Content */}
           <div className="lg:h-[80vh] flex items-center">
-            <div className="grid lg:grid-cols-2 w-full h-full lg:h-auto lg:gap-10 items-center border border-[#E6E6E6] pb-4 md:pb-15 lg:pb-0 p-3 md:p-5 relative">
+            <div className="grid lg:grid-cols-2 w-full h-full lg:h-auto lg:gap-10 items-center border border-[#E6E6E6] pb-4 md:pb-15 lg:pb-0 p-2 md:p-5 relative">
 
               {/* Left */}
-              <div className="w-full flex items-center justify-center pb-5 md:pb-0 md:py-5 lg:py-0">
+              <div className="w-full flex items-center justify-center md:pb-0 md:py-5 lg:py-0">
                 <HexQuad active={active} setActive={setActive} />
               </div>
 
@@ -141,19 +141,19 @@ export default function WhyChooseNexvra() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -40 }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col gap-3 md:gap-5 items-start md:items-center lg:items-start"
+                    className="flex flex-col gap-1 md:gap-5 items-start md:items-center lg:items-start"
                   >
                     <motion.img
                       src={sections[active].img}
                       alt="icon"
-                      className="size-30 lg:size-40 object-cover md:mx-auto md:mx-0"
+                      className="size-15 md:size-30 lg:size-40 object-cover md:mx-auto md:mx-0"
                     />
 
-                    <h3 className="text-2xl lg:text-3xl xl:text-4xl text-tertiary font-secondary font-bold">
+                    <h3 className="text-[22px] md:text-2xl lg:text-3xl xl:text-4xl text-tertiary font-secondary font-bold">
                       {sections[active].title}
                     </h3>
 
-                    <p className="font-secondary text-lg md:text-xl leading-7 text-[#b1afaf] max-w-md">
+                    <p className="font-secondary text-[16px] md:text-xl md:leading-7 text-[#b1afaf] max-w-md">
                       {sections[active].desc}
                     </p>
                   </motion.div>
