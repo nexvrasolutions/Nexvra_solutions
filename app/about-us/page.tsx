@@ -5,6 +5,7 @@ import MissionVisionSection from '@/components/about/mission-vision-section'
 import WhyChooseNexvra from '@/components/about/why-choose'
 import ContentSection from '@/components/common/content-section'
 import Pillars from '@/components/home/pillars'
+import LazyLoader from '@/components/ui/lazy-loader';
 
 const page = () => {
 

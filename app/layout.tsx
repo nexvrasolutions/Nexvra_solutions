@@ -4,8 +4,9 @@ import { Inter, Geist } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
+import LazyLoader from "@/components/ui/lazy-loader";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const inter = Inter({
   subsets: ["latin"],
@@ -48,7 +49,42 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={cn(onsite.variable, inter.variable, "font-sans", geist.variable)}>
+      <head>
+        {/*
+          This script runs SYNCHRONOUSLY before the browser paints anything.
+          It injects a full-screen black overlay div into <body> immediately,
+          so there is zero flash of the hero or any other content.
+          Once React mounts and LazyLoader takes over, it removes this div.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  if (!sessionStorage.getItem('nexvra_loaded')) {
+                    var overlay = document.createElement('div');
+                    overlay.id = 'nexvra-loader-overlay';
+                    overlay.style.cssText = [
+                      'position:fixed',
+                      'inset:0',
+                      'z-index:9998',
+                      'background:#000',
+                      'display:flex',
+                      'align-items:center',
+                      'justify-content:center',
+                    ].join(';');
+                    document.addEventListener('DOMContentLoaded', function() {
+                      document.body.appendChild(overlay);
+                    });
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="font-secondary antialiased">
+        <LazyLoader />
         {children}
         <Footer />
       </body>

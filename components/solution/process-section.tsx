@@ -80,6 +80,8 @@ export default function ProcessSection() {
   };
 
   useEffect(() => {
+    let lastIndex = -1;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headingRef.current,
@@ -87,7 +89,7 @@ export default function ProcessSection() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.9,
+          duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
             trigger: headingRef.current,
@@ -98,36 +100,68 @@ export default function ProcessSection() {
 
       const trackEl = innerTrackRef.current;
       const panelEl = stickyPanelRef.current;
+
       if (!trackEl || !panelEl) return;
 
-      const panelHeight = window.innerHeight;
-      panelEl.style.height = `${panelHeight}px`;
+      const setLayout = () => {
+        const panelHeight = window.innerHeight;
+        panelEl.style.height = `${panelHeight}px`;
+        return Math.max(0, trackEl.scrollHeight - panelHeight);
+      };
 
-      const overflow = Math.max(0, trackEl.scrollHeight - panelHeight);
+      let overflow = setLayout();
 
       gsap.set(greenLineRef.current, { scaleY: 1 / steps.length });
       applyStepState(0, true);
 
-      ScrollTrigger.create({
+      const trigger = ScrollTrigger.create({
         trigger: scrollSpacerRef.current,
         start: "top top",
         end: "bottom bottom",
         pin: stickyPanelRef.current,
         pinSpacing: false,
         scrub: 1,
+        invalidateOnRefresh: true,
+
         onUpdate: (self) => {
           const p = self.progress;
 
-          gsap.set(innerTrackRef.current, { y: -p * overflow });
+          // move track
+          gsap.set(trackEl, { y: -p * overflow });
 
+          // grow line
           gsap.set(greenLineRef.current, {
             scaleY: (1 / steps.length) + p * (1 - 1 / steps.length),
           });
 
-          const activeIndex = Math.floor(p * steps.length);
-          steps.forEach((_, i) => applyStepState(i, i <= activeIndex));
+          const index = Math.min(
+            steps.length - 1,
+            Math.floor(p * steps.length)
+          );
+
+          if (index !== lastIndex) {
+            lastIndex = index;
+
+            steps.forEach((_, i) => {
+              applyStepState(i, i <= index);
+            });
+          }
         },
       });
+
+      ScrollTrigger.refresh();
+
+      const handleResize = () => {
+        overflow = setLayout();
+        ScrollTrigger.refresh();
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        trigger.kill();
+        window.removeEventListener("resize", handleResize);
+      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -140,7 +174,7 @@ export default function ProcessSection() {
       setIsMobile(window.innerWidth < 600);
     };
 
-    checkScreen(); // initial check
+    checkScreen();
 
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);

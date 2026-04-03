@@ -15,39 +15,44 @@ const Footer = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    if (!sectionRef.current) return;
 
-      // GRID LINE DRAW
-      gsap.from(".bg-grid", {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const ctx = gsap.context((self) => {
+      const q : any = self.selector;
+
+      const mm = gsap.matchMedia();
+
+      // GRID
+      gsap.from(q(".bg-grid"), {
         scaleY: 0,
         transformOrigin: "top",
-        duration: 1.2,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          once: true,
           start: "top 80%",
+          once: true,
         },
       });
 
-      // ROCKET LAUNCH
-      gsap.from(".about-image", {
-        y: 200,
+      // ROCKET ENTRY
+      gsap.from(q(".about-image"), {
+        y: 160,
         opacity: 0,
-        rotate: -10,
-        duration: 1.6,
+        rotate: -8,
+        duration: 1.2,
         ease: "power4.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          once: true,
           start: "top 75%",
+          once: true,
         },
         onComplete: () => {
-          // FLOAT LOOP
-          gsap.to(".about-image", {
-            y: -20,
-            rotate: 2,
+          gsap.to(q(".about-image"), {
+            y: "-=15",
             duration: 3,
             repeat: -1,
             yoyo: true,
@@ -56,114 +61,82 @@ const Footer = () => {
         },
       });
 
-      // PARAGRAPH
-      gsap.from(".footer-text", {
-        y: 60,
+      // TEXT
+      gsap.from(q(".footer-text"), {
+        y: 40,
         opacity: 0,
-        filter: "blur(6px)",
-        duration: 1,
-        delay: 0.2,
+        duration: 0.8,
+        ease: "power3.out",
         scrollTrigger: {
-          trigger: ".footer-text",
+          trigger: q(".footer-text"),
           start: "top 90%",
           once: true,
         },
       });
 
       // BUTTON
-      gsap.from(".footer-btn", {
-        y: 40,
+      gsap.from(q(".footer-btn"), {
+        y: 30,
         opacity: 0,
-        duration: 0.9,
-        delay: 0.4,
+        duration: 0.7,
         scrollTrigger: {
-          trigger: ".footer-btn",
+          trigger: q(".footer-btn"),
           start: "top 95%",
           once: true,
         },
       });
 
-      // MENU LINKS
-      // gsap.from(".footer-links a", {
-      //   y: 40,
-      //   opacity: 0,
-      //   stagger: 0.12,
-      //   duration: 0.8,
-      //   ease: "power3.out",
-      //   scrollTrigger: {
-      //     trigger: ".footer-links",
-      //     start: "top 90%",
-      //     once: true,
-      //   },
-      // });
-
-      gsap.from(".footer-letter", {
-        y: 120,
+      // HEADING
+      gsap.from(q(".footer-letter"), {
+        y: 80,
         opacity: 0,
-        filter: "blur(8px)",
-        stagger: 0.04,
-        duration: 1,
+        stagger: 0.03,
+        duration: 0.8,
         ease: "power4.out",
         scrollTrigger: {
-          trigger: ".footer-heading",
+          trigger: q(".footer-heading"),
           start: "top 85%",
           once: true,
         },
       });
 
-      gsap.from(".footer-heading", {
-        yPercent: 120,
-        duration: 1.4,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".footer-heading",
-          start: "top 85%",
-          once: true,
-        },
-      });
+      // MAGNETIC BUTTON (CLEANED)
+      const button = q(".footer-btn")[0] as HTMLElement;
 
-      // BIG TEXT REVEAL
-      gsap.from(".footer-big-letter", {
-        x: -60,
-        opacity: 0,
-        filter: "blur(10px)",
-        stagger: 0.06,
-        duration: 1.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: ".footer-big-text",
-          start: "top 90%",
-          once: true,
-        },
-      });
+      if (button) {
+        const move = (e: MouseEvent) => {
+          const rect = button.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
 
+          gsap.to(button, {
+            x: x * 0.15,
+            y: y * 0.15,
+            duration: 0.3,
+            ease: "power3.out",
+          });
+        };
 
+        const leave = () => {
+          gsap.to(button, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1,0.3)",
+          });
+        };
 
-      // BUTTON MAGNETIC EFFECT
-      const button = document.querySelector(".footer-btn");
+        button.addEventListener("mousemove", move);
+        button.addEventListener("mouseleave", leave);
 
-      button?.addEventListener("mousemove", (e: any) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+        // 🔥 CLEANUP
+        return () => {
+          button.removeEventListener("mousemove", move);
+          button.removeEventListener("mouseleave", leave);
+        };
+      }
 
-        gsap.to(button, {
-          x: x * 0.2,
-          y: y * 0.2,
-          duration: 0.4,
-          ease: "power3.out",
-        });
-      });
-
-      button?.addEventListener("mouseleave", () => {
-        gsap.to(button, {
-          x: 0,
-          y: 0,
-          duration: 0.6,
-          ease: "elastic.out(1,0.3)",
-        });
-      });
-
+      return () => mm.revert();
     }, sectionRef);
 
     return () => ctx.revert();

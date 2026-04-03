@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Badge } from "../ui/badge";
 import HexQuad from "../ui/hex-quad";
 import gsap from "gsap";
@@ -62,7 +62,7 @@ export default function WhyChooseNexvra() {
   }, []);
 
   // animation (same as before)
-  const containerVariants: any = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -72,7 +72,7 @@ export default function WhyChooseNexvra() {
     },
   };
 
-  const itemVariants: any = {
+  const itemVariants: Variants = {
     hidden: { y: 60, opacity: 0 },
     visible: {
       y: 0,
@@ -104,12 +104,12 @@ export default function WhyChooseNexvra() {
             className="text-center flex flex-col items-center justify-center mb-5 md:mb-10 lg:mb-0 overflow-hidden"
           >
             <motion.div variants={itemVariants}>
-              <Badge text="Why Nexvra" className="text-teritiary" />
+              <Badge text="Why Nexvra" className="text-tertiary" />
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="font-primary text-teritiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-20"
+              className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-20"
             >
               <span className="text-teritary">
                 What Makes Us

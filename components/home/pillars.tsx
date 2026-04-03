@@ -13,75 +13,58 @@ export default function Pillars() {
 
     useEffect(() => {
         if (!sectionRef.current) return;
-
-        const ctx = gsap.context(() => {
-            const mm = gsap.matchMedia();
-            const letters = gsap.utils.toArray(".pillar-letter");
-
-            // ✅ Desktop / Tablet
-            mm.add("(min-width: 768px)", () => {
-                gsap.fromTo(
-                    letters,
-                    {
-                        y: 60,
-                        opacity: 0,
-                        color: "#BFBFBF",
-                    },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        color: (i, el) =>
-                            el.classList.contains("pillar-accent")
-                                ? "#A4FF00"
-                                : "#0A0A0A",
-                        stagger: 0.05,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: sectionRef.current,
-                            start: "top top",
-                            end: "+=1200",
-                            scrub: true,
-                            pin: true,
-                            anticipatePin: 1,
-                        },
-                    }
-                );
-            });
-
-            mm.add("(max-width: 767px)", () => {
-                gsap.fromTo(
-                    letters,
-                    {
-                        y: 60,
-                        opacity: 0,
-                        color: "#BFBFBF",
-                    },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        color: (i, el) =>
-                            el.classList.contains("pillar-accent")
-                                ? "#A4FF00"
-                                : "#FFFFFF", // 🔥 WHITE TEXT
-                        stagger: 0.05,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: sectionRef.current,
-                            start: "top top",
-                            end: "+=1200",
-                            scrub: true,
-                            pin: true,
-                            anticipatePin: 1,
-                        },
-                    }
-                );
-            });
+      
+        const ctx = gsap.context((self) => {
+          const q : any = self.selector;
+      
+          const mm = gsap.matchMedia();
+      
+          mm.add(
+            {
+              isDesktop: "(min-width: 768px)",
+              isMobile: "(max-width: 767px)",
+            },
+            (context) => {
+              const { isDesktop } = context.conditions!;
+      
+              const letters = q(".pillar-letter");
+      
+              gsap.fromTo(
+                letters,
+                {
+                  y: 60,
+                  opacity: 0,
+                  color: "#BFBFBF",
+                },
+                {
+                  y: 0,
+                  opacity: 1,
+                  color: (i, el) =>
+                    el.classList.contains("pillar-accent")
+                      ? "#A4FF00"
+                      : isDesktop
+                      ? "#0A0A0A"
+                      : "#FFFFFF",
+                  stagger: 0.05,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: "top top",
+                    end: "+=1200",
+                    scrub: true,
+                    pin: true,
+                    anticipatePin: 1,
+                  },
+                }
+              );
+            }
+          );
+      
+          return () => mm.revert(); 
         }, sectionRef);
-
-        return () => {
-            ctx.revert();
-        };
-    }, []);
+      
+        return () => ctx.revert();
+      }, []);
 
     const splitText = (text: string) =>
         text.split("").map((char, i) => {

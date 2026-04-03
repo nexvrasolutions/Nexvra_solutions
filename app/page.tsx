@@ -5,11 +5,13 @@ import FeaturedCourses from "@/components/home/featured-courses";
 import Hero from "@/components/home/hero";
 import Pillars from "@/components/home/pillars";
 import WhatWeDo from "@/components/home/what-we-do";
+import LazyLoader from "@/components/ui/lazy-loader";
 import { MarqueeSlider } from "@/components/ui/marquee-slider";
 
 export default function Home() {
   return (
     <>
+      {/* <LazyLoader /> */}
       <Hero />
       <AboutSection />
       <MarqueeSlider />

@@ -5,9 +5,22 @@ import { Badge } from "../ui/badge";
 import Link from "next/link";
 import { Card } from "../ui/card";
 import { motion, useInView } from "framer-motion";
-import { EnrollModal } from "../ui/enroll-modal";
+import dynamic from "next/dynamic";
 
-const courses = [
+const EnrollModal = dynamic(() =>
+  import("../ui/enroll-modal").then((mod) => mod.EnrollModal)
+);
+
+type Course = {
+  title: string[];
+  duration: string;
+  slug: string;
+  difficulty: string;
+  img: string;
+};
+
+
+const courses: Course[] = [
   {
     title: ["AI-Powered Product", "Design"],
     duration: "3 Months",
@@ -79,35 +92,36 @@ export default function FeaturedCourses() {
   const headerRef = useRef(null);
   const cardsRef = useRef(null);
   const [open, setOpen] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState<any>(null);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   // No once: true — re-triggers every time user visits the section
-  const headerInView = useInView(headerRef, { amount: 0, margin: "0px 0px -100px 0px" });
-  const cardsInView = useInView(cardsRef, { amount: 0, margin: "0px 0px -50px 0px" });
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const cardsInView = useInView(cardsRef, { once: true, margin: "-50px" });
 
   return (
-    <div style={{ overflow: "hidden" }}>
+
+    <div className="overflow-hidden">
       <section className="relative bg-[#F3F3F3] min-h-[70vh] px-5 md:px-10 lg:px-[3%] 2xl:px-[5.5%] py-[10%]">
 
         {/* Header */}
         <div ref={headerRef} className="flex flex-col md:flex-row items-start gap-3 md:gap-0 md:items-center justify-between mb-5 md:mb-10 lg:mb-15">
 
           {/* Badge + Title */}
-          <div style={{ overflow: "hidden" }}>
+          <div className="overflow-hidden">
             <motion.div
               variants={headerVariants}
               initial="hidden"
               animate={headerInView ? "visible" : "hidden"}
             >
               <Badge text="Our Courses" className="text-tertiary mb-3 lg:mb-5" />
-              <h1 className="font-primary text-teritiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-[80px]">
+              <h1 className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-[80px]">
                 Start Your Tech Career
               </h1>
             </motion.div>
           </div>
 
           {/* Link */}
-          <div style={{ overflow: "hidden" }}>
+          <div className="overflow-hidden">
             <motion.div
               variants={linkVariants}
               initial="hidden"
@@ -130,10 +144,11 @@ export default function FeaturedCourses() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 xl:gap-6 pt-10 items-stretch"
           variants={cardContainerVariants}
           initial="hidden"
-          animate={cardsInView ? "visible" : "hidden"}
+          animate={headerInView && "visible"}
         >
           {courses.map((course, index) => (
-            <div key={index} style={{ overflow: "hidden" }}>
+
+            <div key={course.slug || index} className="overflow-hidden">
               <motion.div variants={cardVariants}>
                 <Card
                   course={course}
@@ -146,11 +161,13 @@ export default function FeaturedCourses() {
             </div>
           ))}
         </motion.div>
-        <EnrollModal
-          isOpen={open}
-          onClose={() => setOpen(false)}
-          selectedCourse={selectedCourse}
-        />
+        {open && (
+          <EnrollModal
+            isOpen={open}
+            onClose={() => setOpen(false)}
+            selectedCourse={selectedCourse}
+          />
+        )}
       </section>
     </div>
   );

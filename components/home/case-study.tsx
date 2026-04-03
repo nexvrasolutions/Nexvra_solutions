@@ -52,72 +52,76 @@ export default function CaseStudy() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context((self) => {
+      const q : any = self.selector;
+
       const section = sectionRef.current!;
       const container = scrollContainerRef.current!;
-      const sections = gsap.utils.toArray<HTMLDivElement>(".case-card");
+      const sections = q(".case-card");
 
-      ScrollTrigger.matchMedia({
-        // ✅ DESKTOP (UNCHANGED)
-        "(min-width: 1024px)": () => {
-          const horizontalTween = gsap.to(sections, {
-            xPercent: -100 * (sections.length - 1),
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1024px)", () => {
+        const horizontalTween = gsap.to(sections, {
+          xPercent: -100 * (sections.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => "+=" + container.offsetWidth,
+            pin: true,
+            scrub: 1.5,
+            anticipatePin: 1,
+          },
+        });
+
+        const images = q(".case-img");
+
+        images.forEach((img: any) => {
+          gsap.to(img, {
+            y: -60,
             ease: "none",
             scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: () => "+=" + container.offsetWidth,
-              pin: true,
-              scrub: 2,
-              anticipatePin: 1,
+              trigger: img,
+              containerAnimation: horizontalTween,
+              scrub: 1,
             },
           });
-
-          const images = gsap.utils.toArray<HTMLImageElement>(".case-img");
-
-          images.forEach((img) => {
-            gsap.to(img, {
-              y: -60,
-              ease: "none",
-              scrollTrigger: {
-                trigger: img,
-                containerAnimation: horizontalTween,
-                scrub: 1,
-              },
-            });
-          });
-        },
-
-        "(max-width: 1023px)": () => {
-          gsap.set(sections, { clearProps: "transform" });
-
-          gsap.from(".case-card", {
-            opacity: 0,
-            y: 80,
-            scale: 0.95,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 85%",
-            },
-          });
-
-          // subtle image parallax
-          const images = gsap.utils.toArray<HTMLImageElement>(".case-img");
-
-          images.forEach((img) => {
-            gsap.to(img, {
-              y: -30,
-              scrollTrigger: {
-                trigger: img,
-                scrub: 1,
-              },
-            });
-          });
-        },
+        });
       });
+
+      mm.add("(max-width: 1023px)", () => {
+        gsap.set(sections, { clearProps: "transform" });
+
+        gsap.from(sections, {
+          opacity: 0,
+          y: 60,
+          scale: 0.96,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+          },
+        });
+
+        const images = q(".case-img");
+
+        images.forEach((img: any) => {
+          gsap.to(img, {
+            y: -25,
+            scrollTrigger: {
+              trigger: img,
+              scrub: 0.8,
+            },
+          });
+        });
+      });
+
+      return () => mm.revert();
     }, sectionRef);
 
     return () => ctx.revert();
@@ -131,7 +135,7 @@ export default function CaseStudy() {
       {/* Title */}
       <div className="sticky top-0 left-0 z-10 py-5 bg-[#F3F3F3]">
         <Badge text="Our Works" className="text-tertiary mb-3 md:mb-0" />
-        <h1 className="font-primary text-teritiary text-[32px] md:text-[48px] xl:text-[64px] font-bold leading-[40px] md:leading-[60px] xl:leading-[80px]">
+        <h1 className="font-primary text-tertiary text-[32px] md:text-[48px] xl:text-[64px] font-bold leading-[40px] md:leading-[60px] xl:leading-[80px]">
           Our Impact
         </h1>
       </div>
@@ -139,36 +143,34 @@ export default function CaseStudy() {
       {/* Container */}
       <div
         ref={scrollContainerRef}
-        className="
-          flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-7
-          max-lg:flex-col
-        "
+        className="flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-7 max-lg:flex-col"
       >
         {projects.map((project) => (
           <Link
             key={project.id}
             href={`/project-detail/${project.slug}`}
-            className="
-              case-card flex flex-col gap-0 md:gap-8 flex-shrink-0
-              w-full h-full md:w-[70vw] xl:w-[900px]
-            "
+            className="group case-card flex flex-col gap-6 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
           >
             {/* Image */}
-            <div className="w-full h-full md:h-[320px] xl:h-[500px] overflow-hidden rounded-xs">
-              <img
+            <div className="relative w-full h-[250px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-md">
+              <Image
                 src={project.image}
                 alt={project.name}
-                className="case-img w-full h-full object-cover"
+                fill
+                className="case-img object-cover transition-transform duration-700 group-hover:scale-105"
               />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
             </div>
 
             {/* Content */}
-            <div className="flex flex-col gap-0 md:gap-2">
-              <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px]">
+            <div className="flex flex-col gap-1">
+              <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px] group-hover:text-black transition">
                 {project.name}
               </h4>
 
-              <p className="text-[#404040]/80 font-primary text-[14px] md:text-[16px] xl:text-[20px] leading-[22px] md:leading-[24px] xl:leading-[28px]">
+              <p className="text-[#404040]/70 font-primary text-[14px] md:text-[16px] xl:text-[20px]">
                 {project.type}
               </p>
             </div>

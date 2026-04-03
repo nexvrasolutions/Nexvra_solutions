@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import RotatingText from "../ui/rotating-text";
-import { motion, useInView } from "framer-motion";
+import { Variants, motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export default function MissionVisionSection() {
@@ -14,7 +14,7 @@ export default function MissionVisionSection() {
         margin: "0px 0px -100px 0px",
     });
 
-    const containerVariants: any  = {
+    const containerVariants: Variants  = {
         hidden: {},
         visible: {
             transition: {
@@ -24,7 +24,7 @@ export default function MissionVisionSection() {
         },
     };
 
-    const itemVariants: any = {
+    const itemVariants: Variants = {
         hidden: {
             y: 60,
             opacity: 0,
@@ -102,14 +102,14 @@ export default function MissionVisionSection() {
             >
 
                 {/* LEFT IMAGE */}
-                <div className="flex items-start justify-start overflow-hidden">
+                <div className="flex items-start justify-start overflow-hidden group">
                     <motion.div variants={itemVariants}>
                         <Image
                             src="/images/green-eye.png"
                             alt="eye"
                             width={350}
                             height={350}
-                            className="object-cover size-50 md:size-auto"
+                            className="object-cover size-50 md:size-auto group-hover:scale-105 transition-all druation-500"
                         />
                     </motion.div>
                 </div>

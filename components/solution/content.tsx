@@ -93,6 +93,7 @@ export default function SolutionContent() {
 
     function raf(time: number) {
       lenis.raf(time);
+      ScrollTrigger.update();
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
@@ -113,11 +114,14 @@ export default function SolutionContent() {
           height: window.innerHeight,
         };
       },
+      pinType: document.body.style.transform ? "transform" : "fixed", 
     });
 
     ScrollTrigger.defaults({ scroller: document.body });
 
     const cards = cardsRef.current;
+
+    let lastIndex = -1; 
 
     const ctx = gsap.context(() => {
       gsap.set(cards, { y: window.innerHeight });
@@ -134,7 +138,11 @@ export default function SolutionContent() {
 
           onUpdate: (self) => {
             const index = Math.round(self.progress * (CARD_COUNT - 1));
-            setActiveIndex(index);
+
+            if (index !== lastIndex) {
+              lastIndex = index;
+              setActiveIndex(index);
+            }
           },
         },
       });
@@ -151,11 +159,19 @@ export default function SolutionContent() {
           i * 0.9
         );
       });
+
+      ScrollTrigger.refresh();
     }, sectionRef);
+
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("resize", handleResize);
 
     return () => {
       ctx.revert();
       lenis.destroy();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
