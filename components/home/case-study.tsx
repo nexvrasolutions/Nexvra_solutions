@@ -55,7 +55,7 @@ export default function CaseStudy() {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context((self) => {
-      const q : any = self.selector;
+      const q: any = self.selector;
 
       const section = sectionRef.current!;
       const container = scrollContainerRef.current!;
@@ -63,6 +63,7 @@ export default function CaseStudy() {
 
       const mm = gsap.matchMedia();
 
+      // ───────── DESKTOP ─────────
       mm.add("(min-width: 1024px)", () => {
         const horizontalTween = gsap.to(sections, {
           xPercent: -100 * (sections.length - 1),
@@ -92,9 +93,12 @@ export default function CaseStudy() {
         });
       });
 
+      // ───────── MOBILE / TABLET ─────────
       mm.add("(max-width: 1023px)", () => {
+        // reset any transforms from desktop
         gsap.set(sections, { clearProps: "transform" });
 
+        // simple entrance animation
         gsap.from(sections, {
           opacity: 0,
           y: 60,
@@ -108,17 +112,7 @@ export default function CaseStudy() {
           },
         });
 
-        const images = q(".case-img");
-
-        images.forEach((img: any) => {
-          gsap.to(img, {
-            y: -25,
-            scrollTrigger: {
-              trigger: img,
-              scrub: 0.8,
-            },
-          });
-        });
+        // ❌ NO image animation here (removed)
       });
 
       return () => mm.revert();
@@ -143,16 +137,16 @@ export default function CaseStudy() {
       {/* Container */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center gap-4 md:gap-8 xl:gap-12 py-5 md:py-7 max-lg:flex-col"
+        className="flex items-center gap-8 xl:gap-12 py-5 md:py-7 max-lg:flex-col"
       >
         {projects.map((project) => (
-          <Link
+          <a
             key={project.id}
             href={`/project-detail/${project.slug}`}
-            className="group case-card flex flex-col gap-6 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
+            className="group case-card flex flex-col gap-2 md:gap-6 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
           >
             {/* Image */}
-            <div className="relative w-full h-[250px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-md">
+            <div className="relative w-full h-[250px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-sm">
               <Image
                 src={project.image}
                 alt={project.name}
@@ -161,7 +155,7 @@ export default function CaseStudy() {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
+              <div className="absolute h-full inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
             </div>
 
             {/* Content */}
@@ -174,7 +168,7 @@ export default function CaseStudy() {
                 {project.type}
               </p>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
     </section>

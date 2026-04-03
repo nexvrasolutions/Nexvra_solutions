@@ -157,7 +157,7 @@ export default function AboutSection() {
         <div className="flex flex-col gap-4 md:gap-6 xl:gap-8">
           
           <h2 className="about-heading font-primary font-bold text-[21px] sm:text-[26px] md:text-[34px] xl:text-[48px] 2xl:text-[54px] leading-tight md:leading-[1.1]">
-            {splitText("Turning Ideas Into")}
+            {splitText("Turning Ideas Into")}{" "}
             <br className="hidden lg:flex" />
             {splitText("Digital Reality")}
           </h2>
@@ -167,7 +167,7 @@ export default function AboutSection() {
             We help individuals learn practical digital skills and support businesses in building impactful digital products.
           </p>
 
-          <div className="about-button w-full">
+          <div className="about-button w-full pb-5 md:pb-0">
             <Button
               label="More About Us"
               onClick={() => router.push("/about-us")}

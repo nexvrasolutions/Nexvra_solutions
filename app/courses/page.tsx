@@ -147,6 +147,7 @@ const CoursePage = () => {
                 title="Courses"
                 description="Each project reflects our passion for blending creativity, technology, and strategy."
                 image="/images/about-bg.jpg"
+                showGif={false}
             />
 
             <section

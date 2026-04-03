@@ -50,38 +50,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(onsite.variable, inter.variable, "font-sans", geist.variable)}>
       <head>
-        {/*
-          This script runs SYNCHRONOUSLY before the browser paints anything.
-          It injects a full-screen black overlay div into <body> immediately,
-          so there is zero flash of the hero or any other content.
-          Once React mounts and LazyLoader takes over, it removes this div.
-        */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  if (!sessionStorage.getItem('nexvra_loaded')) {
-                    var overlay = document.createElement('div');
-                    overlay.id = 'nexvra-loader-overlay';
-                    overlay.style.cssText = [
-                      'position:fixed',
-                      'inset:0',
-                      'z-index:9998',
-                      'background:#000',
-                      'display:flex',
-                      'align-items:center',
-                      'justify-content:center',
-                    ].join(';');
-                    document.addEventListener('DOMContentLoaded', function() {
-                      document.body.appendChild(overlay);
-                    });
-                  }
-                } catch(e) {}
-              })();
-            `,
-          }}
-        />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              try {
+                if (sessionStorage.getItem('nexvra_loaded')) return;
+                var overlay = document.createElement('div');
+                overlay.id = 'nexvra-loader-overlay';
+                overlay.style.cssText = 'position:fixed;inset:0;z-index:9998;background:#050505;';
+                // Append immediately to <html> so it covers content before body parses
+                document.documentElement.appendChild(overlay);
+              } catch(e) {}
+            })();
+          `,
+        }}
+      />
       </head>
       <body className="font-secondary antialiased">
         <LazyLoader />

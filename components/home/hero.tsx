@@ -61,11 +61,12 @@ export default function Hero() {
                     },
                     "-=0.4"
                 )
-                .from(
+                .fromTo(
                     q(".hero-btn > *"),
+                    { y: 20, opacity: 0 },
                     {
-                        y: 20,
-                        opacity: 0,
+                        y: 0,
+                        opacity: 1,
                         stagger: 0.12,
                         duration: 0.4,
                     },
@@ -132,10 +133,8 @@ export default function Hero() {
                             <a href="/courses" className="w-full md:w-auto ">
                                 <Button label="Explore Courses" className="w-full" />
                             </a>
-                            <a href="/solutions" className="border border-secondary text-secondary px-6 py-3 rounded-xs font-medium hover:bg-white transition text-center duration-500 hover:text-black ease-in-out" >
-                                <div className="hero-btn-item">
-                                    Our Solutions
-                                </div>
+                            <a href="/solutions" className="hero-btn-item border border-secondary text-secondary px-6 py-3 rounded-xs font-medium hover:bg-white transition text-center duration-500 hover:text-black ease-in-out" >
+                                Our Solutions
                             </a>
                         </div>
                     </div>
@@ -143,7 +142,28 @@ export default function Hero() {
             </div>
 
             {/* MEDIA */}
-            <div className="flex px-5 md:px-10 xl:px-[5.5%] relative z-10 pt-10 lg:pt-20">
+            <div className="relative w-full pt-10 lg:pt-20 px-5 md:px-10 xl:px-[5.5%]">
+
+                {/* Video Container */}
+                <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-sm">
+
+                    {/* Video */}
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                    >
+                        <source src="/video/video.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                    {/* Overlay (dark gradient for readability) */}
+                    <div className="absolute inset-0 bg-black/40" />
+                    
+                </div>
+            </div>
+            {/* <div className="flex px-5 md:px-10 xl:px-[5.5%] relative z-10 pt-10 lg:pt-20">
                 <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px]">
                     <Image
                         src="/images/vido.gif"
@@ -153,7 +173,7 @@ export default function Hero() {
                         className="hero-media object-cover"
                     />
                 </div>
-            </div>
+            </div> */}
         </HeroLayout>
     );
 }
