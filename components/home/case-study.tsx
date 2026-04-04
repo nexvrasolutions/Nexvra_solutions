@@ -155,7 +155,7 @@ export default function CaseStudy() {
               />
 
               {/* Overlay */}
-              <div className="absolute h-full inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
             </div>
 
             {/* Content */}

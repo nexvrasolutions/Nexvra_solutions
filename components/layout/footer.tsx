@@ -223,7 +223,9 @@ const Footer = () => {
             </div>
 
             <div className="footer-btn">
-              <Button label="Let's Talk" onClick={() => router.push("/contact")} />
+              <a href="/contact">
+                <Button label="Let's Talk" />
+              </a>
             </div>
           </div>
         </div>

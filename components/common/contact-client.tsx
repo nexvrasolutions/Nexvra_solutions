@@ -1,9 +1,10 @@
 "use client";
 
 import { MapEmbed } from '@/components/common/map-embed';
+import { toast } from "sonner";
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { motion, useInView } from "framer-motion";
 
 const ContactClient = () => {
@@ -33,6 +34,91 @@ const ContactClient = () => {
                 ease: [0.22, 1, 0.36, 1],
             },
         },
+    };
+
+    const [formData, setFormData] = useState({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+    });
+
+    const [errors, setErrors] = useState<any>({});
+    const [loading, setLoading] = useState(false);
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+
+        setErrors((prev: any) => {
+            const updated = { ...prev };
+            delete updated[name];
+            return updated;
+        });
+    };
+
+    const validateForm = () => {
+        const newErrors: any = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!formData.name) newErrors.name = "Name is required";
+        if (!formData.phone) newErrors.phone = "Phone is required";
+        if (!formData.email) newErrors.email = "Email is required";
+        else if (!emailRegex.test(formData.email))
+            newErrors.email = "Invalid email format";
+
+        if (!formData.message) newErrors.message = "Message is required";
+
+        return newErrors;
+    };
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        const validationErrors = validateForm();
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setLoading(true);
+
+        const formDataToSend = new FormData(formRef.current!);
+        formDataToSend.append("_captcha", "false");
+        formDataToSend.append("_template", "table");
+        formDataToSend.append("_subject", "New Contact Message");
+
+        try {
+            const res = await fetch(
+                "https://formsubmit.co/contactnexvra@gmail.com",
+                {
+                    method: "POST",
+                    body: formDataToSend,
+                }
+            );
+
+            if (res.ok) {
+                toast.success("Message sent successfully!");
+                setFormData({
+                    name: "",
+                    phone: "",
+                    email: "",
+                    message: "",
+                });
+            } else {
+                toast.error("Failed to send message");
+            }
+        } catch (err) {
+            toast.error("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -114,27 +200,79 @@ const ContactClient = () => {
                     className="flex flex-col gap-8 justify-center font-primary"
                 >
 
-                    {["Full Name", "Phone Number", "Email Address", "Message"].map((label, i) => (
-                        <motion.div key={i} variants={itemVariants} className="flex flex-col gap-2">
-                            <label className="text-base font-semibold text-tertiary">
-                                {label}
-                            </label>
+                    <motion.form
+                        ref={formRef}
+                        onSubmit={handleSubmit}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={inView ? "visible" : "hidden"}
+                        className="flex flex-col gap-8 justify-center font-primary"
+                    >
+                        {/* Name */}
+                        <motion.div variants={itemVariants} className="flex flex-col gap-2">
+                            <label className="text-base font-semibold text-tertiary">Full Name</label>
                             <input
-                                type="text"
-                                placeholder={`Enter your ${label.toLowerCase()}`}
-                                className="border-b border-gray-300 pb-3 text-[#40404099] placeholder:text-[#40404099]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                 className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                placeholder="Enter your full name"
+                            />
+                            {errors.name && <span className="text-red-500 text-sm">{errors.name}</span>}
+                        </motion.div>
+
+                        {/* Phone */}
+                        <motion.div variants={itemVariants} className="flex flex-col gap-2">
+                            <label className="text-base font-semibold text-tertiary">Phone Number</label>
+                            <input
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                 className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                placeholder="Enter your phone"
+                            />
+                            {errors.phone && <span className="text-red-500 text-sm">{errors.phone}</span>}
+                        </motion.div>
+
+                        {/* Email */}
+                        <motion.div variants={itemVariants} className="flex flex-col gap-2">
+                            <label className="text-base font-semibold text-tertiary">Email Address</label>
+                            <input
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                 className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                placeholder="Enter your email"
+                            />
+                            {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
+                        </motion.div>
+
+                        {/* Message */}
+                        <motion.div variants={itemVariants} className="flex flex-col gap-2">
+                            <label className="text-base font-semibold text-tertiary">Message</label>
+                            <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                 className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                placeholder="Enter your message"
+                            />
+                            {errors.message && <span className="text-red-500 text-sm">{errors.message}</span>}
+                        </motion.div>
+
+                        {/* Button */}
+                        <motion.div variants={itemVariants}>
+                            <Button
+                                type="submit"
+                                label={loading ? "Sending..." : "Send Message"}
+                                disabled={loading}
                             />
                         </motion.div>
-                    ))}
 
-                    <motion.div variants={itemVariants} className='flex flex-col gap-3'>
-                        <div className="mt-2">
-                            <Button label='Send Message' />
-                        </div>
                         <p className="text-sm text-gray-500">
                             We’ll get back to you within 24 hours.
                         </p>
-                    </motion.div>
+                    </motion.form>
 
                 </motion.div>
 

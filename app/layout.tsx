@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
 import LazyLoader from "@/components/ui/lazy-loader";
+import { Toaster } from "sonner";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -77,6 +78,7 @@ export default function RootLayout({
       <body className="font-secondary antialiased">
         <LazyLoader />
         {children}
+        <Toaster position="top-right" richColors />
         <Footer />
       </body>
     </html>

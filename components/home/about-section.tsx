@@ -168,10 +168,11 @@ export default function AboutSection() {
           </p>
 
           <div className="about-button w-full pb-5 md:pb-0">
-            <Button
-              label="More About Us"
-              onClick={() => router.push("/about-us")}
-            />
+            <a href="/about-us">
+              <Button
+                label="More About Us"
+              />
+            </a>
           </div>
         </div>
       </div>

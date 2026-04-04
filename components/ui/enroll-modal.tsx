@@ -3,6 +3,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./button";
 import { X } from "lucide-react";
+import { useState, useRef } from "react";
+import { toast } from "sonner";
 
 interface EnrollModalProps {
     isOpen: boolean;
@@ -37,6 +39,95 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
         visible: { opacity: 1, y: 0 },
     };
 
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        course: selectedCourse?.title || "",
+        message: "",
+    });
+
+    const [errors, setErrors] = useState<any>({});
+    const [loading, setLoading] = useState(false);
+    const formRef = useRef<HTMLFormElement | null>(null);
+
+    const handleChange = (e: any) => {
+        const { name, value } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+
+        setErrors((prev: any) => {
+            const updated = { ...prev };
+            delete updated[name];
+            return updated;
+        });
+    };
+
+    const validateForm = () => {
+        const newErrors: any = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!formData.name) newErrors.name = "Name is required";
+        if (!formData.email) newErrors.email = "Email is required";
+        else if (!emailRegex.test(formData.email))
+            newErrors.email = "Invalid email";
+
+        if (!formData.phone) newErrors.phone = "Phone is required";
+        if (!formData.course) newErrors.course = "Please select a course";
+
+        return newErrors;
+    };
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        const validationErrors = validateForm();
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        setLoading(true);
+
+        const formDataToSend = new FormData(formRef.current!);
+        formDataToSend.append("_captcha", "false");
+        formDataToSend.append("_template", "table");
+        formDataToSend.append("_subject", `New Enrollment - ${formData.course}`);
+
+        try {
+            const promise = fetch(
+                "https://formsubmit.co/contactnexvra@gmail.com",
+                {
+                    method: "POST",
+                    body: formDataToSend,
+                }
+            );
+
+            await toast.promise(promise, {
+                loading: "Submitting application...",
+                success: "Application submitted successfully!",
+                error: "Failed to submit application",
+            });
+
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                course: "",
+                message: "",
+            });
+
+            onClose(); // close modal after success
+        } catch (err) {
+            toast.error("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <AnimatePresence>
             {isOpen && (
@@ -66,7 +157,9 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
 
                         {/* FORM */}
                         <motion.form
+                            ref={formRef}
                             variants={containerVariants}
+                            onSubmit={handleSubmit}
                             className="flex flex-col gap-6"
                         >
 
@@ -76,10 +169,13 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     Full Name
                                 </label>
                                 <input
-                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                     placeholder="Enter your full name"
-                                    className="border-b border-gray-300 pb-3 text-[#404040] placeholder:text-[#404040]/60 bg-transparent outline-none focus:border-tertiary"
+                                    className="border-b pb-3 outline-none"
                                 />
+                                {errors.name && <span className="text-red-500 text-xs">{errors.name}</span>}
                             </motion.div>
 
                             {/* Email */}
@@ -88,10 +184,14 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     Email Address
                                 </label>
                                 <input
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     type="email"
                                     placeholder="Enter your email"
-                                    className="border-b border-gray-300 pb-3 text-[#404040] placeholder:text-[#404040]/60 bg-transparent outline-none focus:border-tertiary"
+                                    className="border-b pb-3 outline-none"
                                 />
+                                {errors.email && <span className="text-red-500 text-xs">{errors.email}</span>}
                             </motion.div>
 
                             {/* Phone */}
@@ -100,10 +200,14 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     Phone Number
                                 </label>
                                 <input
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
                                     type="tel"
                                     placeholder="Enter your phone number"
-                                    className="border-b border-gray-300 pb-3 text-[#404040] placeholder:text-[#404040]/60 bg-transparent outline-none focus:border-tertiary"
+                                    className="border-b pb-3 outline-none"
                                 />
+                                {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}
                             </motion.div>
 
                             {/* Course Dropdown */}
@@ -112,14 +216,10 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     Select Course
                                 </label>
                                 <select
-                                    defaultValue={
-                                        selectedCourse
-                                            ? Array.isArray(selectedCourse.title)
-                                                ? selectedCourse.title.join(" ")
-                                                : selectedCourse.title
-                                            : ""
-                                    }
-                                    className="border-b border-gray-300 pb-3 bg-transparent outline-none focus:border-tertiary text-[#404040]"
+                                    name="course"
+                                    value={formData.course}
+                                    onChange={handleChange}
+                                    className="border-b pb-3 outline-none"
                                 >
                                     <option value="">Choose a course</option>
                                     {courses.map((course, i) => (
@@ -128,6 +228,7 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                         </option>
                                     ))}
                                 </select>
+                                {errors.course && <span className="text-red-500 text-xs">{errors.course}</span>}
                             </motion.div>
 
                             {/* Message */}
@@ -136,15 +237,23 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     Message
                                 </label>
                                 <textarea
-                                    placeholder="Tell us anything (optional)"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
                                     rows={3}
-                                    className="border-b border-gray-300 pb-3 bg-transparent outline-none focus:border-tertiary resize-none text-[#404040]"
+                                    placeholder="Tell us anything (optional)"
+                                    className="border-b pb-3 outline-none resize-none"
                                 />
                             </motion.div>
 
                             {/* BUTTON */}
                             <motion.div variants={itemVariants} className="mt-4">
-                                <Button label="Submit Application" className="w-full" />
+                                <Button
+                                    type="submit"
+                                    label={loading ? "Submitting..." : "Submit Application"}
+                                    className="w-full"
+                                    disabled={loading}
+                                />
                             </motion.div>
 
                             <p className="text-xs text-gray-500 text-center">
