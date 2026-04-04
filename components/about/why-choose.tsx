@@ -101,7 +101,7 @@ export default function WhyChooseNexvra() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center flex flex-col items-center justify-center mb-5 md:mb-10 lg:mb-0 overflow-hidden"
+            className="text-center flex flex-col items-center justify-center mb-5 md:mb-10 overflow-hidden"
           >
             <motion.div variants={itemVariants}>
               <Badge text="Why Nexvra" className="text-tertiary" />
@@ -122,7 +122,7 @@ export default function WhyChooseNexvra() {
           </motion.div>
 
           {/* Content */}
-          <div className="lg:h-[80vh] flex items-center">
+          <div className=" flex items-center">
             <div className="grid lg:grid-cols-2 w-full h-full lg:h-auto lg:gap-10 items-center border border-[#E6E6E6] pb-4 md:pb-15 lg:pb-0 p-2 md:p-5 relative">
 
               {/* Left */}
