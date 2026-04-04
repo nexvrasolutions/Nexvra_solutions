@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import HeroLayout from "../layout/hero-layout";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { useEffect, useRef, useMemo } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 

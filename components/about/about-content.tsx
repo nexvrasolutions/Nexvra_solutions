@@ -125,16 +125,16 @@ const AboutContent = () => {
           animate={animateState}
           className="flex flex-col gap-6"
         >
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants}>s
             <Badge text="About Nexvra" />
           </motion.div>
 
-          <motion.h2
+          <motion.h1
             variants={itemVariants}
             className="font-primary font-bold text-[26px] md:text-[45px] leading-[1.2] w-full lg:w-[90%]"
           >
             Turning Bold Ideas Into Intelligent Solutions
-          </motion.h2>
+          </motion.h1>
         </motion.div>
 
         {/* RIGHT */}

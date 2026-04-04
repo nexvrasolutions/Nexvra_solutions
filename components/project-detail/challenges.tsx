@@ -1,4 +1,3 @@
-"use client";
 import { Card } from "../ui/card";
 
 const Challenges = ({ project }: { project: any }) => {

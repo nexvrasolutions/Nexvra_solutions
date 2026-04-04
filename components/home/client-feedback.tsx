@@ -11,21 +11,21 @@ const testimonials = [
     text: "Nexvra Solutions did an excellent job with our website. The design is clean, modern, and easy to use. Our customers now find it easier to connect with us online.",
     name: "Arun S",
     company: "Magic Aisles",
-    image: "/images/eye.png",
+    // image: "/images/eye.png",
   },
   {
     id: 2,
     text: "I joined Nexvra for UI/UX design, and the training was very practical. I learned how to design real apps and gained confidence in my skills.",
     name: "Abino",
     company: "Student",
-    image: "/images/eye.png",
+    // image: "/images/eye.png",
   },
   {
     id: 3,
     text: "Their digital marketing support helped us reach more customers. We saw better engagement and growth in a short time.",
     name: "Vignesh K",
     company: "JE Mobiles",
-    image: "/images/eye.png",
+    // image: "/images/eye.png",
   },
 ];
 
@@ -100,9 +100,8 @@ export default function ClientFeedback() {
               initial="hidden"
               animate={rightInView ? "visible" : "hidden"}
               className="
-                p-4 md:p-6 rounded-md 
+                p-4 md:p-6 rounded-sm 
                 border border-[#F3F3F3] 
-                hover:shadow-md hover:border-[#E5E5E5]
                 transition-all duration-300
               "
             >
@@ -112,7 +111,7 @@ export default function ClientFeedback() {
 
               <div className="flex items-center gap-3 mt-4">
 
-                <div className="w-10 h-10 rounded-md overflow-hidden">
+                {/* <div className="w-10 h-10 rounded-md overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -120,7 +119,7 @@ export default function ClientFeedback() {
                     height={40}
                     className="object-cover w-full h-full"
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <h4 className="font-medium text-[#404040] text-lg md:text-xl">

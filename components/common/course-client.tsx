@@ -1,6 +1,5 @@
 "use client";
 
-import ContentSection from "@/components/common/content-section";
 import { Card } from "@/components/ui/card";
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
@@ -89,7 +88,7 @@ const courses = [
     },
 ];
 
-const CoursePage = () => {
+const CouresClient = () => {
 
     const sectionRef = useRef(null);
     const [open, setOpen] = useState(false);
@@ -140,103 +139,93 @@ const CoursePage = () => {
             },
         },
     };
-
     return (
-        <>
-            <ContentSection
-                title="Courses"
-                description="Each project reflects our passion for blending creativity, technology, and strategy."
-                image="/images/about-bg.jpg"
-                showGif={false}
-            />
+        <section
+            ref={sectionRef}
+            className="bg-[#F3F3F3] flex flex-col gap-12 px-[5.5%] py-[5%]"
+        >
 
-            <section
-                ref={sectionRef}
-                className="bg-[#F3F3F3] flex flex-col gap-12 px-[5.5%] py-[5%]"
+            {/* FILTER */}
+            <div className="w-full overflow-hidden">
+                <nav className="flex lg:flex-wrap gap-3 lg:gap-8 overflow-x-auto lg:overflow-visible no-scrollbar">
+                    {categories.map((cat, i) => (
+                        <button
+                            key={cat}
+                            ref={(el) => {
+                                buttonRefs.current[i] = el;
+                            }}
+                            onClick={() => {
+                                setActiveCategory(cat);
+
+                                const currentEl = buttonRefs.current[i];
+                                if (currentEl) {
+                                    currentEl.scrollIntoView({
+                                        behavior: "smooth",
+                                        inline: "center",
+                                        block: "nearest",
+                                    });
+                                }
+                            }}
+                            className={` whitespace-nowrap px-4 py-2 rounded-xs lg:rounded-none text-sm md:text-base lg:text-xl transition-all duration-200
+${activeCategory === cat
+                                    ? "bg-black text-white lg:bg-transparent lg:text-black lg:font-semibold"
+                                    : "bg-gray-200 text-gray-500 lg:bg-transparent hover:text-gray-700"
+                                }
+`}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </nav>
+            </div>
+
+            {/* COURSES GRID */}
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
             >
-
-                {/* FILTER */}
-                <div className="w-full overflow-hidden">
-                    <nav className="flex lg:flex-wrap gap-3 lg:gap-8 overflow-x-auto lg:overflow-visible no-scrollbar">
-                        {categories.map((cat, i) => (
-                            <button
-                                key={cat}
-                                ref={(el) => {
-                                    buttonRefs.current[i] = el;
-                                }}
-                                onClick={() => {
-                                    setActiveCategory(cat);
-
-                                    const currentEl = buttonRefs.current[i];
-                                    if (currentEl) {
-                                        currentEl.scrollIntoView({
-                                            behavior: "smooth",
-                                            inline: "center",
-                                            block: "nearest",
-                                        });
-                                    }
-                                }}
-                                className={` whitespace-nowrap px-4 py-2 rounded-xs lg:rounded-none text-sm md:text-base lg:text-xl transition-all duration-200
-          ${activeCategory === cat
-                                        ? "bg-black text-white lg:bg-transparent lg:text-black lg:font-semibold"
-                                        : "bg-gray-200 text-gray-500 lg:bg-transparent hover:text-gray-700"
-                                    }
-        `}
-                            >
-                                {cat}
-                            </button>
-                        ))}
-                    </nav>
-                </div>
-
-                {/* COURSES GRID */}
                 <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
+                    layout
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-10 items-stretch"
                 >
-                    <motion.div
-                        layout
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-10 items-stretch"
-                    >
-                        <AnimatePresence mode="wait">
-                            {filteredCourses.map((course, index) => (
-                                <motion.div
-                                    key={course.slug + index}
-                                    layout
-                                    variants={itemVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit={{
-                                        opacity: 0,
-                                        y: 20,
-                                        scale: 0.9,
-                                        transition: { duration: 0.25 },
+                    <AnimatePresence mode="wait">
+                        {filteredCourses.map((course, index) => (
+                            <motion.div
+                                key={course.slug + index}
+                                layout
+                                variants={itemVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit={{
+                                    opacity: 0,
+                                    y: 20,
+                                    scale: 0.9,
+                                    transition: { duration: 0.25 },
+                                }}
+                                whileHover={{ y: -6 }}
+                                className="h-full flex"
+                            >
+                                <Card
+                                    course={course}
+                                    className="2xl:w-full"
+                                    onEnroll={(course) => {
+                                        setSelectedCourse(course);
+                                        setOpen(true);
                                     }}
-                                    whileHover={{ y: -6 }}
-                                    className="h-full flex"
-                                >
-                                    <Card
-                                        course={course}
-                                        className="2xl:w-full"
-                                        onEnroll={(course) => {
-                                            setSelectedCourse(course);
-                                            setOpen(true);
-                                        }}
-                                    />
-                                </motion.div>
-                            ))}
-                        </AnimatePresence>
-                    </motion.div>
+                                />
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
                 </motion.div>
-                <EnrollModal
-                    isOpen={open}
-                    onClose={() => setOpen(false)}
-                    selectedCourse={selectedCourse}
-                />
-            </section>
-        </>
-    );
-};
+            </motion.div>
+            <EnrollModal
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                selectedCourse={selectedCourse}
+            />
+        </section>
+    )
+}
 
-export default CoursePage;
+export default CouresClient

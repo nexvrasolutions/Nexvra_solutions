@@ -36,10 +36,17 @@ const onsite = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Nexvra Solutions",
+export const metadata = {
+  title: {
+    default: "Nexvra Solutions",
+    template: "%s | Nexvra Solutions",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
   description:
-    "Nexvra Solutions is a leading institute and IT solutions provider offering professional training programs and innovative software development services.",
+    "Nexvra Solutions builds scalable web apps, mobile apps, and provides IT services and professional training.",
+  metadataBase: new URL("https://www.nexvrasolutions.com"),
 };
 
 export default function RootLayout({
@@ -50,9 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn(onsite.variable, inter.variable, "font-sans", geist.variable)}>
       <head>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
             (function() {
               try {
                 if (sessionStorage.getItem('nexvra_loaded')) return;
@@ -64,8 +71,8 @@ export default function RootLayout({
               } catch(e) {}
             })();
           `,
-        }}
-      />
+          }}
+        />
       </head>
       <body className="font-secondary antialiased">
         <LazyLoader />

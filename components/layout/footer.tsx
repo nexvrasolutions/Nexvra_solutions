@@ -20,7 +20,7 @@ const Footer = () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context((self) => {
-      const q : any = self.selector;
+      const q: any = self.selector;
 
       const mm = gsap.matchMedia();
 
@@ -175,6 +175,11 @@ const Footer = () => {
       ref={sectionRef}
       className="px-5 md:px-10 xl:px-[5.5%] min-h-screen bg-black relative overflow-hidden pt-[10%]"
     >
+      <h2 className="sr-only">Nexvra Solutions Footer</h2>
+      <p className="sr-only">
+        Nexvra Solutions is an IT company in Kanyakumari offering web development,
+        mobile app development, digital marketing, and professional training courses.
+      </p>
       {/* Grid lines */}
       <div className="bg-grid h-full w-px left-[3%] xl:left-[5%] absolute" />
       <div className="bg-grid h-full w-px hidden lg:block lg:left-[50.5%] xl:left-[46%] top-0 absolute" />
@@ -187,7 +192,7 @@ const Footer = () => {
               <div className="relative w-full h-full">
                 <Image
                   src="/images/rocket.png"
-                  alt="about-image"
+                  alt="Nexvra Solutions rocket illustration representing innovation"
                   width={500}
                   height={400}
                   className="object-contain w-full h-full mx-auto"
@@ -239,27 +244,29 @@ const Footer = () => {
             <div className="w-full flex flex-col md:flex-row justify-between gap-3">
               <div className="w-full lg:w-[40%] xl:w-[50%] flex flex-col gap-3">
                 <h4 className="text-white text-xl xl:text-[24px] ">Address</h4>
-                <p className="text-white/80 text-xl">
-                  Marthandam <br /> Kanyakumari, India
-                </p>
+                <address className="not-italic text-white/80 text-xl">
+                  Marthandam <br />
+                  Kanyakumari
+                </address>
               </div>
 
               <div className="w-full lg:w-[60%] xl:w-[50%] flex flex-col gap-3">
                 <h4 className="text-white text-xl xl:text-[24px] font-secondary">Contact</h4>
                 <div className="flex flex-col gap-1">
-                  <p className="text-white/80 text-xl">
+                  <a href="tel:+919385708357" className="text-white/80 text-xl">
                     +91 93857 08357
-                  </p>
-                  <p className="text-white/80 text-xl">
+                  </a>
+
+                  <a href="mailto:contactnexvra@gmail.com" className="text-white/80 text-xl">
                     contactnexvra@gmail.com
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>
 
             <div className="flex font-primary footer-links">
               <a href="https://www.instagram.com/nexvra.solutions" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Instagram</a>
-              <a href="https://www.linkedin.com/company/nexvra-solutions/" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:ext-xl flex-1 cursor-pointer">Linkedin</a>
+              <a href="https://www.linkedin.com/company/nexvra-solutions/" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Linkedin</a>
               <a className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Whatsapp</a>
             </div>
           </div>
