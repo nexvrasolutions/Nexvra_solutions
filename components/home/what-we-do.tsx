@@ -121,7 +121,7 @@ export default function WhatWeDo() {
           {services.map((service) => (
             <a
               key={service.id}
-              href="/projects"
+              href="/solutions"
               onMouseEnter={(e) => handleMouseEnter(e, service.id)}
               onMouseLeave={handleMouseLeave}
               className={cn(

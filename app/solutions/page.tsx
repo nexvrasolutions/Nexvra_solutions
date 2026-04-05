@@ -4,6 +4,7 @@ import WhyChooseNexvra from '@/components/about/why-choose'
 import ContentSection from '@/components/common/content-section'
 import SolutionContent from '@/components/solution/content'
 import ProcessSection from '@/components/solution/process-section'
+import LenisProvider from '../providers/lenis-provider'
 
 export const metadata: Metadata = {
   title: "Our Solutions | Nexvra Solutions",
@@ -20,16 +21,16 @@ export default function Page() {
         Nexvra Solutions provides web development, mobile app development,
         UI/UX design, and digital solutions to help businesses grow and scale efficiently.
       </p>
-
       <ContentSection
         title="Solutions"
         showGif={false}
         description="We deliver modern digital solutions that combine creativity, technology, and strategy to help businesses grow, scale, and succeed in the digital world. From design to development, we turn ideas into impactful digital experiences."
         image="/images/about-bg.jpg"
       />
-
-      <SolutionContent />
-      <ProcessSection />
+      <LenisProvider>
+        <SolutionContent />
+        <ProcessSection />
+      </LenisProvider>
       <WhyChooseNexvra />
     </>
   )

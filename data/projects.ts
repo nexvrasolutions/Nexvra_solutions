@@ -16,18 +16,22 @@ export const projects: Record<string, any> = {
       cards: [
         {
           title: "User-Centered Design",
+          img:"/images/project-detail/card/card-1.png",
           desc: "Designed an intuitive shopping experience for effortless browsing.",
         },
         {
           title: "Performance Optimized",
+          img:"/images/project-detail/card/card-2.png",
           desc: "Fast loading speeds for better engagement and SEO.",
         },
         {
           title: "Mobile Responsive",
+          img:"/images/project-detail/card/card-3.png",
           desc: "Seamless experience across all devices.",
         },
         {
           title: "Conversion Focused",
+          img:"/images/project-detail/card/card-4.png",
           desc: "Strategic layout to increase sales and user actions.",
         },
       ],
@@ -47,6 +51,7 @@ export const projects: Record<string, any> = {
           "/images/project-detail/magic-aisles/3.webp",
           "/images/project-detail/magic-aisles/4.webp",
         ],
+        img:"/images/project-detail/card/card-1.png",
         desc:
           "Explore the interface, product pages, and user journey crafted for a smooth shopping experience.",
       },
@@ -69,18 +74,22 @@ export const projects: Record<string, any> = {
       cards: [
         {
           title: "Premium UI Design",
+          img:"/images/project-detail/card/card-1.png",
           desc: "Clean and elegant interface for a luxury feel.",
         },
         {
           title: "Product Showcase",
+          img:"/images/project-detail/card/card-2.png",
           desc: "Visually rich layouts to highlight products.",
         },
         {
           title: "User Experience",
+          img:"/images/project-detail/card/card-3.png",
           desc: "Smooth navigation for effortless shopping.",
         },
         {
           title: "Scalable System",
+          img:"/images/project-detail/card/card-4.png",
           desc: "Built to handle growth and traffic.",
         },
       ],
@@ -100,6 +109,7 @@ export const projects: Record<string, any> = {
           "/images/project-detail/exclusive/3.webp",
           "/images/project-detail/exclusive/4.webp",
         ],
+        img:"/images/project-detail/card/card-1.png",
         desc:
           "A glimpse into premium layouts, product pages, and seamless UI flow.",
       },
@@ -122,18 +132,22 @@ export const projects: Record<string, any> = {
       cards: [
         {
           title: "Clean UI Design",
+          img:"/images/project-detail/card/card-1.png",
           desc: "Simple and easy-to-navigate interface.",
         },
         {
           title: "Product Clarity",
+          img:"/images/project-detail/card/card-2.png",
           desc: "Focused layouts for better understanding.",
         },
         {
           title: "Responsive Design",
+          img:"/images/project-detail/card/card-3.png",
           desc: "Works perfectly on all devices.",
         },
         {
           title: "Modern Experience",
+          img:"/images/project-detail/card/card-4.png",
           desc: "Updated look for today’s users.",
         },
       ],
@@ -153,6 +167,7 @@ export const projects: Record<string, any> = {
           "/images/project-detail/riya-mobiles/3.webp",
           "/images/project-detail/riya-mobiles/4.webp",
         ],
+        img:"/images/project-detail/card/card-1.png",
         desc: "Screens showcasing product pages and UI clarity.",
       },
     },
@@ -174,18 +189,22 @@ export const projects: Record<string, any> = {
       cards: [
         {
           title: "Intuitive UX",
+          img:"/images/project-detail/card/card-1.png",
           desc: "Easy-to-use interface for all users.",
         },
         {
           title: "Smooth Performance",
+          img:"/images/project-detail/card/card-2.png",
           desc: "Optimized for speed and stability.",
         },
         {
           title: "User Engagement",
+          img:"/images/project-detail/card/card-3.png",
           desc: "Features designed to keep users active.",
         },
         {
           title: "Scalable App",
+          img:"/images/project-detail/card/card-4.png",
           desc: "Built for future growth.",
         },
       ],
@@ -205,6 +224,7 @@ export const projects: Record<string, any> = {
           "/images/project-detail/choir/3.webp",
           "/images/project-detail/choir/4.webp",
         ],
+        img:"/images/project-detail/card/card-1.png",
         desc: "App screens highlighting user flow and experience.",
       },
     },
@@ -226,18 +246,22 @@ export const projects: Record<string, any> = {
       cards: [
         {
           title: "Social Media Growth",
+          img:"/images/project-detail/card/card-1.png",
           desc: "Increased reach and engagement.",
         },
         {
           title: "Targeted Campaigns",
+          img:"/images/project-detail/card/card-2.png",
           desc: "Focused marketing for better ROI.",
         },
         {
           title: "Brand Awareness",
+          img:"/images/project-detail/card/card-3.png",
           desc: "Strong digital presence.",
         },
         {
           title: "Performance Tracking",
+          img:"/images/project-detail/card/card-4.png",
           desc: "Data-driven decision making.",
         },
       ],

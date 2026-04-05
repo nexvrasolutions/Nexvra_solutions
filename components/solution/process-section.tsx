@@ -13,31 +13,41 @@ const steps = [
   {
     number: "01",
     title: "Discover",
-    description: "We understand your business, goals, and requirements to define the right approach.",
+    image: "/images/solution/Discovery.png",
+    description:
+      "We understand your business, goals, and requirements to define the right approach.",
     align: "right" as const,
   },
   {
     number: "02",
     title: "Strategy",
-    description: "We plan the structure, features, and user experience to ensure clarity and direction.",
+    image: "/images/solution/Strategy.png",
+    description:
+      "We plan the structure, features, and user experience to ensure clarity and direction.",
     align: "left" as const,
   },
   {
     number: "03",
     title: "Design",
-    description: "We create clean and intuitive designs focused on user experience and usability.",
+    image: "/images/solution/Design.png",
+    description:
+      "We create clean and intuitive designs focused on user experience and usability.",
     align: "right" as const,
   },
   {
     number: "04",
     title: "Development",
-    description: "We build fast, scalable, and high-performance solutions using modern technologies.",
+    image: "/images/solution/Development.png",
+    description:
+      "We build fast, scalable, and high-performance solutions using modern technologies.",
     align: "left" as const,
   },
   {
     number: "05",
     title: "Launch & Support",
-    description: "We launch your product and provide support to ensure smooth performance and growth.",
+    image: "/images/solution/Launch & Support.png",
+    description:
+      "We launch your product and provide support to ensure smooth performance and growth.",
     align: "right" as const,
   },
 ];
@@ -54,7 +64,6 @@ export default function ProcessSection() {
   const descsRef = useRef<(HTMLParagraphElement | null)[]>([]);
   const iconsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Apply active styles to a step
   const applyStepState = (i: number, isActive: boolean) => {
     const badge = badgesRef.current[i];
     const title = titlesRef.current[i];
@@ -100,7 +109,6 @@ export default function ProcessSection() {
 
       const trackEl = innerTrackRef.current;
       const panelEl = stickyPanelRef.current;
-
       if (!trackEl || !panelEl) return;
 
       const setLayout = () => {
@@ -122,29 +130,19 @@ export default function ProcessSection() {
         pinSpacing: false,
         scrub: 1,
         invalidateOnRefresh: true,
-
         onUpdate: (self) => {
           const p = self.progress;
-
-          // move track
           gsap.set(trackEl, { y: -p * overflow });
-
-          // grow line
           gsap.set(greenLineRef.current, {
-            scaleY: (1 / steps.length) + p * (1 - 1 / steps.length),
+            scaleY: 1 / steps.length + p * (1 - 1 / steps.length),
           });
-
           const index = Math.min(
             steps.length - 1,
             Math.floor(p * steps.length)
           );
-
           if (index !== lastIndex) {
             lastIndex = index;
-
-            steps.forEach((_, i) => {
-              applyStepState(i, i <= index);
-            });
+            steps.forEach((_, i) => applyStepState(i, i <= index));
           }
         },
       });
@@ -155,7 +153,6 @@ export default function ProcessSection() {
         overflow = setLayout();
         ScrollTrigger.refresh();
       };
-
       window.addEventListener("resize", handleResize);
 
       return () => {
@@ -170,12 +167,8 @@ export default function ProcessSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkScreen = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
+    const checkScreen = () => setIsMobile(window.innerWidth < 600);
     checkScreen();
-
     window.addEventListener("resize", checkScreen);
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
@@ -198,10 +191,7 @@ export default function ProcessSection() {
   };
 
   const itemVariants: any = {
-    hidden: {
-      y: 60,
-      opacity: 0,
-    },
+    hidden: { y: 60, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
@@ -226,12 +216,10 @@ export default function ProcessSection() {
       >
         <div className="grid-line absolute hidden lg:flex left-[65%] top-0 h-full w-px bg-[#E6E6E6]" />
 
-        {/* Badge */}
         <motion.div variants={itemVariants}>
           <Badge text="Our Process" className="text-tertiary mb-2" />
         </motion.div>
 
-        {/* Heading */}
         <div className="max-w-5xl overflow-hidden">
           <motion.h1
             variants={itemVariants}
@@ -240,7 +228,6 @@ export default function ProcessSection() {
             <span className="text-[#BFBFBF] font-bold">
               Our process blends{" "}
             </span>
-
             <span className="inline-block align-middle">
               <RotatingText
                 texts={["Creativity", "Technology", "Strategy"]}
@@ -255,7 +242,6 @@ export default function ProcessSection() {
                 rotationInterval={2000}
               />
             </span>
-
             <span className="font-bold text-black">
               {" "}to deliver impactful, future-ready solutions.{" "}
             </span>
@@ -264,26 +250,21 @@ export default function ProcessSection() {
       </motion.div>
 
       <div ref={scrollSpacerRef} style={{ height: spacerHeight }}>
-        <div
-          ref={stickyPanelRef}
-          className="relative max-w-2xl mx-auto"
-        >
-
+        <div ref={stickyPanelRef} className="relative max-w-2xl mx-auto">
           <div ref={innerTrackRef} className="relative">
-            {/* Gray base line */}
             <div
               className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
-                background: "linear-gradient(180deg, #FFFFFF 0%, #F3F3F3 100%)",
+                background:
+                  "linear-gradient(180deg, #FFFFFF 0%, #F3F3F3 100%)",
               }}
             />
-
-            {/* Green fill line — starts at scaleY=0, grows per step */}
             <div
               ref={greenLineRef}
               className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1.5 origin-top"
               style={{
-                background: "linear-gradient(180deg, #F3F3F3 10%, #A4FF00 100%)",
+                background:
+                  "linear-gradient(180deg, #F3F3F3 10%, #A4FF00 100%)",
               }}
             />
 
@@ -291,20 +272,24 @@ export default function ProcessSection() {
               {steps.map((step, i) => (
                 <div
                   key={i}
-                  className={`step-row relative flex items-center ${step.align === "right" ? "flex-row-reverse md:flex-row" : "flex-row-reverse"
-                    }`}
+                  className={`step-row relative flex items-center ${
+                    step.align === "right"
+                      ? "flex-row-reverse md:flex-row"
+                      : "flex-row-reverse"
+                  }`}
                 >
                   <div
                     ref={(el) => {
                       iconsRef.current[i] = el;
                     }}
-                    className={`hidden step-icon w-1/2 md:flex ${step.align === "right"
-                      ? "justify-end pr-12"
-                      : "justify-start pl-12"
-                      }`}
+                    className={`hidden step-icon w-1/2 md:flex ${
+                      step.align === "right"
+                        ? "justify-end pr-12"
+                        : "justify-start pl-12"
+                    }`}
                   >
                     <img
-                      src="/images/green-eye.png"
+                      src={step.image || "/images/green-eye.png"}
                       alt={step.title}
                       className="object-contain transition-all duration-500 lg:size-[200px]"
                       style={{ filter: "grayscale(1)", opacity: 0.3 }}
@@ -312,11 +297,13 @@ export default function ProcessSection() {
                   </div>
 
                   <div
-                    className={`step-text flex flex-col gap-5 md:w-1/2 ${i === 0 ? "pt-5 " : ""
-                      }${step.align === "right"
+                    className={`step-text flex flex-col gap-5 md:w-1/2 ${
+                      i === 0 ? "pt-5 " : ""
+                    }${
+                      step.align === "right"
                         ? "pl-6 text-left"
                         : "pl-6 md:pr-12 text-left md:text-right items-start md:items-end"
-                      }`}
+                    }`}
                   >
                     <div
                       ref={(el) => {

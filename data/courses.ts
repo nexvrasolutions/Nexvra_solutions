@@ -7,7 +7,7 @@ export type CourseType = {
     description: string;
     overview: string;
     learn: string[];
-    why: { title: string; desc: string }[];
+    why: { title: string; img:string; desc: string }[];
     ctaText: string;
   };
 
@@ -31,10 +31,10 @@ export type CourseType = {
         "Product Case Study",
       ],
       why: [
-        { title: "Product-Focused Learning", desc: "Work on real product ideas." },
-        { title: "Hands-On Projects", desc: "Practical design experience." },
-        { title: "Mentor Support", desc: "Learn with guidance." },
-        { title: "Portfolio Ready", desc: "Build strong case studies." },
+        { title: "Product-Focused Learning", img:"/images/course-detail/card-1.png", desc: "Work on real product ideas." },
+        { title: "Hands-On Projects", img:"/images/course-detail/card-2.png", desc: "Practical design experience." },
+        { title: "Mentor Support", img:"/images/course-detail/card-3.png",desc: "Learn with guidance." },
+        { title: "Portfolio Ready", img:"/images/course-detail/card-4.png", desc: "Build strong case studies." },
       ],
       ctaText: "Start your product design journey.",
     },
@@ -58,10 +58,10 @@ export type CourseType = {
         "UX Case Study",
       ],
       why: [
-        { title: "Real Case Studies", desc: "Work on real UX problems." },
-        { title: "Structured Learning", desc: "Step-by-step approach." },
-        { title: "Practical Exercises", desc: "Hands-on tasks." },
-        { title: "Portfolio Support", desc: "Build UX projects." },
+        { title: "Real Case Studies", img:"/images/course-detail/card-1.png", desc: "Work on real UX problems." },
+        { title: "Structured Learning", img:"/images/course-detail/card-2.png", desc: "Step-by-step approach." },
+        { title: "Practical Exercises", img:"/images/course-detail/card-3.png", desc: "Hands-on tasks." },
+        { title: "Portfolio Support", img:"/images/course-detail/card-4.png", desc: "Build UX projects." },
       ],
       ctaText: "Design better user experiences.",
     },
@@ -85,10 +85,10 @@ export type CourseType = {
         "UI Portfolio",
       ],
       why: [
-        { title: "Visual Design Skills", desc: "Learn modern UI styles." },
-        { title: "Real Projects", desc: "Design real interfaces." },
-        { title: "Tool Mastery", desc: "Use industry tools." },
-        { title: "Portfolio Ready", desc: "Create UI projects." },
+        { title: "Visual Design Skills", img:"/images/course-detail/card-1.png", desc: "Learn modern UI styles." },
+        { title: "Real Projects", img:"/images/course-detail/card-2.png", desc: "Design real interfaces." },
+        { title: "Tool Mastery", img:"/images/course-detail/card-3.png", desc: "Use industry tools." },
+        { title: "Portfolio Ready", img:"/images/course-detail/card-4.png", desc: "Create UI projects." },
       ],
       ctaText: "Create stunning interfaces.",
     },
@@ -112,10 +112,10 @@ export type CourseType = {
         "Lead Generation",
       ],
       why: [
-        { title: "Live Campaigns", desc: "Work on real ads." },
-        { title: "Strategy Learning", desc: "Focus on results." },
-        { title: "Tools & Analytics", desc: "Learn industry tools." },
-        { title: "Career Support", desc: "Job & freelance help." },
+        { title: "Live Campaigns", img:"/images/course-detail/card-1.png", desc: "Work on real ads." },
+        { title: "Strategy Learning", img:"/images/course-detail/card-2.png", desc: "Focus on results." },
+        { title: "Tools & Analytics", img:"/images/course-detail/card-3.png", desc: "Learn industry tools." },
+        { title: "Career Support", img:"/images/course-detail/card-4.png", desc: "Job & freelance help." },
       ],
       ctaText: "Start growing brands today.",
     },
@@ -139,10 +139,10 @@ export type CourseType = {
         "Portfolio",
       ],
       why: [
-        { title: "Creative Thinking", desc: "Improve design mindset." },
-        { title: "Hands-On Work", desc: "Real design tasks." },
-        { title: "Tool Skills", desc: "Learn design tools." },
-        { title: "Portfolio Ready", desc: "Build strong work." },
+        { title: "Creative Thinking", img:"/images/course-detail/card-1.png", desc: "Improve design mindset." },
+        { title: "Hands-On Work", img:"/images/course-detail/card-2.png", desc: "Real design tasks." },
+        { title: "Tool Skills", img:"/images/course-detail/card-3.png", desc: "Learn design tools." },
+        { title: "Portfolio Ready", img:"/images/course-detail/card-4.png", desc: "Build strong work." },
       ],
       ctaText: "Start your creative journey.",
     },
@@ -166,10 +166,10 @@ export type CourseType = {
         "Deployment",
       ],
       why: [
-        { title: "Real Coding", desc: "Build live websites." },
-        { title: "Modern Tools", desc: "Latest tech." },
-        { title: "Projects", desc: "Hands-on learning." },
-        { title: "Career Support", desc: "Job guidance." },
+        { title: "Real Coding", img:"/images/course-detail/card-1.png", desc: "Build live websites." },
+        { title: "Modern Tools", img:"/images/course-detail/card-2.png", desc: "Latest tech." },
+        { title: "Projects", img:"/images/course-detail/card-3.png", desc: "Hands-on learning." },
+        { title: "Career Support", img:"/images/course-detail/card-4.png", desc: "Job guidance." },
       ],
       ctaText: "Start building websites.",
     },
@@ -193,10 +193,10 @@ export type CourseType = {
         "Deployment",
       ],
       why: [
-        { title: "Core Logic", desc: "Learn backend basics." },
-        { title: "Real Projects", desc: "Build APIs." },
-        { title: "Database Skills", desc: "Work with data." },
-        { title: "Best Practices", desc: "Industry methods." },
+        { title: "Core Logic", img:"/images/course-detail/card-1.png", desc: "Learn backend basics." },
+        { title: "Real Projects", img:"/images/course-detail/card-2.png", desc: "Build APIs." },
+        { title: "Database Skills", img:"/images/course-detail/card-3.png", desc: "Work with data." },
+        { title: "Best Practices", img:"/images/course-detail/card-4.png", desc: "Industry methods." },
       ],
       ctaText: "Build powerful systems.",
     },
@@ -220,10 +220,10 @@ export type CourseType = {
         "Deployment",
       ],
       why: [
-        { title: "Cross-Platform", desc: "Build for both platforms." },
-        { title: "Real Apps", desc: "Practical projects." },
-        { title: "Modern Tools", desc: "Latest frameworks." },
-        { title: "Career Support", desc: "Job guidance." },
+        { title: "Cross-Platform", img:"/images/course-detail/card-1.png", desc: "Build for both platforms." },
+        { title: "Real Apps", img:"/images/course-detail/card-2.png", desc: "Practical projects." },
+        { title: "Modern Tools", img:"/images/course-detail/card-3.png", desc: "Latest frameworks." },
+        { title: "Career Support", img:"/images/course-detail/card-4.png", desc: "Job guidance." },
       ],
       ctaText: "Start building apps today.",
     },
