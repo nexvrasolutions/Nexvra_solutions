@@ -248,10 +248,17 @@ const Footer = () => {
             <div className="w-full flex flex-col md:flex-row justify-between gap-3">
               <div className="w-full lg:w-[40%] xl:w-[50%] flex flex-col gap-3">
                 <h4 className="text-white text-xl xl:text-[24px] ">Address</h4>
-                <address className="not-italic text-white/80 text-xl">
-                  Marthandam <br />
+                <a
+                  href="https://maps.app.goo.gl/tMWXWiof5fmyHhqh6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-block text-white/80 text-lg hover:text-white transition
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00]  hover:after:w-[50%]
+                  after:transition-all after:duration-300"
+                >
+                  Marthandam,  <br />
                   Kanyakumari
-                </address>
+                </a>
               </div>
 
               <div className="w-full lg:w-[60%] xl:w-[50%] flex flex-col gap-3">
@@ -268,10 +275,35 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex font-primary footer-links">
-              <a href="https://www.instagram.com/nexvra.solutions" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Instagram</a>
-              <a href="https://www.linkedin.com/company/nexvra-solutions/" target="_blank" className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Linkedin</a>
-              <a className="text-white/80 hover:text-white  text-[16px] md:text-xl flex-1 cursor-pointer">Whatsapp</a>
+            <div className="flex gap-6 justify-between font-primary footer-links">
+              <a
+                href="https://www.instagram.com/nexvra.solutions"
+                target="_blank"
+                className="relative inline-block text-white/80 hover:text-[] text-[16px] md:text-xl cursor-pointer 
+    after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00] 
+    after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Instagram
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/nexvra-solutions/"
+                target="_blank"
+                className="relative inline-block text-white/80 hover:text-white text-[16px] md:text-xl cursor-pointer 
+    after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00] 
+    after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Linkedin
+              </a>
+
+              <a
+                href="https://wa.me/message/ZWX4OKLWARYXC1"
+                className="relative inline-block text-white/80 hover:text-white text-[16px] md:text-xl cursor-pointer 
+    after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00] 
+    after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Whatsapp
+              </a>
             </div>
           </div>
 
@@ -315,8 +347,21 @@ const Footer = () => {
           <p className="text-center lg:text-left">© 2026 Nexvra Solutions. All rights reserved.</p>
 
           <div className="flex gap-5 md:gap-20">
-            <a className="hover:text-white transition cursor-pointer text-[16px] md:text-lg cursor-pointer">Privacy Policy</a>
-            <a className="hover:text-white transition cursor-pointer text-[16px] md:text-lg cursor-pointer">Terms and Conditions</a>
+            <a
+              className="relative inline-block text-white/80 hover:text-white transition text-[16px] md:text-lg cursor-pointer
+  after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00]
+  after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              className="relative inline-block text-white/80 hover:text-white transition text-[16px] md:text-lg cursor-pointer
+  after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00]
+  after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Terms and Conditions
+            </a>
           </div>
         </div>
       </footer>

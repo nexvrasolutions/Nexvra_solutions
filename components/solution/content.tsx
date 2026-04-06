@@ -130,9 +130,9 @@ export default function SolutionContent() {
     <section
       ref={sectionRef}
       data-theme="light"
-      className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-[10%]"
+      className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-[10%] xl:py-[5%]"
     >
-      <div className="relative h-screen lg:h-[70vh]">
+      <div className="relative h-screen ">
         {solutions.map((item, index) => (
           <div
             key={index}
@@ -147,7 +147,7 @@ export default function SolutionContent() {
             className="absolute top-0 left-0 w-full bg-white"
           >
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-3 md:mb-5 lg:mb-10 my-3 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
-              <div className="flex flex-col gap-1 md:gap-4 max-w-2xl xl:max-w-4xl">
+              <div className="flex flex-col gap-1 md:gap-4 max-w-2xl xl:max-w-3xl">
                 <h2 className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight">
                   {item.title}
                 </h2>

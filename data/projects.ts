@@ -118,7 +118,7 @@ export const projects: Record<string, any> = {
     "riya-mobiles": {
       title: "Riya Mobiles",
       image:"/images/project-detail/riya-mobiles/banner.webp",
-      challengeImg:"/images/project-detail/riya-mobiles/riya-mobiles.webp",
+      challengeImg:"/images/project-detail/riya-mobiles/riya_mobiles.webp",
       description:
         "A modern website designed to showcase mobile products with clarity, simplicity, and user-friendly navigation.",
       highlight:

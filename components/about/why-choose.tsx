@@ -85,15 +85,15 @@ export default function WhyChooseNexvra() {
   };
 
   return (
-    <section data-theme="light" className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[5%]">
+    <section data-theme="light" className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-[10%] md:pt-[5%]">
 
-      {/* 🔥 Sticky Wrapper (Heading + Content together) */}
+      {/* Sticky Wrapper (Heading + Content together) */}
       <div
         ref={containerRef}
         className="relative"
         style={{ height: `${sections.length * 100}vh` }}
       >
-        <div className="sticky top-5 md:top-10">
+        <div className="sticky top-5 md:top-5">
 
           {/* Heading (NOW STAYS FIXED) */}
           <motion.div
@@ -101,15 +101,15 @@ export default function WhyChooseNexvra() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center flex flex-col items-center justify-center mb-5 md:mb-10 overflow-hidden"
+            className="text-center flex flex-col items-center justify-center mb-5 md:mb-0 2xl:mb-10 overflow-hidden"
           >
             <motion.div variants={itemVariants}>
-              <Badge text="Why Nexvra" className="text-tertiary" />
+              <Badge text="Why Nexvra" className="text-tertiary mb-3 md:mb-3" />
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight xl:leading-20"
+              className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight"
             >
               <span className="text-teritary">
                 What Makes Us

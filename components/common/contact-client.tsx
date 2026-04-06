@@ -160,10 +160,10 @@ const ContactClient = () => {
                             {/* Address */}
                             <motion.div variants={itemVariants} className="flex items-start gap-4 py-5 border-b border-gray-100">
                                 <MapPin className="text-tertiary mt-0.5 shrink-0" size={20} />
-                                <address className="not-italic">
+                                <a href="https://maps.app.goo.gl/tMWXWiof5fmyHhqh6" className="not-italic">
                                     Marthandam<br />
                                     Kanyakumari District, Tamil Nadu – 629165
-                                </address>
+                                </a>
                             </motion.div>
 
                             {/* Phone */}
