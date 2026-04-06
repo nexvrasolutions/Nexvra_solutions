@@ -155,7 +155,7 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full max-w-[600px] max-h-[95vh] over bg-white rounded-xl p-6 md:p-10 relative"
+                        className="w-full max-w-[600px] max-h-[95vh] overflow-y-scroll bg-white rounded-xl p-6 md:p-10 relative"
                     >
 
                         {/* CLOSE BUTTON */}
