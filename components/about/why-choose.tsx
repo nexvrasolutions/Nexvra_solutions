@@ -85,7 +85,7 @@ export default function WhyChooseNexvra() {
   };
 
   return (
-    <section className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[5%]">
+    <section data-theme="light" className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-10 md:pt-[5%]">
 
       {/* 🔥 Sticky Wrapper (Heading + Content together) */}
       <div

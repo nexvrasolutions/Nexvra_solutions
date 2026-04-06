@@ -95,7 +95,7 @@ export default function WhatWeDo() {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <section className="flex flex-col items-center px-5 py-[10%] md:px-10 xl:px-[5.5%] gap-5">
+      <section  data-theme="light" className="flex flex-col items-center px-5 py-[10%] md:px-10 xl:px-[5.5%] gap-5">
 
         {/* Header */}
         <div style={{ overflow: "hidden" }}>

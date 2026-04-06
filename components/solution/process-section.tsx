@@ -205,6 +205,7 @@ export default function ProcessSection() {
   return (
     <section
       ref={sectionRef}
+      data-theme="light"
       className="w-full text-black px-5 md:px-10 xl:px-[5.5%] py-[5%] pt-0"
     >
       <motion.div

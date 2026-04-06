@@ -172,6 +172,7 @@ const Footer = () => {
 
   return (
     <section
+      data-theme="dark"
       ref={sectionRef}
       className="px-5 md:px-10 xl:px-[5.5%] min-h-screen bg-black relative overflow-hidden pt-[10%]"
     >

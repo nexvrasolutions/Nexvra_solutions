@@ -31,7 +31,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
     margin: "-100px",
   });
 
-  // ✅ Clean animation pattern
+  // Clean animation pattern
   const baseAnimate = inView ? "visible" : "hidden";
 
   const smoothVariants: Variants = {
@@ -62,7 +62,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
     },
   };
 
-  // ✅ Memoized text formatter
+  // Memoized text formatter
   const formatText = useMemo(
     () => (text: string) =>
       text.split(/(\*\*.*?\*\*|--.*?--)/g).map((part, i) => {

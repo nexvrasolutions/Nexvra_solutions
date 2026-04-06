@@ -35,14 +35,16 @@ export default function Navbar() {
     <nav className="flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-[5.5%] bg-transparent z-50 relative">
 
       {/* Logo */}
-      <Image
-        src="/logo.png"
-        alt="nexvra-logo"
-        width={160}
-        height={40}
-        className="object-contain sm:w-[180px] lg:w-[200px]"
-        priority
-      />
+      <a href="/">
+        <Image
+          src="/logo.png"
+          alt="nexvra-logo"
+          width={160}
+          height={40}
+          className="object-contain sm:w-[180px] lg:w-[200px]"
+          priority
+        />
+      </a>
 
       <StaggeredMenu
         position="right"

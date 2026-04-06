@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 
 const Challenges = ({ project }: { project: any }) => {
   return (
-    <section className="w-full bg-white text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] ">
+    <section data-theme="light" className="w-full bg-white text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] ">
       <div className="space-y-5 xl:space-y-10">
 
         {/* Highlight Text */}

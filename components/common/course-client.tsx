@@ -142,6 +142,7 @@ const CouresClient = () => {
     return (
         <section
             ref={sectionRef}
+            data-theme="light"
             className="bg-[#F3F3F3] flex flex-col gap-12 px-[5.5%] py-[5%]"
         >
 

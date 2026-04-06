@@ -71,7 +71,7 @@ export const ShowCase = ({ project }: { project: any }) => {
   }, [currentIndex, images.length]);
 
   return (
-    <section className="py-10 px-5 md:px-10 xl:px-[5.5%] bg-[#f5f5f5] flex flex-col gap-6 md:gap-10 items-center justify-center overflow-hidden">
+    <section data-theme="light" className="py-10 px-5 md:px-10 xl:px-[5.5%] bg-[#f5f5f5] flex flex-col gap-6 md:gap-10 items-center justify-center overflow-hidden">
       
       {/* Header */}
       <div className="space-y-3 flex flex-col items-center">

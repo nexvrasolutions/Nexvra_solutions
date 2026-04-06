@@ -129,6 +129,7 @@ export default function SolutionContent() {
   return (
     <section
       ref={sectionRef}
+      data-theme="light"
       className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-[10%]"
     >
       <div className="relative h-screen lg:h-[70vh]">

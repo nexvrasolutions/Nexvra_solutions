@@ -1,5 +1,7 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export interface StaggeredMenuItem {
   label: string;
@@ -73,6 +75,32 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
   const busyRef = useRef(false);
 
+  useEffect(() => {
+    const sections = document.querySelectorAll("[data-theme]");
+
+    sections.forEach((section) => {
+      const theme = section.getAttribute("data-theme");
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+
+        onEnter: () => updateColor(theme),
+        onEnterBack: () => updateColor(theme),
+      });
+    });
+
+    function updateColor(theme: string | null) {
+      if (!toggleBtnRef.current) return;
+
+      gsap.to(toggleBtnRef.current, {
+        color: theme === "dark" ? "#fff" : "#000",
+        duration: 0.3,
+      });
+    }
+  }, []);
+
   const itemEntranceTweenRef = useRef<gsap.core.Tween | null>(null);
 
   useLayoutEffect(() => {
@@ -102,7 +130,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
       gsap.set(textInner, { yPercent: 0 });
 
-      if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
+      // if (toggleBtnRef.current) gsap.set(toggleBtnRef.current, { color: menuButtonColor });
     });
     return () => ctx.revert();
   }, [menuButtonColor, position]);
@@ -383,9 +411,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   return (
     <div
       className={`sm-scope z-40 ${isFixed
-          ? `fixed top-0 left-0 w-screen h-screen ${open ? "pointer-events-auto" : "pointer-events-none"
-          }`
-          : "w-full h-full"
+        ? `fixed top-0 left-0 w-screen h-screen ${open ? "pointer-events-auto" : "pointer-events-none"
+        }`
+        : "w-full h-full"
         }`}
     >
       <div
@@ -437,8 +465,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             ref={toggleBtnRef}
             // className="border border-secondary p-2 px-4 flex items-center gap-3 text-secondary"
 
-            className={`sm-toggle mr-0 md:mr-13 relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto ${open ? 'text-black' : 'text-[#e9e9ef]'
-              }`}
+            className="sm-toggle mr-0 md:mr-13 relative inline-flex items-center gap-[0.3rem] bg-transparent border-0 cursor-pointer font-medium leading-none overflow-visible pointer-events-auto"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
@@ -514,29 +541,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 </li>
               )}
             </ul>
-
-            {/* {displaySocials && socialItems && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto pt-8 flex flex-col gap-3" aria-label="Social links">
-                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)]">Socials</h3>
-                <ul
-                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
-                  role="list"
-                >
-                  {socialItems.map((s, i) => (
-                    <li key={s.label + i} className="sm-socials-item">
-                      <a
-                        href={s.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
-                      >
-                        {s.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )} */}
           </div>
         </aside>
       </div>

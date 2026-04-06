@@ -41,6 +41,7 @@ const WhyLearn = ({ course }: { course: any }) => {
   return (
     <section
       ref={sectionRef}
+      data-theme="light"
       className="relative bg-[#F3F3F3] min-h-[70vh] overflow-hidden px-[5.5%] py-[10%]"
     >
       <motion.div

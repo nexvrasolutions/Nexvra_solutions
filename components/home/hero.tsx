@@ -104,7 +104,7 @@ export default function Hero() {
                         <h1
                             className="
                 hero-title text-white font-bold font-primary
-                text-[26px] md:text-[38px] xl:text-[50px] 2xl:text-[60px]
+                text-[26px] md:text-[38px] xl:text-[48px] 2xl:text-[60px]
                 leading-tight md:leading-[1.2] mb-5
               "
                         >

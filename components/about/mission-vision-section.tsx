@@ -53,6 +53,7 @@ export default function MissionVisionSection() {
     return (
         <section
             ref={sectionRef}
+            data-theme="light"
             className="w-full bg-[#f5f5f5] text-black px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%]"
         >
 

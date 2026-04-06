@@ -8,7 +8,7 @@ type Props = {
 
 export default function HeroLayout({ isProjectDetail=false,children }: Props) {
   return (
-    <section className="relative h-full md:min-h-screen bg-black overflow-hidden">
+    <section data-theme="dark" className="relative h-full md:min-h-screen bg-black overflow-hidden">
 
       {/* Grid Lines - hide on mobile */}
       <div className={cn("hidden lg:block absolute left-[3%] xl:left-[5%] top-0 w-px bg-grid", isProjectDetail ? "h-[72%]" : "h-full")} />

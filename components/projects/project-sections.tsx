@@ -96,6 +96,7 @@ export default function ProjectSection() {
 
     return (
         <div
+            data-theme="light"
             ref={sectionRef}
             className="flex flex-col lg:flex-row bg-white px-4 md:px-8 lg:px-[5.5%] py-[10%]"
         >

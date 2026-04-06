@@ -123,6 +123,7 @@ export default function AboutSection() {
 
   return (
     <section
+      data-theme="dark"
       ref={sectionRef}
       className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] py-[10%] md:pt-14 lg:pt-28 pb-5 overflow-hidden"
     >

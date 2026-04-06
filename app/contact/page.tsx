@@ -24,6 +24,7 @@ const page = () => {
                 title="Contact"
                 description="Have an idea, project, or question? Let’s connect and build something meaningful together."
                 image="/images/about-bg.jpg"
+                showGif={false}
             />
             <ContactClient />
         </>

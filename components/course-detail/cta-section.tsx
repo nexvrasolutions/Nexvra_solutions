@@ -10,7 +10,7 @@ export const CTASection = ({ course }: { course: any }) => {
   const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   return (
-    <section className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-10 lg:py-20">
+    <section data-theme="light" className="w-full bg-white px-5 md:px-10 xl:px-[5.5%] py-10 lg:py-20">
 
       <div className="mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-5 lg:gap-10">
 

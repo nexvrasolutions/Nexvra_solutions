@@ -109,6 +109,7 @@ const AboutContent = () => {
   return (
     <section
       ref={sectionRef}
+      data-theme="dark"
       className="relative bg-black text-white px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%] overflow-hidden"
     >
       {/* Grid lines */}

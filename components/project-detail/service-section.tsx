@@ -17,7 +17,7 @@ const ServicesSection = ({ project }: { project: any }) => {
   ];
 
   return (
-    <section className="w-full  px-5 md:px-10 xl:px-[5%] pb-8 md:py-8">
+    <section data-theme="light" className="w-full  px-5 md:px-10 xl:px-[5%] pb-8 md:py-8">
       <div className="w-full">
         {data.map((item, index) => (
           <div

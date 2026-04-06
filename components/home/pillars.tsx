@@ -47,7 +47,8 @@ export default function Pillars() {
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top top",
-                end: "+=1200",
+                end: "+=1000", 
+                // scrub: 0.5, 
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
@@ -79,7 +80,7 @@ export default function Pillars() {
     });
 
   return (
-    <section ref={sectionRef} className="relative bg-gray-50">
+    <section data-theme="light" ref={sectionRef} className="relative bg-gray-50">
       <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%] gap-4">
         {/* badge */}
         <Badge text="Our Core Pillars" className="absolute top-7 left-5 z-5 md:relative text-tertiary" />
@@ -131,13 +132,13 @@ export default function Pillars() {
           {/* Animated Text */}
           <div className="flex-[100%] md:flex-[70%] relative z-30">
             <div className="absolute left-0 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
-              <h1 className="leading-tight xl:leading-[182px] text-[clamp(50px,9vw,170px)] md:text-[clamp(50px,9vw,170px)]">
+              <h1 className="leading-tight 2xl:leading-[182px] text-[clamp(50px,9vw,170px)] md:text-[clamp(50px,9vw,170px)]">
                 {splitText("Creativity,")}
               </h1>
-              <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)] md:text-[clamp(45px,9vw,150px)]">
+              <h1 className="leading-tight 2xl:leading-[182px] text-[clamp(45px,9vw,150px)] md:text-[clamp(45px,9vw,150px)]">
                 {splitText("Technology,")}
               </h1>
-              <h1 className="leading-tight xl:leading-[182px] text-[clamp(45px,9vw,150px)] md:text-[clamp(45px,9vw,150px)]">
+              <h1 className="leading-tight 2xl:leading-[182px] text-[clamp(45px,9vw,150px)] md:text-[clamp(45px,9vw,150px)]">
                 {splitText("Solutions.")}
               </h1>
             </div>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "../ui/badge";
+import { Arrow } from "../ui/arrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,10 +96,8 @@ export default function CaseStudy() {
 
       // ───────── MOBILE / TABLET ─────────
       mm.add("(max-width: 1023px)", () => {
-        // reset any transforms from desktop
         gsap.set(sections, { clearProps: "transform" });
 
-        // simple entrance animation
         gsap.from(sections, {
           opacity: 0,
           y: 60,
@@ -112,7 +111,6 @@ export default function CaseStudy() {
           },
         });
 
-        // ❌ NO image animation here (removed)
       });
 
       return () => mm.revert();
@@ -123,8 +121,9 @@ export default function CaseStudy() {
 
   return (
     <section
+      data-theme="light"
       ref={sectionRef}
-      className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%]"
+      className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-5 md:px-10 xl:px-[5.5%] py-10 2xl:py-[5%]"
     >
       {/* Title */}
       <div className="sticky top-0 left-0 z-10 py-5 bg-[#F3F3F3]">
@@ -137,39 +136,53 @@ export default function CaseStudy() {
       {/* Container */}
       <div
         ref={scrollContainerRef}
-        className="flex items-center gap-8 xl:gap-12 py-5 md:py-7 max-lg:flex-col"
+        className="flex items-center gap-8 xl:gap-12 py-5 md:py-7 xl:py-0 max-lg:flex-col"
       >
-        {projects.map((project) => (
-          <a
-            key={project.id}
-            href={`/project-detail/${project.slug}`}
-            className="group case-card flex flex-col gap-2 md:gap-6 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
-          >
-            {/* Image */}
-            <div className="relative w-full h-[250px] md:h-[320px] xl:h-[500px] overflow-hidden rounded-sm">
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                className="case-img object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+        {projects.map((project) => {
+          return (
+            <a
+              key={project.id}
+              href={`/project-detail/${project.slug}`}
+              className="group case-card flex flex-col gap-2 md:gap-3 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
+            >
+              {/* Image */}
+              <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] xl:h-[450px] 2xl:h-[500px] overflow-hidden rounded-sm group">
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-500" />
-            </div>
+                {/* Wrapper that scales EVERYTHING */}
+                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
 
-            {/* Content */}
-            <div className="flex flex-col gap-1">
-              <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px] group-hover:text-black transition">
-                {project.name}
-              </h4>
+                  {/* Image */}
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="case-img object-cover"
+                  />
 
-              <p className="text-[#404040]/70 font-primary text-[14px] md:text-[16px] xl:text-[20px]">
-                {project.type}
-              </p>
-            </div>
-          </a>
-        ))}
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <Arrow
+                      className="rounded-full size-12 md:size-16 lg:size-20 transform scale-75 group-hover:scale-100 transition-all duration-300"
+                      imgClassName="size-6 md:size-8 lg:size-10"
+                    />
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col gap-1">
+                <h4 className="text-[#404040] font-primary font-bold text-[22px] md:text-[28px] xl:text-[36px] group-hover:text-black transition">
+                  {project.name}
+                </h4>
+
+                <p className="text-[#404040]/70 font-primary text-[14px] md:text-[16px] xl:text-[20px]">
+                  {project.type}
+                </p>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
   );
