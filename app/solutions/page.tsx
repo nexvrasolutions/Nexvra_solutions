@@ -5,6 +5,8 @@ import ContentSection from '@/components/common/content-section'
 import SolutionContent from '@/components/solution/content'
 import ProcessSection from '@/components/solution/process-section'
 import LenisProvider from '../providers/lenis-provider'
+import { Arrow } from '@/components/ui/arrow'
+import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
   title: "Our Solutions | Nexvra Solutions",
@@ -29,8 +31,28 @@ export default function Page() {
       />
       <LenisProvider>
         <SolutionContent />
+
         <ProcessSection />
       </LenisProvider>
+      <section
+        data-theme="dark"
+        className="bg-black w-full px-5 md:px-10 xl:px-[5.5%] py-[5%]  flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 sm:gap-12"
+      >
+        <h2 className="text-white font-secondary font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight max-w-2xl">
+          Ready To Move <br />
+          From{" "}
+          <span className='text-[#A4FF00]'>Ideas To Impact?</span>
+        </h2>
+
+
+
+        <a
+          href="/courses"
+          className='cursor-pointer'
+        >
+         <Button label='Explore Courses' />
+        </a>
+      </section >
       <WhyChooseNexvra />
     </>
   )

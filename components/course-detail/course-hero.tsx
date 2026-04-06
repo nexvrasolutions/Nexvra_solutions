@@ -107,7 +107,7 @@ const CourseHero = ({ course }: { course: any }) => {
             </span>
         ));
     return (
-        <HeroLayout>
+        <HeroLayout isCourseDetail={true}>
             <motion.div
                 ref={heroRef}
                 variants={containerVariants}
@@ -116,12 +116,12 @@ const CourseHero = ({ course }: { course: any }) => {
                 className="relative z-10 w-full px-5 md:px-10 xl:px-[5.5%] flex items-center"
             >
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-15 xl:gap-20 w-full lg:min-h-[90vh] pt-30 lg:pt-45 pb-[10%] lg:pb-0">
+
                     {/* LEFT CONTENT */}
                     <div className="flex flex-col lg:col-span-2 pb-10 lg:pb-50">
                         <motion.div variants={itemVariants}>
                             <Badge text={course.level} className="hero-badge" />
                         </motion.div>
-
                         <motion.h1
                             variants={itemVariants}
                             className="hero-title text-[#FFFFFF] text-[30px] md:text-[33px] lg:text-[38px] xl:text-[48px] leading-[1.1] font-bold font-primary"
@@ -152,7 +152,6 @@ const CourseHero = ({ course }: { course: any }) => {
                         <p className="hero-text text-secondary text-lg md:text-[20px] font-medium font-secondary leading-relaxed mb-10">
                             {course.description}
                         </p>
-
                         <div className="flex gap-6 hero-btn">
                             <Button 
                                 label="Enroll Course"  

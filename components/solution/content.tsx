@@ -146,7 +146,7 @@ export default function SolutionContent() {
             }}
             className="absolute top-0 left-0 w-full bg-white"
           >
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-3 md:mb-5 lg:mb-10 my-3 lg:my-10 px-5 md:px-10 xl:px-[5.5%]">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 md:gap-8 mb-3 md:mb-5 lg:mb-10 my-3 lg:my-10 ">
               <div className="flex flex-col gap-1 md:gap-4 max-w-2xl xl:max-w-3xl">
                 <h2 className="text-[26px] md:text-[35px] xl:text-[40px] font-bold tracking-tight">
                   {item.title}
@@ -161,9 +161,9 @@ export default function SolutionContent() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white">
-              <div className="absolute top-0 h-full lg:h-[50%] w-px bg-[#E6E6E6]" />
+              {/* <div className="absolute top-0 h-full lg:h-[50%] w-px bg-[#E6E6E6]" />
               <div className="absolute top-0 w-full h-px bg-[#E6E6E6]" />
-              <div className="absolute right-0 top-0 h-full w-px bg-[#E6E6E6]" />
+              <div className="absolute right-0 top-0 h-full w-px bg-[#E6E6E6]" /> */}
 
               <div className="relative overflow-hidden">
                 <img

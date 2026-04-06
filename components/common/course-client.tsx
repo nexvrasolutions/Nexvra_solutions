@@ -7,7 +7,7 @@ import { EnrollModal } from "@/components/ui/enroll-modal";
 
 const courses = [
     {
-        title: ["AI-Powered Product", "Design"],
+        title: "AI-Powered Product Design",
         slug: "ai-powered-product-design",
         category: "UI/UX Design",
         duration: "3 Months",
@@ -17,7 +17,7 @@ const courses = [
             "Learn complete product design including UX research, UI design, and AI tools to create modern apps and websites.",
     },
     {
-        title: ["UX", "Design"],
+        title: "UX Design",
         slug: "ux-design",
         category: "UI/UX Design",
         duration: "2 Months",
@@ -27,7 +27,7 @@ const courses = [
             "Understand user behavior, research, and wireframing to create better user experiences.",
     },
     {
-        title: ["UI", "Design"],
+        title: "UI Design",
         slug: "ui-design",
         category: "UI/UX Design",
         duration: "2 Months",
@@ -37,7 +37,7 @@ const courses = [
             "Learn to design visually appealing interfaces using modern tools and design principles.",
     },
     {
-        title: ["Digital Marketing", "Mastery"],
+        title: "Digital Marketing Mastery",
         slug: "digital-marketing-mastery",
         category: "Digital Marketing",
         duration: "2 Months",
@@ -47,7 +47,7 @@ const courses = [
             "Master social media marketing, ads, and content strategies to grow businesses online.",
     },
     {
-        title: ["Branding & Graphic", "Design"],
+        title: "Branding & Graphic Design",
         slug: "branding-graphic-design",
         category: "UI/UX Design",
         duration: "2–3 Months",
@@ -57,7 +57,7 @@ const courses = [
             "Learn logo design, brand identity, and social media creatives to build strong brands.",
     },
     {
-        title: ["Front-End", "Development"],
+        title: "Front-End Development",
         slug: "front-end-development",
         category: "Development",
         duration: "3 Months",
@@ -67,7 +67,7 @@ const courses = [
             "Learn HTML, CSS, and basic JavaScript to build modern and responsive websites.",
     },
     {
-        title: ["Back-End", "Development"],
+        title: "Back-End Development",
         slug: "back-end-development",
         category: "Development",
         duration: "3–4 Months",
@@ -77,7 +77,7 @@ const courses = [
             "Learn server-side development, databases, and APIs to build powerful web applications.",
     },
     {
-        title: ["Mobile App", "Development"],
+        title: "Mobile App Development",
         slug: "mobile-app-development",
         category: "Development",
         duration: "3 Months",

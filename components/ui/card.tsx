@@ -37,28 +37,32 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
             initial="hidden"
             animate="visible"
             whileHover={{ y: -6, scale: 1.02 }}
-            className={cn("bg-white rounded-md p-5 lg:p-3 xl:p-6 transition flex flex-col w-full h-full  justify-between items-start gap-5 xl:gap-5", isCourse ? "h-full md:min-h-[420px]" : "min-h-[300px]", contClassName)}
+            className={cn("bg-white rounded-md p-5 lg:p-3 xl:p-6 transition flex flex-col w-full h-full justify-between items-start gap-5 xl:gap-5", isCourse ? "h-full md:min-h-[420px]" : "min-h-[300px]", contClassName)}
         >
 
             {/* Image */}
-            <motion.div variants={itemVariants}>
+            <motion.div
+                variants={itemVariants}
+                className="w-full h-[90px] flex items-start justify-start"
+            >
                 <img
                     src={course.img || "/images/green-eye.png"}
                     alt={`nexvra-solution-${course.slug || course.title}`}
-                    className="size-25 object-contain"
+                    className="h-full w-auto object-contain"
                 />
             </motion.div>
 
-            <div className={cn("space-y-3", className)}>
+            <div className={cn("flex flex-col justify-end flex-1", className)}>
 
                 {/* Title */}
                 <motion.h3
                     variants={itemVariants}
-                    className={cn(
-                        isCourse
-                            ? "text-xl min-h-[3.5rem] xl:text-2xl font-semibold leading-tight xl:leading-8 font-secondary"
-                            : "font-primary text-xl font-semibold leading-tight xl:leading-10"
-                    )}
+                    className="text-xl xl:text-2xl font-semibold leading-tight min-h-[60px] flex items-start"
+                    // className={cn(
+                    //     isCourse
+                    //         ? "text-xl min-h-[3.5rem] xl:text-2xl font-semibold leading-tight xl:leading-8 font-secondary"
+                    //         : "font-primary text-xl font-semibold leading-tight xl:leading-10"
+                    // )}
                 >
                     {Array.isArray(course.title) ? (
                         course.title.map((line: string, i: number) => (
@@ -74,7 +78,8 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
                 {/* Description */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-sm text-gray-500 leading-6"
+                    className="text-sm text-gray-500 leading-6 mt-2"
+                    // className="text-sm text-gray-500 leading-6"
                 >
                     {course.description}
                 </motion.p>
@@ -103,30 +108,30 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
 
             {/* Buttons */}
             {isCourse && (
-                    <motion.div variants={itemVariants} className="w-full space-y-2">
-                        <div className="w-full">
-                            <Button
-                                label="Enroll Now"
-                                onClick={(e: any) => {
-                                    e.stopPropagation();
-                                    onEnroll?.(course);
-                                }}
-                                className="w-full flex items-center justify-center"
-                            />
-                        </div>
-                        <div className="w-full text-center py-3">
-                            <a
-                                href={
-                                    isCourse
-                                        ? `/course-detail/${course.slug}`
-                                        : ``
-                                }
-                                className="w-full mt-3 text-center text-gray-600 hover:text-black text-sm transition"
-                            >
-                                View Details
-                            </a>
-                        </div>
-                    </motion.div>
+                <motion.div variants={itemVariants} className="w-full space-y-2">
+                    <div className="w-full">
+                        <Button
+                            label="Enroll Now"
+                            onClick={(e: any) => {
+                                e.stopPropagation();
+                                onEnroll?.(course);
+                            }}
+                            className="w-full flex items-center justify-center"
+                        />
+                    </div>
+                    <div className="w-full text-center py-3">
+                        <a
+                            href={
+                                isCourse
+                                    ? `/course-detail/${course.slug}`
+                                    : ``
+                            }
+                            className="w-full mt-3 text-center text-gray-600 hover:text-black text-sm transition"
+                        >
+                            View Details
+                        </a>
+                    </div>
+                </motion.div>
             )}
         </motion.div>
     )
