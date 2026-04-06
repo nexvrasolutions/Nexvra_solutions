@@ -191,15 +191,16 @@ const Footer = () => {
           <div className="relative footer-hex mx-auto w-full  lg:w-[50%] xl:w-[46.5%]">
             <div className="relative footer-hex mx-auto w-full md:w-[50%] lg:max-h-[300px]">
               <div className="relative w-full h-full">
-                <Image
-                  src="/images/rocket.png"
-                  alt="Nexvra Solutions rocket illustration representing innovation"
-                  width={500}
-                  height={400}
-                  className="object-contain w-full h-full mx-auto"
-                  priority
-                />
-
+                <a href="/">
+                  <Image
+                    src="/images/rocket.png"
+                    alt="Nexvra Solutions rocket illustration representing innovation"
+                    width={500}
+                    height={400}
+                    className="object-contain w-full h-full mx-auto"
+                    priority
+                  />
+                </a>
                 {/* Gradient Overlay (adaptive & smooth) */}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent"
                 />
