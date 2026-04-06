@@ -81,7 +81,7 @@ export default function Pillars() {
 
   return (
     <section data-theme="light" ref={sectionRef} className="relative bg-gray-50">
-      <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-10 xl:py-[5%] gap-4">
+      <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-[10%] gap-4">
         {/* badge */}
         <Badge text="Our Core Pillars" className="absolute top-7 left-5 z-5 md:relative text-tertiary" />
 

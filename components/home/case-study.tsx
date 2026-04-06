@@ -126,7 +126,7 @@ export default function CaseStudy() {
       className="relative bg-[#F3F3F3] min-h-screen overflow-hidden px-5 md:px-10 xl:px-[5.5%] py-10 2xl:py-[5%]"
     >
       {/* Title */}
-      <div className="sticky top-0 left-0 z-10 py-5 bg-[#F3F3F3]">
+      <div className="sticky top-0 left-0 z-10 pb-5 bg-[#F3F3F3]">
         <Badge text="Our Works" className="text-tertiary mb-3 md:mb-0" />
         <h1 className="font-primary text-tertiary text-[32px] md:text-[48px] xl:text-[64px] font-bold leading-[40px] md:leading-[60px] xl:leading-[80px]">
           Our Impact
@@ -146,7 +146,7 @@ export default function CaseStudy() {
               className="group case-card flex flex-col gap-2 md:gap-3 flex-shrink-0 w-full md:w-[70vw] xl:w-[900px]"
             >
               {/* Image */}
-              <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] xl:h-[450px] 2xl:h-[500px] overflow-hidden rounded-sm group">
+              <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] xl:h-[400px] 2xl:h-[500px] overflow-hidden rounded-sm group">
 
                 {/* Wrapper that scales EVERYTHING */}
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
