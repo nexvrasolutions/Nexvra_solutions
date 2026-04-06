@@ -58,7 +58,7 @@ export default function ClientFeedback() {
   const rightInView = useInView(rightRef, { once: true, margin: "-60px" });
 
   return (
-    <section className="relative bg-white px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%]">
+    <section data-theme="light" className="relative bg-white px-5 md:px-10 xl:px-[5.5%] py-10 md:py-[5%]">
 
       {/* Grid lines */}
       <div className="absolute left-[3%] lg:left-[5%] top-0 h-full w-px bg-[#F3F3F3]" />
