@@ -213,9 +213,9 @@ export default function ProcessSection() {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="pb-5 md:pb-10 lg:pb-20 relative border border-[#E6E6E6] py-5 md:py-20 px-2 overflow-hidden"
+        className="pb-5 md:pb-10 lg:pb-20 relative py-5 md:py-20 px-2 overflow-hidden"
       >
-        <div className="grid-line absolute hidden lg:flex left-[65%] top-0 h-full w-px bg-[#E6E6E6]" />
+        {/* <div className="grid-line absolute hidden lg:flex left-[65%] top-0 h-full w-px bg-[#E6E6E6]" /> */}
 
         <motion.div variants={itemVariants}>
           <Badge text="Our Process" className="text-tertiary mb-2" />
