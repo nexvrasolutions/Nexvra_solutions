@@ -61,7 +61,6 @@ export default function WhyChooseNexvra() {
     return () => triggers.forEach((t) => t.kill());
   }, []);
 
-  // animation (same as before)
   const containerVariants: Variants = {
     hidden: {},
     visible: {
@@ -85,51 +84,46 @@ export default function WhyChooseNexvra() {
   };
 
   return (
-    <section data-theme="light" className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-[10%] md:pt-[5%]">
-
-      {/* Sticky Wrapper (Heading + Content together) */}
+    <section className="bg-[#F3F3F3] px-5 md:px-10 xl:px-[5.5%] py-[10%] md:pt-[5%]">
+      
       <div
         ref={containerRef}
         className="relative"
         style={{ height: `${sections.length * 100}vh` }}
       >
-        <div className="sticky top-5 md:top-5">
-
-          {/* Heading (NOW STAYS FIXED) */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="text-center flex flex-col items-center justify-center mb-5 md:mb-0 2xl:mb-10 overflow-hidden"
-          >
-            <motion.div variants={itemVariants}>
-              <Badge text="Why Nexvra" className="text-tertiary mb-3 md:mb-3" />
-            </motion.div>
-
-            <motion.h1
-              variants={itemVariants}
-              className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight"
-            >
-              <span className="text-teritary">
-                What Makes Us
-              </span>
-              <br />
-              <span className="text-[#BFBFBF]">
-                Different
-              </span>
-            </motion.h1>
+        {/* Heading (scrolls normally) */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center flex flex-col items-center justify-center mb-5 md:mb-10 overflow-hidden"
+        >
+          <motion.div variants={itemVariants}>
+            <Badge text="Why Nexvra" className="text-tertiary mb-3 md:mb-3" />
           </motion.div>
 
-          {/* Content */}
-          <div className=" flex items-center">
-            <div className="grid lg:grid-cols-2 w-full h-full lg:h-auto lg:gap-10 items-center border border-[#E6E6E6] pb-4 md:pb-15 lg:pb-0 p-2 md:p-5 relative">
+          <motion.h1
+            variants={itemVariants}
+            className="font-primary text-tertiary text-[30px] lg:text-[50px] 2xl:text-[64px] font-bold leading-tight"
+          >
+            <span>What Makes Us</span>
+            <br />
+            <span className="text-[#BFBFBF]">Different</span>
+          </motion.h1>
+        </motion.div>
+
+        {/* Sticky Content ONLY */}
+        <div className="sticky top-20">
+          <div className="flex justify-center items-center">
+            <div className="grid lg:grid-cols-2 w-full h-full lg:gap-10 items-center border border-[#E6E6E6] pb-4 md:pb-15 lg:pb-0 p-2 md:p-5 relative">
 
               {/* Left */}
               <div className="w-full flex items-center justify-center md:pb-0 md:py-5 lg:py-0">
                 <HexQuad active={active} setActive={setActive} />
               </div>
 
+              {/* Divider */}
               <div className="absolute invisible lg:visible bg-[#E6E6E6] translate-x-1/2 left-1/2 w-px h-full" />
 
               {/* Right */}
@@ -162,10 +156,9 @@ export default function WhyChooseNexvra() {
 
             </div>
           </div>
-
         </div>
 
-        {/* Scroll triggers */}
+        {/* Scroll Triggers */}
         <div className="absolute inset-0 pointer-events-none">
           {sections.map((_, i) => (
             <div

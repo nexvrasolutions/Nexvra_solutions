@@ -125,7 +125,7 @@ export default function Pillars() {
               alt="nexvra-solutions-pillars"
               width={600}
               height={600}
-              className="w-full h-full md:h-150 object-contain rounded-sm"
+              className="w-full h-full md:h-140 object-contain rounded-sm"
             />
           </div>
 
