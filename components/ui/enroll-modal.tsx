@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "./button";
 import { X } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toast } from "sonner";
 
 interface EnrollModalProps {
@@ -33,6 +33,22 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
         },
         exit: { opacity: 0, y: 40 },
     };
+
+    useEffect(() => {
+        if (isOpen) {
+            const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.overflow = "hidden";
+            document.body.style.paddingRight = `${scrollBarWidth}px`;
+        } else {
+            document.body.style.overflow = "auto";
+            document.body.style.paddingRight = "0px";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+            document.body.style.paddingRight = "0px";
+        };
+    }, [isOpen]);
 
     const itemVariants = {
         hidden: { opacity: 0, y: 30 },
@@ -139,15 +155,15 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="w-full max-w-[600px] bg-white rounded-xl p-6 md:p-10 relative"
+                        className="w-full max-w-[600px] max-h-[95vh] over bg-white rounded-xl p-6 md:p-10 relative"
                     >
 
                         {/* CLOSE BUTTON */}
                         <button
                             onClick={onClose}
-                            className="absolute top-4 right-4 text-gray-500 hover:text-black"
+                            className="absolute top-12 right-10 text-gray-500 hover:text-black"
                         >
-                            <X size={20} />
+                            <X size={25} />
                         </button>
 
                         {/* TITLE */}
