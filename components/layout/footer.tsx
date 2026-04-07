@@ -239,11 +239,13 @@ const Footer = () => {
           {/* Left */}
           <div className="flex flex-col gap-5 md:gap-10 xl:gap-15 w-full lg:w-[50%] xl:w-[45%]">
 
-            <img
-              src="/logo.png"
-              alt="Nexvra Solutions"
-              className="w-full xl:w-[80%] h-full object-contain"
-            />
+            <a href="/">
+              <img
+                src="/logo.png"
+                alt="Nexvra Solutions"
+                className="w-full xl:w-[80%] h-full object-contain"
+              />
+            </a>
 
             <div className="w-full flex flex-col md:flex-row justify-between gap-3">
               <div className="w-full lg:w-[40%] xl:w-[50%] flex flex-col gap-3">
@@ -264,11 +266,19 @@ const Footer = () => {
               <div className="w-full lg:w-[60%] xl:w-[50%] flex flex-col gap-3">
                 <h4 className="text-white text-xl xl:text-[24px] font-secondary">Contact</h4>
                 <div className="flex flex-col gap-1">
-                  <a href="tel:+919385708357" className="text-white/80 text-xl">
+                  <a
+                    href="tel:+919385708357"
+                    target="_blank"
+                    className="relative inline-block text-white/80 hover:text-[] text-[16px] md:text-xl cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00] after:transition-all after:duration-300 hover:after:w-[50%]"
+                    >
                     +91 93857 08357
                   </a>
-
-                  <a href="mailto:contactnexvra@gmail.com" className="text-white/80 text-xl">
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=contactnexvra@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative inline-block text-white/80 hover:text-[] text-[16px] md:text-xl cursor-pointer after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00] after:transition-all after:duration-300 hover:after:w-[75%]"
+                  >
                     contactnexvra@gmail.com
                   </a>
                 </div>
@@ -308,9 +318,10 @@ const Footer = () => {
           </div>
 
           {/* Right columns */}
-          <div className="flex flex-col lg:flex-row lg:flex-wrap justify-between items-start gap-8 xl:gap-0 w-full lg:w-[50%] xl:w-[40%] mt-0 md:mt-10 xl:mt-15 footer-links">
+          <div className="flex flex-col lg:flex-row gap-8 xl:gap-0 w-full lg:w-[55%]">
             <FooterColumn
               title="Menu"
+              className="flex-1"
               items={[
                 { label: "Home", link: "/" },
                 { label: "About Us", link: "/about-us" },
@@ -318,7 +329,7 @@ const Footer = () => {
                 { label: "Projects", link: "/projects" },
                 { label: "Contact", link: "/contact" },
               ]}
-            />
+              />
             <FooterColumn
               title="Services"
               items={[
@@ -328,9 +339,11 @@ const Footer = () => {
                 { label: "App Development", link: "/projects" },
                 { label: "Software Solutions", link: "/projects" },
               ]}
-            />
+              className="flex-1"
+              />
             <FooterColumn
               title="Courses"
+              className="flex-1"
               items={[
                 { label: "AI Product Design", link: "/course-detail/ai-powered-product-design" },
                 { label: "UX Design", link: "/course-detail/ux-design" },

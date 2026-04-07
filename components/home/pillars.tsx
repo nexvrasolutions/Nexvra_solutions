@@ -26,8 +26,23 @@ export default function Pillars() {
         },
         (context) => {
           const { isDesktop } = context.conditions!;
-
           const letters = q(".pillar-letter");
+
+          if (!isDesktop) {
+            gsap.from(letters, {
+              y: 40,
+              opacity: 0,
+              stagger: 0.03,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 80%",
+              },
+            });
+
+            return;
+          }
 
           gsap.fromTo(
             letters,
@@ -41,14 +56,14 @@ export default function Pillars() {
               opacity: 1,
               color: (i, el) =>
                 el.classList.contains("pillar-accent")
-                  ? "#A4FF00" : "#0A0A0A",
+                  ? "#A4FF00"
+                  : "#0A0A0A",
               stagger: 0.05,
               ease: "power3.out",
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top top",
-                end: "+=1000", 
-                // scrub: 0.5, 
+                end: "+=1000",
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
@@ -57,6 +72,7 @@ export default function Pillars() {
           );
         }
       );
+
 
       return () => mm.revert();
     }, sectionRef);
@@ -83,13 +99,10 @@ export default function Pillars() {
     <section data-theme="light" ref={sectionRef} className="relative bg-gray-50">
       <div className="sticky top-0 h-screen flex flex-col justify-center px-5 md:px-10 xl:px-[5.5%] py-[10%] gap-4">
         {/* badge */}
-        <Badge text="Our Core Pillars" className="absolute top-7 left-5 z-5 md:relative text-tertiary" />
+        <Badge text="Our Core Pillars" className="absolute lg:relative top-7  left-5 md:left-0 z-5 md:relative text-tertiary" />
 
-        {/* ── MOBILE: full-screen image with text on top ── */}
-        {/* ── MOBILE LAYOUT ── */}
         <div className="md:hidden flex flex-col h-full">
 
-          {/* TOP HALF IMAGE */}
           <div className="relative w-full h-1/2">
             <Image
               src="/images/home/pillarimage.webp"
@@ -100,7 +113,6 @@ export default function Pillars() {
             />
           </div>
 
-          {/* BOTTOM HALF TEXT */}
           <div className="h-1/2 flex items-center">
             <div className="font-primary font-bold">
               <h1 className="leading-tight text-[clamp(45px,10vw,80px)]">
@@ -116,9 +128,7 @@ export default function Pillars() {
           </div>
         </div>
 
-        {/* ── SHARED CONTENT ROW ── */}
         <div className="hidden md:flex gap-10">
-          {/* Image — hidden on mobile, visible on md+ */}
           <div className="hidden md:block md:flex-[30%]">
             <Image
               src="/images/home/pillarimage.webp"
@@ -129,7 +139,6 @@ export default function Pillars() {
             />
           </div>
 
-          {/* Animated Text */}
           <div className="flex-[100%] md:flex-[70%] relative z-30">
             <div className="absolute left-0 md:-left-10 lg:-left-20 top-6 lg:top-10 font-primary font-bold">
               <h1 className="leading-tight 2xl:leading-[182px] text-[clamp(50px,9vw,170px)] md:text-[clamp(50px,9vw,170px)]">
