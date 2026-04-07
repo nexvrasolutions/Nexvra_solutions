@@ -127,12 +127,12 @@ export default function FeaturedCourses() {
               initial="hidden"
               animate={headerInView ? "visible" : "hidden"}
             >
-              <Link
+              <a
                 href="/courses"
                 className="border border-tertiary text-tertiary px-2 md:px-6 py-1.5 font-semibold md:py-3 rounded-md transition hover:bg-[#A4FF00] hover:border-[#A4FF00] duration-500 ease-in-out inline-block"
               >
                 View All Courses
-              </Link>
+              </a>
             </motion.div>
           </div>
 
