@@ -52,12 +52,12 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
                 />
             </motion.div>
 
-            <div className={cn("flex flex-col justify-end flex-1", className)}>
+            <div className={cn("flex flex-col ", className, isCourse ? "justify-start" : "justify-end")}>
 
                 {/* Title */}
                 <motion.h3
                     variants={itemVariants}
-                    className="text-xl xl:text-2xl font-semibold leading-tight md:min-h-[60px] flex items-start"
+                    className="text-xl xl:text-2xl font-semibold leading-tight lg:min-h-[60px]"
                     // className={cn(
                     //     isCourse
                     //         ? "text-xl min-h-[3.5rem] xl:text-2xl font-semibold leading-tight xl:leading-8 font-secondary"
@@ -78,7 +78,7 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
                 {/* Description */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-sm text-gray-500 leading-6 mt-2"
+                    className="text-sm text-gray-500 leading-6 mt-2 lg:mt-0"
                     // className="text-sm text-gray-500 leading-6"
                 >
                     {course.description}
@@ -88,7 +88,7 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
                 {isCourse && (
                     <motion.div
                         variants={itemVariants}
-                        className="text-sm flex gap-0.5 w-full items-center text-[#404040]"
+                        className="text-sm flex gap-0.5 w-full items-center text-[#404040] mt-2"
                     >
                         <p>{course.duration}</p>
                         <span className="mx-2 size-1.5 rounded-full bg-[#404040]"></span>

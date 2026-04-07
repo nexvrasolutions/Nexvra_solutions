@@ -12,7 +12,7 @@ const EnrollModal = dynamic(() =>
 );
 
 type Course = {
-  title: string[];
+  title: string;
   duration: string;
   slug: string;
   difficulty: string;
@@ -22,28 +22,28 @@ type Course = {
 
 const courses: Course[] = [
   {
-    title: ["AI-Powered Product", "Design"],
+    title: "AI-Powered Product Design",
     duration: "3 Months",
     slug: "ai-powered-product-design",
     difficulty: "Beginner Friendly",
     img: "/images/courses/product_design.webp",
   },
   {
-    title: ["Digital Marketing", "Mastery"],
+    title: "Digital Marketing Mastery",
     slug: "digital-marketing-mastery",
     duration: "2 Months",
     img: "/images/courses/degital_marketing.webp",
     difficulty: "Beginner Friendly",
   },
   {
-    title: ["Branding & Graphic", "Design"],
+    title: "Branding & Graphic Design",
     slug: "branding-graphic-design",
     duration: "2-3 Months",
     img: "/images/courses/branding.webp",
     difficulty: "Beginner Friendly",
   },
   {
-    title: ["Front-End", "Development"],
+    title: "Front-End Development",
     slug: "front-end-development",
     duration: "3 Months",
     img: "/images/courses/front_end.webp",
