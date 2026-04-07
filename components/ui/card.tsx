@@ -57,7 +57,7 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
                 {/* Title */}
                 <motion.h3
                     variants={itemVariants}
-                    className="text-xl xl:text-2xl font-semibold leading-tight min-h-[60px] flex items-start"
+                    className="text-xl xl:text-2xl font-semibold leading-tight md:min-h-[60px] flex items-start"
                     // className={cn(
                     //     isCourse
                     //         ? "text-xl min-h-[3.5rem] xl:text-2xl font-semibold leading-tight xl:leading-8 font-secondary"
@@ -108,7 +108,7 @@ export const Card = ({ course, className, contClassName, isCourse = true, onEnro
 
             {/* Buttons */}
             {isCourse && (
-                <motion.div variants={itemVariants} className="w-full space-y-2">
+                <motion.div variants={itemVariants} className="w-full md:space-y-2">
                     <div className="w-full">
                         <Button
                             label="Enroll Now"
