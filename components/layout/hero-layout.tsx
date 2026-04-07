@@ -4,17 +4,18 @@ import Navbar from "./navbar";
 type Props = {
   isProjectDetail?:boolean
   isCourseDetail?:boolean
+  hero?:boolean;
   children: React.ReactNode;
 };
 
-export default function HeroLayout({ isProjectDetail=false, isCourseDetail=false, children }: Props) {
+export default function HeroLayout({ isProjectDetail=false, isCourseDetail=false, hero=false, children }: Props) {
   return (
     <section data-theme="dark" className="relative h-full md:min-h-screen bg-black overflow-hidden">
 
       {/* Grid Lines - hide on mobile */}
       <div className={cn("hidden lg:block absolute left-[3%] xl:left-[5%] top-0 w-px bg-grid", isProjectDetail ? "h-[72%]" : "h-full")} />
       <div className={cn("hidden xl:block absolute left-[32%] top-0 w-px bg-grid", isProjectDetail ? "h-[70%]" : "h-full")} />
-      <div className={cn("absolute right-[40%] top-0 w-px bg-grid", isProjectDetail && !isCourseDetail ? "h-[70%] hidden lg:block" : "h-full hidden")} />
+      <div className={cn("absolute right-[40%] top-0 w-px bg-grid", ( isProjectDetail || hero )&& !isCourseDetail ? "h-[70%] hidden lg:block" : "h-full hidden")} />
       <div className={cn("absolute right-[32.5%] top-0 w-px bg-grid", isCourseDetail ? "h-[70%] hidden lg:block" : "h-full hidden")} />
       <div className={cn("hidden lg:block absolute right-[3%] xl:right-[5%] top-0 w-px bg-grid", isProjectDetail ? "h-[72%]" : "h-full")} />
 

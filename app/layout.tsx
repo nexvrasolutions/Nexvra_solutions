@@ -42,12 +42,70 @@ export const metadata = {
     default: "Nexvra Solutions",
     template: "%s | Nexvra Solutions",
   },
+
   icons: {
     icon: "/favicon.ico",
   },
+
   description:
     "Nexvra Solutions builds scalable web apps, mobile apps, and provides IT services and professional training.",
+
   metadataBase: new URL("https://www.nexvrasolutions.com"),
+
+  keywords: [
+    "internship in Marthandam",
+    "internship in Kanyakumari",
+    "internship in Kanyakumari district",
+    "IT internship Marthandam",
+    "software training Marthandam",
+    "full stack development course Marthandam",
+    "MERN stack course Kanyakumari",
+    "UI UX design course Marthandam",
+    "digital marketing course Kanyakumari",
+    "mobile app development course Marthandam",
+    "software company in kanyakumari district",
+    "software company near me",
+    "nexvra solutions",
+    "nextra solutions",
+    "nextora solutions",
+    "nexvra solutions in marthandam",
+    "nexvra solutions in kanyakumari district",
+    "nexvra solution",
+    "nextra solution",
+    "nextora solution",
+    "nexvra solution in marthandam",
+    "nexvra solution in kanyakumari district"
+  ],
+
+  openGraph: {
+    title: "Nexvra Solutions",
+    description:
+      "Nexvra Solutions builds scalable web apps, mobile apps, and provides IT services and professional training.",
+    url: "https://www.nexvrasolutions.com",
+    siteName: "Nexvra Solutions",
+    images: [
+      {
+        url: "/favicon.ico",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Nexvra Solutions",
+    description:
+      "Nexvra Solutions builds scalable web apps, mobile apps, and provides IT services and professional training.",
+    images: ["/favicon.ico"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
