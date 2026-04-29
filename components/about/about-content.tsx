@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { Badge } from "../ui/badge";
 import { Highlighter } from "../ui/highlighter";
 import { motion, useInView, Variants } from "framer-motion";
@@ -126,7 +126,7 @@ const AboutContent = () => {
           animate={animateState}
           className="flex flex-col gap-6"
         >
-          <motion.div variants={itemVariants}>s
+          <motion.div variants={itemVariants}>
             <Badge text="About Nexvra" />
           </motion.div>
 

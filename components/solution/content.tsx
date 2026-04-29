@@ -155,9 +155,9 @@ export default function SolutionContent() {
                   {item.description}
                 </p>
               </div>
-              <div className="hidden md:flex items-start lg:items-end lg:justify-end">
+              <a href="/contact" className="hidden md:flex items-start lg:items-end lg:justify-end">
                 <Button label={item.cta} />
-              </div>
+              </a>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[58%_42%] border-b border-[#E6E6E6] bg-white">

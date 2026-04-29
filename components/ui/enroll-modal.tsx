@@ -84,14 +84,29 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
 
     const validateForm = () => {
         const newErrors: any = {};
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^[6-9]\d{9}$/;
 
-        if (!formData.name) newErrors.name = "Name is required";
-        if (!formData.email) newErrors.email = "Email is required";
-        else if (!emailRegex.test(formData.email))
-            newErrors.email = "Invalid email";
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+        } else if (formData.name.trim().length < 2) {
+            newErrors.name = "Name must be at least 2 characters";
+        } else if (!/^[a-zA-Z\s.'-]+$/.test(formData.name.trim())) {
+            newErrors.name = "Name can only contain letters, spaces, and . ' -";
+        }
 
-        if (!formData.phone) newErrors.phone = "Phone is required";
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!emailRegex.test(formData.email.trim())) {
+            newErrors.email = "Enter a valid email address";
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone number is required";
+        } else if (!phoneRegex.test(formData.phone.replace(/\s/g, ""))) {
+            newErrors.phone = "Enter a valid 10-digit Indian mobile number";
+        }
+
         if (!formData.course) newErrors.course = "Please select a course";
 
         return newErrors;
@@ -189,6 +204,7 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder="Enter your full name"
+                                    maxLength={60}
                                     className="border-b pb-3 outline-none"
                                 />
                                 {errors.name && <span className="text-red-500 text-xs">{errors.name}</span>}
@@ -218,9 +234,14 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
                                 <input
                                     name="phone"
                                     value={formData.phone}
-                                    onChange={handleChange}
+                                    onChange={(e) => {
+                                        const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                                        handleChange({ target: { name: "phone", value: digits } } as any);
+                                    }}
                                     type="tel"
-                                    placeholder="Enter your phone number"
+                                    inputMode="numeric"
+                                    placeholder="Enter 10-digit mobile number"
+                                    maxLength={10}
                                     className="border-b pb-3 outline-none"
                                 />
                                 {errors.phone && <span className="text-red-500 text-xs">{errors.phone}</span>}

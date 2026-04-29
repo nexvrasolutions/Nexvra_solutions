@@ -115,51 +115,50 @@ const CourseHero = ({ course }: { course: any }) => {
                 animate={isInView ? "visible" : "hidden"}
                 className="relative z-10 w-full px-5 md:px-10 xl:px-[5.5%] flex items-center"
             >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-15 xl:gap-20 w-full lg:min-h-[90vh] pt-30 lg:pt-45 pb-[10%] lg:pb-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-15 xl:gap-20 w-full lg:min-h-[90vh] pt-28 md:pt-36 lg:pt-45 pb-12 md:pb-16 lg:pb-0">
 
                     {/* LEFT CONTENT */}
-                    <div className="flex flex-col lg:col-span-2 pb-10 lg:pb-50">
+                    <div className="flex flex-col md:col-span-1 lg:col-span-2 pb-0 lg:pb-50">
                         <motion.div variants={itemVariants}>
                             <Badge text={course.level} className="hero-badge" />
                         </motion.div>
                         <motion.h1
                             variants={itemVariants}
-                            className="hero-title text-[#FFFFFF] text-[30px] md:text-[33px] lg:text-[38px] xl:text-[48px] leading-[1.1] font-bold font-primary"
+                            className="hero-title text-[#FFFFFF] text-[26px] sm:text-[30px] md:text-[33px] lg:text-[38px] xl:text-[48px] leading-[1.15] font-bold font-primary mt-4"
                         >
                             {splitText(course.title)}
                         </motion.h1>
                         <motion.div
                             variants={innerContainer}
-                            className='flex justify-between items-center mt-10 w-full md:w-[70%]'
+                            className='flex flex-col md:flex-row justify-between items-start mt-8 w-full lg:w-[70%] gap-2'
                         >
-                            <motion.div variants={itemVariants} className='space-y-3'>
-                                <p className='font-medium text-lg text-gray-500'>Duration</p>
-                                <h5 className='font-bold text-xl text-white'>{course.duration}</h5>
+                            <motion.div variants={itemVariants} className='flex flex-col gap-2'>
+                                <p className='font-medium text-sm md:text-base text-gray-500'>Duration</p>
+                                <h5 className='font-bold text-base md:text-xl text-white'>{course.duration}</h5>
                             </motion.div>
-                            <motion.div variants={itemVariants} className='space-y-3'>
-                                <p className='font-medium text-lg text-gray-500'>Batch</p>
-                                <h5 className='font-bold text-xl text-white'>{course.batch}</h5>
+                            <motion.div variants={itemVariants} className='flex flex-col gap-2'>
+                                <p className='font-medium text-sm md:text-base text-gray-500'>Batch</p>
+                                <h5 className='font-bold text-base md:text-xl text-white'>{course.batch}</h5>
                             </motion.div>
-                            <motion.div variants={itemVariants} className='space-y-3'>
-                                <p className='font-medium text-lg text-gray-500'>Mode</p>
-                                <h5 className='font-bold text-xl text-white'>{course.mode}</h5>
+                            <motion.div variants={itemVariants} className='flex flex-col gap-2'>
+                                <p className='font-medium text-sm md:text-base text-gray-500'>Mode</p>
+                                <h5 className='font-bold text-base md:text-xl text-white'>{course.mode}</h5>
                             </motion.div>
                         </motion.div>
                     </div>
 
                     {/* RIGHT CONTENT */}
-                    <div className="flex flex-col justify-center">
-                        <p className="hero-text text-secondary text-lg md:text-[20px] font-medium font-secondary leading-relaxed mb-10">
+                    <div className="flex flex-col justify-center md:col-span-1">
+                        <p className="hero-text text-secondary text-base sm:text-lg md:text-[20px] font-medium font-secondary leading-relaxed mb-8">
                             {course.description}
                         </p>
                         <div className="flex gap-6 hero-btn">
-                            <Button 
-                                label="Enroll Course"  
-                                onClick={ ()=>{
-                                    setSelectedCourse(course.title)
-                                    setOpen(true)
-                                    }
-                                }
+                            <Button
+                                label="Enroll Course"
+                                onClick={() => {
+                                    setSelectedCourse(course.title);
+                                    setOpen(true);
+                                }}
                             />
                         </div>
                     </div>

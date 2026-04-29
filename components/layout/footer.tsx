@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -361,6 +360,7 @@ const Footer = () => {
 
           <div className="flex gap-5 md:gap-20">
             <a
+              href="/privacy-policy"
               className="relative inline-block text-white/80 hover:text-white transition text-[16px] md:text-lg cursor-pointer
   after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00]
   after:transition-all after:duration-300 hover:after:w-full"
@@ -369,6 +369,7 @@ const Footer = () => {
             </a>
 
             <a
+              href="/terms-and-conditions"
               className="relative inline-block text-white/80 hover:text-white transition text-[16px] md:text-lg cursor-pointer
   after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#A4FF00]
   after:transition-all after:duration-300 hover:after:w-full"
@@ -394,7 +395,7 @@ const FooterColumn = ({ title, items, className }: { title: string; items: any, 
           <a
             key={idx}
             href={item.link}
-            className="text-white/80 text-xl hover:text-white"
+            className="text-white/80 text-[16px] md:text-xl hover:text-white"
           >
             {item.label}
           </a>

@@ -56,6 +56,7 @@ const DetailContent = ({ course }: { course: any }) => {
     useEffect(() => {
         const ctx = gsap.context(() => {
 
+            // scroll parallax on the outer wrapper
             gsap.to(".about-image", {
                 y: -80,
                 rotate: 3,
@@ -68,8 +69,9 @@ const DetailContent = ({ course }: { course: any }) => {
                 },
             });
 
-            gsap.to(".about-image", {
-                y: "-=20",
+            // float on the inner wrapper so it doesn't fight the scroll tween's y
+            gsap.to(".float-image", {
+                y: -20,
                 duration: 3,
                 repeat: -1,
                 yoyo: true,
@@ -126,15 +128,19 @@ const DetailContent = ({ course }: { course: any }) => {
                             {/* IMAGE */}
                             <motion.div
                                 variants={itemVariants}
-                                className="relative about-image w-full h-full flex items-center justify-center order-1 min-h-[300px] md:min-h-[500px]"
+                                className="relative about-image w-full h-75 md:h-125 order-1 overflow-hidden"
                             >
-                                <img
-                                    src="/images/what-learn.png"
-                                    alt="UI/UX Design & Branding"
-                                    className="object-contain object-center w-full h-full max-h-[500px]"
-                                />
+                                {/* inner wrapper for the float animation — keeps y independent of scroll parallax */}
+                                <div className="float-image absolute inset-0">
+                                    <img
+                                        src="/images/what-learn.png"
+                                        alt="What you'll learn illustration"
+                                        className="absolute inset-0 w-full h-full object-contain object-center"
+                                    />
+                                </div>
                                 {/* Gradient Overlay */}
-                                <div className="pointer-events-none absolute bottom-0 left-0 w-full h-[55%]"
+                                <div
+                                    className="pointer-events-none absolute bottom-0 left-0 w-full h-[55%] z-10"
                                     style={{
                                         background:
                                             "linear-gradient(180deg, rgba(255,255,255,0) 33.55%, #FFFFFF 94.69%)",
