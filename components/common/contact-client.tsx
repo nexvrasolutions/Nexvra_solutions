@@ -50,9 +50,11 @@ const ContactClient = () => {
     const handleChange = (e: any) => {
         const { name, value } = e.target;
 
+        const sanitized = name === "phone" ? value.replace(/\D/g, "").slice(0, 10) : value;
+
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: sanitized,
         }));
 
         setErrors((prev: any) => {
@@ -68,6 +70,7 @@ const ContactClient = () => {
 
         if (!formData.name) newErrors.name = "Name is required";
         if (!formData.phone) newErrors.phone = "Phone is required";
+        else if (formData.phone.length !== 10) newErrors.phone = "Phone must be exactly 10 digits";
         if (!formData.email) newErrors.email = "Email is required";
         else if (!emailRegex.test(formData.email))
             newErrors.email = "Invalid email format";
@@ -225,11 +228,12 @@ const ContactClient = () => {
                         <motion.div variants={itemVariants} className="flex flex-col gap-2">
                             <label className="text-base font-semibold text-tertiary">Phone Number</label>
                             <input
+                                type="tel"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                 className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
-                                placeholder="Enter your phone"
+                                className="border-b border-gray-300 pb-3 text-[#29282899] placeholder:text-[#29282899]/60 text-base bg-transparent outline-none focus:border-tertiary transition-colors duration-200"
+                                placeholder="Enter your 10-digit phone number"
                             />
                             {errors.phone && <span className="text-red-500 text-sm">{errors.phone}</span>}
                         </motion.div>

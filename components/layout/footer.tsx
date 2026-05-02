@@ -395,7 +395,7 @@ const FooterColumn = ({ title, items, className }: { title: string; items: any, 
           <a
             key={idx}
             href={item.link}
-            className="text-white/80 text-[16px] md:text-xl hover:text-white"
+            className="text-white/80 text-[14px] md:text-xl hover:text-white"
           >
             {item.label}
           </a>

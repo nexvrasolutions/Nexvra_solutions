@@ -149,14 +149,14 @@ export default function CaseStudy() {
               <div className="relative w-full h-[250px] md:h-[320px] lg:h-[400px] xl:h-[400px] 2xl:h-[500px] overflow-hidden rounded-sm group">
 
                 {/* Wrapper that scales EVERYTHING */}
-                <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
+                <div className="case-img absolute inset-0 transition-transform duration-700 group-hover:scale-105">
 
                   {/* Image */}
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    className="case-img object-cover"
+                    className="object-cover"
                   />
 
                   {/* Overlay */}
