@@ -165,7 +165,7 @@ export default function AboutSection() {
 
           <p className="about-text text-white/80 font-medium text-sm md:text-lg xl:text-xl leading-relaxed">
             Nexvra Solutions is a modern digital training and technology company focused on building real skills and real solutions.
-            We help individuals learn practical digital skills and support businesses in building impactful digital products.
+            We help individuals learn practical digital skills and support businesses in building impactful.
           </p>
 
           <div className="about-button w-full pb-5 md:pb-0">
