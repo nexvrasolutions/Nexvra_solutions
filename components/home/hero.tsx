@@ -108,10 +108,10 @@ export default function Hero() {
                 leading-tight md:leading-[1.2] mb-5
               "
                         >
-                            {splitText("Build Skills.")}
-                            <br />
-                            {splitText("Build Digital Solutions.")}
-                        </h1>
+                            Build Skills.
+  <br />
+  Build Digital Solutions.
+</h1>
                     </div>
 
                     {/* RIGHT */}
