@@ -95,31 +95,31 @@ export default function Hero() {
                 <div className="grid grid-cols-1 lg:grid-cols-5 w-full lg:min-h-[70vh] xl:min-h-[90vh] pt-20 xl:pt-45">
 
                     {/* LEFT */}
-                    <div className="flex flex-col lg:col-span-3 lg:pb-40 w-full lg:w-[90%]">
+                    <div className="flex flex-col lg:col-span-3 w-full">
                         <Badge
                             text="Digital Training & Solutions"
                             className="hero-badge"
                         />
 
                         <h1
-  className="
-    hero-title
-    whitespace-nowrap
-    text-white
-    font-bold
-    font-primary
-    text-[26px]
-    md:text-[38px]
-    xl:text-[46px]
-    2xl:text-[60px]
-  "
->
-  Build Skills.
-  <br />
-  <span className="whitespace-nowrap">
-    Build Digital Solutions.
-  </span>
-</h1>
+                            className="
+hero-title
+w-full
+max-w-none
+text-white
+font-bold
+font-primary
+text-[26px]
+md:text-[38px]
+xl:text-[46px]
+2xl:text-[60px]
+leading-tight
+"
+                        >
+                            {splitText("Build Skills.")}
+                            <br />
+                            {splitText("Build Digital Solutions.")}
+                        </h1>
                     </div>
 
                     {/* RIGHT */}
