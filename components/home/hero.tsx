@@ -102,15 +102,23 @@ export default function Hero() {
                         />
 
                         <h1
-                            className="
-                hero-title text-white font-bold font-primary
-                text-[26px] md:text-[38px] xl:text-[46px] 2xl:text-[60px]
-                leading-tight md:leading-[1.2] mb-5
-              "
-                        >
-                            Build Skills.
+  className="
+    hero-title
+    whitespace-nowrap
+    text-white
+    font-bold
+    font-primary
+    text-[26px]
+    md:text-[38px]
+    xl:text-[46px]
+    2xl:text-[60px]
+  "
+>
+  Build Skills.
   <br />
-  Build Digital Solutions.
+  <span className="whitespace-nowrap">
+    Build Digital Solutions.
+  </span>
 </h1>
                     </div>
 
