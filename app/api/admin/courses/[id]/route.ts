@@ -1,77 +1,77 @@
 import { NextResponse } from 'next/server';
-import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
-import { getActiveAdminFromCookies } from '@/lib/auth';
+import { jsonError, prismaErrorResponse, readJson, requireAdmin, splitList, unauthorized, zodMessage } from '@/lib/api';
+import { deleteImage } from '@/lib/storage/upload';
+import { courseUpdateSchema, storagePathFromUrl } from '@/lib/validation';
 
-const courseSchema = z.object({
-  code: z.string().min(2).optional(),
-  name: z.string().min(2).optional(),
-  slug: z.string().min(2).optional(),
-  description: z.string().optional(),
-  duration: z.string().optional(),
-  syllabus: z.string().optional(),
-  technologies: z.string().optional(),
-  skills: z.string().optional(),
-  projects: z.string().optional(),
-  level: z.string().optional(),
-  image: z.string().optional(),
-  isActive: z.boolean().optional(),
-});
+type Params = { params: Promise<{ id: string }> };
 
-async function requireAdmin() {
-  return getActiveAdminFromCookies();
-}
-
-export async function GET(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(_request: Request, { params }: Params) {
   const admin = await requireAdmin();
-  if (!admin) {
-    return NextResponse.json({ message: 'Unauthorized.' }, { status: 401 });
-  }
+  if (!admin) return unauthorized();
 
   const { id } = await params;
   const course = await prisma.course.findUnique({ where: { id } });
-  if (!course) {
-    return NextResponse.json({ message: 'Course not found.' }, { status: 404 });
-  }
-
+  if (!course) return jsonError('Course not found.', 404);
   return NextResponse.json({ course });
 }
 
-export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(request: Request, { params }: Params) {
   const admin = await requireAdmin();
-  if (!admin) {
-    return NextResponse.json({ message: 'Unauthorized.' }, { status: 401 });
+  if (!admin) return unauthorized();
+
+  const parsed = courseUpdateSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return jsonError(zodMessage(parsed.error, 'Invalid course data.'), 400);
   }
+  const values = parsed.data;
 
   try {
     const { id } = await params;
-    const payload = courseSchema.safeParse(await request.json());
-    if (!payload.success) {
-      return NextResponse.json({ message: 'Invalid course data.' }, { status: 400 });
-    }
+    const existing = await prisma.course.findUnique({ where: { id }, select: { image: true } });
+    if (!existing) return jsonError('Course not found.', 404);
 
-    const data = payload.data;
-    const course = await prisma.course.update({
+    const updated = await prisma.course.update({
       where: { id },
       data: {
-        ...(data.code ? { code: data.code } : {}),
-        ...(data.name ? { name: data.name } : {}),
-        ...(data.slug ? { slug: data.slug } : {}),
-        ...(data.description !== undefined ? { description: data.description } : {}),
-        ...(data.duration !== undefined ? { duration: data.duration } : {}),
-        ...(data.syllabus !== undefined ? { syllabus: data.syllabus } : {}),
-        ...(data.technologies !== undefined ? { technologies: data.technologies.split(',').map((item) => item.trim()).filter(Boolean) } : {}),
-        ...(data.skills !== undefined ? { skills: data.skills.split(',').map((item) => item.trim()).filter(Boolean) } : {}),
-        ...(data.projects !== undefined ? { projects: data.projects.split(',').map((item) => item.trim()).filter(Boolean) } : {}),
-        ...(data.level !== undefined ? { level: data.level } : {}),
-        ...(data.image !== undefined ? { image: data.image } : {}),
-        ...(data.isActive !== undefined ? { isActive: data.isActive } : {}),
+        ...(values.code !== undefined ? { code: values.code } : {}),
+        ...(values.name !== undefined ? { name: values.name } : {}),
+        ...(values.slug !== undefined ? { slug: values.slug } : {}),
+        ...(values.description !== undefined ? { description: values.description } : {}),
+        ...(values.duration !== undefined ? { duration: values.duration } : {}),
+        ...(values.syllabus !== undefined ? { syllabus: values.syllabus } : {}),
+        ...(values.technologies !== undefined ? { technologies: splitList(values.technologies) } : {}),
+        ...(values.skills !== undefined ? { skills: splitList(values.skills) } : {}),
+        ...(values.projects !== undefined ? { projects: splitList(values.projects) } : {}),
+        ...(values.level !== undefined ? { level: values.level } : {}),
+        ...(values.image !== undefined ? { image: values.image } : {}),
+        ...(values.isActive !== undefined ? { isActive: values.isActive } : {}),
       },
     });
 
-    return NextResponse.json({ course });
+    // Only after the new image is saved, remove the previous uploaded file (server-derived path only).
+    const oldPath = storagePathFromUrl(existing.image);
+    if (oldPath && values.image !== undefined && values.image !== existing.image) {
+      await deleteImage(oldPath);
+    }
+
+    return NextResponse.json({ course: updated });
   } catch (error) {
-    console.error('Update course failed:', error);
-    return NextResponse.json({ message: 'Unable to update course.' }, { status: 500 });
+    return prismaErrorResponse(error, 'course', 'Unable to update course.');
+  }
+}
+
+export async function DELETE(_request: Request, { params }: Params) {
+  const admin = await requireAdmin();
+  if (!admin) return unauthorized();
+
+  try {
+    const { id } = await params;
+    const course = await prisma.course.delete({ where: { id } });
+    const imagePath = storagePathFromUrl(course.image);
+    if (imagePath) await deleteImage(imagePath);
+    return NextResponse.json({ message: 'Course deleted successfully.' });
+  } catch (error) {
+    return prismaErrorResponse(error, 'course', 'Unable to delete course.');
   }
 }

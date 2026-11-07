@@ -45,7 +45,7 @@ const steps = [
   {
     number: "05",
     title: "Launch & Support",
-    image: "/images/solution/Launch & Support.png",
+    image: "/images/solution/launch-and-support.png",
     description:
       "We launch your product and provide support to ensure smooth performance and growth.",
     align: "right" as const,

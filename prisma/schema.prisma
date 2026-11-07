@@ -1,10 +1,12 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum AdminRole {
@@ -16,6 +18,43 @@ enum EnrollmentStatus {
   ACTIVE
   COMPLETED
   REJECTED
+}
+
+enum ProgramType {
+  COURSE
+  INTERNSHIP
+  CUSTOM
+}
+
+model Department {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  students Student[]
+}
+
+model Institution {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  students Student[]
+}
+
+model ProgramTypeOption {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  value     ProgramType @unique
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  students Student[]
 }
 
 model AdminUser {
@@ -52,21 +91,41 @@ model Course {
 }
 
 model Student {
-  id                   String   @id @default(cuid())
-  studentCode          String   @unique
+  id                   String         @id @default(cuid())
+  studentCode          String         @unique
   fullName             String
-  email                String   @unique
-  phone                String
+  /// Optional; still unique when provided (Postgres allows many NULLs).
+  email                String?        @unique
+  /// Contact number. Optional.
+  phone                String?
+  address              String?
+  /// Public URL of the photo in Supabase Storage (students/ folder).
+  studentPhoto         String?
+  /// Free-text course name shown on the certificate. Required for new students.
+  courseName           String?
+  /// Fixed provider values: every certificate is issued by Nexvra Solutions.
+  instituteName        String         @default("Nexvra Solutions")
+  learnedFrom          String         @default("Nexvra Solutions")
+  batchStartDate       DateTime?      @db.Date
+  batchEndDate         DateTime?      @db.Date
+  /// Legacy free-text institution from the earlier form; kept for old records.
   institution          String?
   department           String?
   batch                String?
-  profileToken         String   @unique
+  programType          ProgramType?   @default(COURSE)
+  profileToken         String         @unique
   profileQrPath        String?
-  publicProfileEnabled Boolean  @default(true)
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  publicProfileEnabled Boolean        @default(true)
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
 
   enrollments Enrollment[]
+  departmentOption Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  departmentId       String?
+  institutionOption Institution? @relation(fields: [institutionId], references: [id], onDelete: SetNull)
+  institutionId      String?
+  programTypeOption ProgramTypeOption? @relation(fields: [programTypeOptionId], references: [id], onDelete: SetNull)
+  programTypeOptionId String?
 }
 
 model Enrollment {

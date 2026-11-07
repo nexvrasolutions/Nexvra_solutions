@@ -11,12 +11,12 @@ export default function LazyLoader() {
     const alreadySeen = sessionStorage.getItem("nexvra_loaded");
 
     if (alreadySeen) {
+      // Already shown this session: keep the initial "null" state (renders nothing).
       document.getElementById("nexvra-loader-overlay")?.remove();
-      setVisible(false);
       return;
     }
 
-    setVisible(true);
+    const showTimer = setTimeout(() => setVisible(true), 0);
 
     const holdTimer = setTimeout(() => setPhase("hold"), 600);
     const exitTimer = setTimeout(() => setPhase("exit"), 2400);
@@ -27,6 +27,7 @@ export default function LazyLoader() {
     }, 3000);
 
     return () => {
+      clearTimeout(showTimer);
       clearTimeout(holdTimer);
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);

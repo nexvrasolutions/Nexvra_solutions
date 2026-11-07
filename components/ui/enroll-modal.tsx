@@ -129,19 +129,25 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
         formDataToSend.append("_subject", `New Enrollment - ${formData.course}`);
 
         try {
+            // fetch() only rejects on network errors; treat HTTP errors as failures too.
             const promise = fetch(
                 "https://formsubmit.co/contactnexvra@gmail.com",
                 {
                     method: "POST",
                     body: formDataToSend,
                 }
-            );
+            ).then((res) => {
+                if (!res.ok) throw new Error(`Form service responded with ${res.status}`);
+                return res;
+            });
 
+            // sonner v2 returns a toast id; unwrap() gives the real promise, so a
+            // failed request is caught below instead of clearing and closing the form.
             await toast.promise(promise, {
                 loading: "Submitting application...",
                 success: "Application submitted successfully!",
                 error: "Failed to submit application",
-            });
+            }).unwrap();
 
             setFormData({
                 name: "",
@@ -152,8 +158,8 @@ export const EnrollModal = ({ isOpen, onClose, selectedCourse }: EnrollModalProp
             });
 
             onClose(); // close modal after success
-        } catch (err) {
-            toast.error("Something went wrong");
+        } catch {
+            // toast.promise already showed the error; keep the form open so the user can retry.
         } finally {
             setLoading(false);
         }

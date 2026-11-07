@@ -1,36 +1,22 @@
-"use client";
-
-import ContentSection from "@/components/common/content-section";
-import Challenges from "@/components/project-detail/challenges";
-import ServicesSection from "@/components/project-detail/service-section";
-import { ShowCase } from "@/components/project-detail/showcase";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import ProjectDetailView from "@/components/project-detail/project-detail-view";
 import { projects } from "@/data/projects";
-import { useParams } from "next/navigation";
 
-const Page = () => {
-    const params = useParams();
-    const slug = params.slug as string;
-    const project = projects[slug];
+type Props = { params: Promise<{ slug: string }> };
 
-    if (!project) return <div>Project not found</div>;
+export function generateStaticParams() {
+  return Object.keys(projects).map((slug) => ({ slug }));
+}
 
-    return (
-        <>
-            <ContentSection
-                title={project.title}
-                description={project.description}
-                image="/images/about-bg.jpg"
-                gifImage={project.image}
-                isProjectDetail={true}
-            />
-            <Challenges project={project} />
-            <ServicesSection project={project} />
-            {
-                project.showcase &&
-                <ShowCase project={project} />
-            }
-        </>
-    );
-};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects[slug];
+  return project ? { title: project.title, description: project.description } : {};
+}
 
-export default Page;
+export default async function ProjectDetailPage({ params }: Props) {
+  const { slug } = await params;
+  if (!Object.hasOwn(projects, slug)) notFound();
+  return <ProjectDetailView slug={slug} />;
+}

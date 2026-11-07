@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import Hamburger from "../common/hamburger";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const StaggeredMenu = dynamic(
@@ -10,32 +9,26 @@ const StaggeredMenu = dynamic(
   { ssr: false }
 );
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   const menuItems = [
     { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
     { label: 'About', ariaLabel: 'Learn about us', link: '/about-us' },
     { label: 'Solution', ariaLabel: 'View our solution', link: '/solutions' },
-    { label: 'Courses', ariaLabel: 'View our services', link: '/courses' },
-    { label: 'Projects', ariaLabel: 'View our services', link: '/projects' },
+    { label: 'Courses', ariaLabel: 'Browse our courses', link: '/courses' },
+    { label: 'Projects', ariaLabel: 'See our projects', link: '/projects' },
     { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
   ];
 
   const socialItems = [
-    { label: 'Twitter', link: 'https://twitter.com' },
-    { label: 'GitHub', link: 'https://github.com' },
-    { label: 'LinkedIn', link: 'https://linkedin.com' }
+    { label: 'Instagram', link: 'https://www.instagram.com/nexvra.solutions' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/company/nexvra-solutions/' },
+    { label: 'WhatsApp', link: 'https://wa.me/message/ZWX4OKLWARYXC1' }
   ];
 
   return (
     <nav className="flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6 lg:px-[5.5%] bg-transparent z-50 relative">
 
       {/* Logo */}
-      <a href="/">
+      <Link href="/" aria-label="Nexvra Solutions home">
         <Image
           src="/logo.png"
           alt="nexvra-logo"
@@ -44,7 +37,7 @@ export default function Navbar() {
           className="object-contain sm:w-[180px] lg:w-[200px]"
           priority
         />
-      </a>
+      </Link>
 
       <StaggeredMenu
         position="right"

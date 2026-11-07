@@ -1,32 +1,26 @@
 import { cookies } from 'next/headers';
-import { SignJWT, jwtVerify } from 'jose';
+
 import { redirect } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
+
+import {
+  AdminSession,
+  createSessionToken,
+  verifySessionToken,
+} from '@/lib/session';
+
+export type {
+  AdminSession,
+};
+
+export {
+  createSessionToken,
+  verifySessionToken,
+};
 
 const jwtSecret = process.env.JWT_SECRET;
 if (process.env.NODE_ENV === 'production' && (!jwtSecret || jwtSecret.length < 32)) {
   throw new Error('JWT_SECRET must be set to at least 32 characters in production.');
-}
-
-const secret = new TextEncoder().encode(jwtSecret || 'nexvra-development-secret-key-change-me');
-
-export type AdminSession = {
-  userId: string;
-  email: string;
-  role: 'SUPER_ADMIN' | 'ADMIN';
-};
-
-export async function createSessionToken(payload: AdminSession) {
-  return new SignJWT(payload)
-    .setProtectedHeader({ alg: 'HS256' })
-    .setIssuedAt()
-    .setExpirationTime('8h')
-    .sign(secret);
-}
-
-export async function verifySessionToken(token: string) {
-  const { payload } = await jwtVerify(token, secret);
-  return payload as AdminSession;
 }
 
 export async function getSessionFromCookies() {
@@ -58,12 +52,25 @@ export async function requireAdminSession() {
     redirect('/admin/login');
   }
 
+
   const admin = await prisma.adminUser.findUnique({
     where: { id: session.userId },
   });
 
   if (!admin || !admin.isActive) {
-    redirect('/admin/login');
+    // Token is valid but the account was removed or deactivated: clear the session.
+    redirect('/admin/login?signedout=1');
+  }
+
+  return { session, admin };
+}
+
+export async function requireSuperAdminSession() {
+  const { session, admin } = await requireAdminSession();
+
+  if (admin.role !== 'SUPER_ADMIN') {
+    // Signed in but not allowed here: send them to the dashboard, not the login form.
+    redirect('/admin/dashboard');
   }
 
   return { session, admin };

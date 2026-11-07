@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Inter, Geist } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/layout/footer";
 import { cn } from "@/lib/utils";
-import LazyLoader from "@/components/ui/lazy-loader";
+import { SiteFooter, SiteLoader } from "@/components/layout/site-chrome";
 import { Toaster } from "sonner";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
@@ -122,6 +121,8 @@ export default function RootLayout({
             (function() {
               try {
                 if (sessionStorage.getItem('nexvra_loaded')) return;
+                var p = location.pathname;
+                if (p.indexOf('/admin') === 0 || p.indexOf('/verify/') === 0 || p.indexOf('/students/') === 0) return;
                 var overlay = document.createElement('div');
                 overlay.id = 'nexvra-loader-overlay';
                 overlay.style.cssText = 'position:fixed;inset:0;z-index:9998;background:#050505;';
@@ -134,10 +135,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-secondary antialiased">
-        <LazyLoader />
+        <SiteLoader />
         {children}
         <Toaster position="top-right" richColors />
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );

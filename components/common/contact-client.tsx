@@ -117,8 +117,8 @@ const ContactClient = () => {
             } else {
                 toast.error("Failed to send message");
             }
-        } catch (err) {
-            toast.error("Something went wrong");
+        } catch {
+            toast.error("Could not reach the server. Check your connection and try again.");
         } finally {
             setLoading(false);
         }

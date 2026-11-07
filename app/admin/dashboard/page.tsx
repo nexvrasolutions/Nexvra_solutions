@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { requireAdminSession } from '@/lib/auth';
 
@@ -17,6 +18,7 @@ export default async function AdminDashboardPage() {
         id: true,
         fullName: true,
         email: true,
+        courseName: true,
         createdAt: true,
       },
     }),
@@ -32,7 +34,12 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div>
+        <p className="text-xs uppercase tracking-[0.25em] text-black/50">Overview</p>
+        <h1 className="mt-2 text-3xl font-bold">Dashboard</h1>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {stats.map((stat) => (
           <div key={stat.label} className="rounded-2xl border border-black/10 bg-white p-5 shadow-sm">
             <div className="text-sm text-black/60">{stat.label}</div>
@@ -51,12 +58,14 @@ export default async function AdminDashboardPage() {
         ) : (
           <div className="space-y-3">
             {recentStudents.map((student) => (
-              <div key={student.id} className="flex items-center justify-between border-b border-black/10 py-3 last:border-b-0">
-                <div>
-                  <div className="font-medium">{student.fullName}</div>
-                  <div className="text-sm text-black/60">{student.email}</div>
+              <div key={student.id} className="flex items-center justify-between gap-3 border-b border-black/10 py-3 last:border-b-0">
+                <div className="min-w-0">
+                  <Link href={`/admin/students/${student.id}`} className="font-medium hover:underline">
+                    {student.fullName}
+                  </Link>
+                  <div className="truncate text-sm text-black/60">{student.courseName || student.email || '—'}</div>
                 </div>
-                <div className="text-sm text-black/60">
+                <div className="shrink-0 text-sm text-black/60">
                   {new Date(student.createdAt).toLocaleDateString()}
                 </div>
               </div>
