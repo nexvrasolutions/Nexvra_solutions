@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLoginPage() {
@@ -88,6 +89,11 @@ export default function AdminLoginPage() {
               >
                 {showPassword ? <EyeOff size={18} aria-hidden="true" /> : <Eye size={18} aria-hidden="true" />}
               </button>
+            </div>
+            <div className="mt-2 text-right">
+              <Link href="/admin/forgot-password" className="text-sm font-medium text-[#5c9400] hover:underline">
+                Forgot password?
+              </Link>
             </div>
           </div>
 

@@ -69,6 +69,24 @@ model AdminUser {
 
   approvedEnrollments Enrollment[] @relation("ApprovedByAdmin")
   sessions            AdminSession[]
+  passwordResetOtps   PasswordResetOtp[]
+}
+
+/// One-time codes for the "forgot password" email flow. The code is stored only
+/// as a bcrypt hash; it expires, is single-use, and has a limited attempt count.
+model PasswordResetOtp {
+  id          String    @id @default(cuid())
+  adminUserId String
+  otpHash     String
+  expiresAt   DateTime  @db.Timestamptz(3)
+  attempts    Int       @default(0)
+  consumedAt  DateTime? @db.Timestamptz(3)
+  createdAt   DateTime  @default(now()) @db.Timestamptz(3)
+
+  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+  @@index([expiresAt])
 }
 
 /// One row per admin login. The session cookie carries this id; a request is

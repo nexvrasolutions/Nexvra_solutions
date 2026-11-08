@@ -29,6 +29,11 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const signedIn = await hasValidSession(request);
 
+  if (pathname === '/admin/forgot-password') {
+    // Always reachable; a signed-in admin can still reset their password.
+    return NextResponse.next();
+  }
+
   if (pathname === '/admin/login') {
     if (request.nextUrl.searchParams.has('signedout')) {
       // Sent here because the account is no longer active: drop the cookie and show the form.
