@@ -22,9 +22,14 @@ const BUNDLED_CA = path.join(process.cwd(), "supabase-ca.cer", "prod-ca-2021.crt
 function loadSupabaseCa() {
   const pem = process.env.SUPABASE_CA_CERT_PEM?.trim();
   if (pem) return pem.replace(/\\n/g, "\n");
-  for (const candidate of [process.env.SUPABASE_CA_CERT?.trim(), BUNDLED_CA]) {
-    if (candidate && existsSync(candidate)) return readFileSync(candidate, "utf8");
+  // A path from the environment is only known at runtime. Without the ignore
+  // comments, Turbopack (Next.js 16.4+) traces the whole project into every
+  // server function. The bundled CA is included via outputFileTracingIncludes.
+  const configured = process.env.SUPABASE_CA_CERT?.trim();
+  if (configured && existsSync(/*turbopackIgnore: true*/ configured)) {
+    return readFileSync(/*turbopackIgnore: true*/ configured, "utf8");
   }
+  if (existsSync(BUNDLED_CA)) return readFileSync(BUNDLED_CA, "utf8");
   throw new Error("Supabase CA certificate not found. Set SUPABASE_CA_CERT_PEM or SUPABASE_CA_CERT.");
 }
 

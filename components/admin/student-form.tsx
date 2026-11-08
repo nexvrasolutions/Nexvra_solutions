@@ -1,7 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { useRouter } from 'next/navigation';
+
+/** False while rendering on the server and during hydration, true afterwards. */
+const noopSubscribe = () => () => {};
+function useHydrated() {
+  return useSyncExternalStore(noopSubscribe, () => true, () => false);
+}
 
 type ProgramType = 'COURSE' | 'INTERNSHIP' | 'CUSTOM';
 
@@ -132,8 +138,7 @@ export function StudentForm({
   const [publicProfileEnabled, setPublicProfileEnabled] = useState(initialData?.publicProfileEnabled ?? true);
 
   // Until React has hydrated, a click would fall back to a native GET submit.
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
+  const hydrated = useHydrated();
 
   const busy = phase !== 'idle';
   const datesInvalid = Boolean(batchStartDate && batchEndDate && batchEndDate < batchStartDate);

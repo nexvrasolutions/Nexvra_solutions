@@ -2,9 +2,14 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
-import { createSessionToken, setAdminSessionCookie } from '@/lib/auth';
+import { setAdminSessionCookie, startAdminSession } from '@/lib/auth';
 import { jsonError, readJson } from '@/lib/api';
-import { clearFailures, loginKey, recordFailure, retryAfterSeconds } from '@/lib/rate-limit';
+import {
+  TOO_MANY_ATTEMPTS_MESSAGE,
+  loginThrottleKeys,
+  registerLoginAttempt,
+  registerLoginSuccess,
+} from '@/lib/rate-limit';
 
 /** bcrypt hash (cost 12) of a random throwaway string; never matches a real password. */
 const DUMMY_HASH = '$2b$12$C6UzMDM.H6dfI/f/IKxGhuK1Q0d5Q6pN5V7wJ3hK9qFZ1yQ8Qz2Ve';
@@ -21,16 +26,18 @@ export async function POST(request: Request) {
   }
 
   const { email, password } = parsed.data;
-  const key = loginKey(request, email);
-  const retryAfter = retryAfterSeconds(key);
-  if (retryAfter > 0) {
-    return NextResponse.json(
-      { message: `Too many failed attempts. Try again in ${Math.ceil(retryAfter / 60)} minute(s).` },
-      { status: 429, headers: { 'Retry-After': String(retryAfter) } }
-    );
-  }
 
   try {
+    // Shared across all server instances; counted before the password is checked.
+    const keys = loginThrottleKeys(request, email);
+    const retryAfter = await registerLoginAttempt(keys);
+    if (retryAfter > 0) {
+      return NextResponse.json(
+        { message: TOO_MANY_ATTEMPTS_MESSAGE },
+        { status: 429, headers: { 'Retry-After': String(retryAfter) } }
+      );
+    }
+
     const admin = await prisma.adminUser.findFirst({
       where: { email: { equals: email, mode: 'insensitive' } },
     });
@@ -38,17 +45,14 @@ export async function POST(request: Request) {
     // Always run bcrypt so a missing account answers as slowly as a wrong password
     // (otherwise response timing reveals which emails are admins).
     const passwordMatches = await bcrypt.compare(password, admin?.passwordHash ?? DUMMY_HASH);
+    // One message for unknown email, wrong password and deactivated account.
     if (!admin || !admin.isActive || !passwordMatches) {
-      recordFailure(key);
       return jsonError('Invalid credentials.', 401);
     }
 
-    clearFailures(key);
-    const token = await createSessionToken({
-      userId: admin.id,
-      email: admin.email,
-      role: admin.role,
-    });
+    await registerLoginSuccess(keys);
+    // Stored server-side so logout can revoke it (see lib/auth.ts).
+    const token = await startAdminSession(admin);
 
     const response = NextResponse.json({
       message: 'Login successful.',

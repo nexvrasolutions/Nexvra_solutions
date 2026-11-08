@@ -9,8 +9,10 @@ async function main() {
     throw new Error("Admin email and password (minimum 12 characters) are required.");
   }
 
-  const admin = await prisma.adminUser.findUnique({
-    where: { email },
+  // Match the login route: emails are compared case-insensitively, so an
+  // address stored with capitals (e.g. "Contact...@gmail.com") is still found.
+  const admin = await prisma.adminUser.findFirst({
+    where: { email: { equals: email, mode: "insensitive" } },
   });
 
   if (!admin) {
@@ -27,7 +29,14 @@ async function main() {
     },
   });
 
+  // A new password signs the admin out on every device.
+  const { count } = await prisma.adminSession.updateMany({
+    where: { adminUserId: admin.id, revokedAt: null },
+    data: { revokedAt: new Date() },
+  });
+
   console.log("SUCCESS: Admin password reset.");
+  console.log("Signed-in sessions revoked:", count);
   console.log("Email:", admin.email);
   console.log("Role:", admin.role);
   console.log("Active: true");

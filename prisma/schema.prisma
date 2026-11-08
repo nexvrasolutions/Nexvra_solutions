@@ -68,6 +68,35 @@ model AdminUser {
   updatedAt    DateTime  @updatedAt
 
   approvedEnrollments Enrollment[] @relation("ApprovedByAdmin")
+  sessions            AdminSession[]
+}
+
+/// One row per admin login. The session cookie carries this id; a request is
+/// only accepted while the row exists, is not revoked and has not expired.
+model AdminSession {
+  /// Random, unguessable id (32 bytes, base64url), set by the server.
+  id          String    @id
+  adminUserId String
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime
+  revokedAt   DateTime?
+
+  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@index([adminUserId])
+  @@index([expiresAt])
+}
+
+/// Shared login rate-limit counters (fixed 15-minute windows), used by every
+/// server instance. Written only with atomic SQL in lib/rate-limit.ts.
+model LoginThrottle {
+  /// "<scope>:<sha256>"; emails and IP addresses are never stored in plain text.
+  key         String   @id
+  attempts    Int
+  windowStart DateTime @db.Timestamptz(3)
+  updatedAt   DateTime @db.Timestamptz(3)
+
+  @@index([updatedAt])
 }
 
 model Course {
