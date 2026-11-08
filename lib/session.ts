@@ -9,7 +9,7 @@ if (!jwtSecret || jwtSecret.length < 32) {
 const secret = new TextEncoder().encode(jwtSecret);
 
 /** How long an admin session lasts (cookie, token and database row). */
-export const SESSION_TTL_SECONDS = 60 * 60 * 8;
+export const SESSION_TTL_SECONDS = 60 * 60 * 24 * 30;
 
 export type AdminSession = {
   /** Id of the AdminSession row; the session is revoked by revoking that row. */
