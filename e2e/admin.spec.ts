@@ -176,7 +176,7 @@ test.describe.serial('student, course and QR certificate lifecycle', () => {
     await page.getByLabel('Student Full Name').fill(student.name);
     await page.getByLabel('Email Address').fill(student.email);
     await page.getByLabel('Contact Number').fill(student.phone);
-    await page.getByLabel('Course Name').selectOption('__custom__');
+    await page.locator('#student-course').selectOption('__custom__');
     await page.getByLabel('Custom course name').fill(student.customCourse);
     await page.getByLabel('Batch Start Date').fill('2026-01-05');
     await page.getByLabel('Batch Completion Date').fill('2026-04-30');
@@ -204,7 +204,7 @@ test.describe.serial('student, course and QR certificate lifecycle', () => {
     await page.goto('/admin/students/new');
     await page.getByLabel('Student Full Name').fill(`${student.name} dup`);
     await page.getByLabel('Email Address').fill(student.email.toUpperCase());
-    await page.getByLabel('Course Name').selectOption('__custom__');
+    await page.locator('#student-course').selectOption('__custom__');
     await page.getByLabel('Custom course name').fill(student.customCourse);
     await page.getByLabel('Batch Start Date').fill('2026-01-05');
     await page.getByLabel('Batch Completion Date').fill('2026-04-30');

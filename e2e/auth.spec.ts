@@ -67,7 +67,7 @@ test.describe('login form', () => {
   test('rejects a wrong password', async ({ page }) => {
     await page.goto('/admin/login');
     await page.getByLabel('Email').fill('pwtest.nobody@example.com');
-    await page.getByLabel('Password').fill('definitely-wrong-password');
+    await page.getByLabel('Password', { exact: true }).fill('definitely-wrong-password');
     await page.getByRole('button', { name: 'Sign In' }).click();
     await expect(page.getByText('Invalid credentials.')).toBeVisible();
     await expect(page).toHaveURL(/\/admin\/login$/);
@@ -89,7 +89,7 @@ test.describe('login form', () => {
     const { email, password } = adminCredentials();
     await page.goto('/admin/login');
     await page.getByLabel('Email').fill(email.toUpperCase());
-    await page.getByLabel('Password').fill(password);
+    await page.getByLabel('Password', { exact: true }).fill(password);
     await page.getByRole('button', { name: 'Sign In' }).click();
     await page.waitForURL('**/admin/dashboard');
 

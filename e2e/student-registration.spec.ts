@@ -87,7 +87,7 @@ function writePng(name: string, rgb: [number, number, number]) {
 
 async function fillRequired(page: Page, s: { name: string; course: string; start: string; end: string }) {
   await page.getByLabel('Student Full Name').fill(s.name);
-  await page.getByLabel('Course Name').selectOption('__custom__');
+  await page.locator('#student-course').selectOption('__custom__');
   await page.getByLabel('Custom course name').fill(s.course);
   await page.getByLabel('Batch Start Date').fill(s.start);
   await page.getByLabel('Batch Completion Date').fill(s.end);
@@ -304,8 +304,9 @@ test.describe.serial('student registration and QR certificate', () => {
     const second = (await getStudent(page.request, fullId)).studentPhoto;
     expect(second).toContain('/students/');
     expect(second).not.toBe(first);
-    // The replaced file is deleted from storage.
-    await expect.poll(async () => (await page.request.get(first!)).status()).not.toBe(200);
+    // The replaced file is deleted from storage. A cache-busting query skips the
+    // Supabase CDN, which can keep serving the old public URL for a while after deletion.
+    await expect.poll(async () => (await page.request.get(`${first!}?v=${Date.now()}`)).status()).not.toBe(200);
   });
 
   test('#13 edit existing student information', async ({ page }) => {

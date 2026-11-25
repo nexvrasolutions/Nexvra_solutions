@@ -78,7 +78,7 @@ test.describe('login rate limiting', () => {
     for (let i = 0; i < LIMIT_PER_IP_AND_EMAIL; i++) await attempt(page.request, email);
     await page.goto('/admin/login');
     await page.getByLabel('Email').fill(email);
-    await page.getByLabel('Password').fill('wrong-password-form');
+    await page.getByLabel('Password', { exact: true }).fill('wrong-password-form');
     await page.getByRole('button', { name: 'Sign In' }).click();
     await expect(page.getByText(GENERIC_LOCKOUT)).toBeVisible();
     await expect(page).toHaveURL(/\/admin\/login/);
